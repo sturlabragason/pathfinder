@@ -4167,11 +4167,11 @@ h4, h5, h6, .page:has(.frontCover), .page:has(.backCover), .page:has(.insideCove
 html,body{margin:0;background:#2b2b2b}
 .site-bar{font:14px/1.4 system-ui,sans-serif;color:#eee;text-align:center;padding:10px}
 .site-bar a{color:#f0c674}
-.brewRenderer{overflow:visible!important;height:auto!important}
-.pages{display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px 0}
-.pages .page{flex:none;margin:0 auto!important}
+.brewRenderer{overflow:visible!important;height:auto!important;padding:0!important}
+.pages{display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px 0!important;margin:0!important}
+.pages .page{flex:none;margin:0 auto!important;overflow:hidden!important}
 @media screen and (max-width:860px){.pages{zoom:calc(100vw / 860px)}}
-@media print{.site-bar{display:none}html,body{background:none}.pages{display:block;padding:0;gap:0}.pages .page{margin:0!important;box-shadow:none!important}}
+@media print{.site-bar{display:none}html,body{background:none}.pages{display:block;padding:0!important;gap:0}.pages .page{margin:0!important;box-shadow:none!important;overflow:hidden!important;break-after:page;break-inside:avoid}.pages .page:last-child{break-after:auto}}
 </style></head>
 <body class="">
 <div class="site-bar">Caladrel Ecthëlion · <a href="caladrel-ecthelion.pdf">Download PDF</a> · <a href="https://github.com/sturlabragason/pathfinder">Source</a> · <a href="https://github.com/sturlabragason/pathfinder_spells">Spells</a></div>
@@ -4179,7 +4179,7 @@ html,body{margin:0;background:#2b2b2b}
 <h2 id="elf-conjurer-of-the-handanvaldur">Elf Conjurer of the Handanvaldur</h2>
 <hr>
 <span class="inline-block banner">WIZARD 7</span><div class="block footnote"><p>  Pathfinder 1e · Player: Sturla</p>
-</div><p><img style="--HB_src:url(https://raw.githubusercontent.com/sturlabragason/pathfinder/main/caladrel.jpg); position:absolute; bottom:0; right:-200px; height:100%;" loading="lazy" src="https://raw.githubusercontent.com/sturlabragason/pathfinder/main/caladrel.jpg" alt="Caladrel Ecthëlion"></p>
+</div><p><img style="--HB_src:url(assets/caladrel.jpg); position:absolute; bottom:0; right:-200px; height:100%;" src="assets/caladrel.jpg" alt="Caladrel Ecthëlion"></p>
 <p>&nbsp;</p>
 <div class="columnSplit">  </div><p>&nbsp;</p>
 </div></div><div class="page" id="p2" data-index="1"><div class="columnWrapper"><div class="block monster frame wide"><h2 id="caladrel-ecthëlion-1">Caladrel Ecthëlion</h2>
