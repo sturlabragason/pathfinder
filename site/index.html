@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b2b2b">
 <title>Caladrel Ecthëlion · Pathfinder 1e</title>
 <meta name="robots" content="noindex">
 <style>@font-face { font-family: "Open Sans"; font-style: normal; font-weight: normal; src: url("data:,") format("woff2"); font-display: swap; unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -4170,7 +4171,21 @@ html,body{margin:0;background:#2b2b2b}
 .brewRenderer{overflow:visible!important;height:auto!important;padding:0!important}
 .pages{display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px 0!important;margin:0!important}
 .pages .page{flex:none;margin:0 auto!important;overflow:hidden!important}
-@media screen and (max-width:860px){.pages{zoom:calc(100vw / 860px)}}
+@media screen and (max-width:860px){
+.site-bar{font-size:15px;padding:12px 8px}
+.pages{gap:12px!important;padding:8px 0!important}
+.pages .page{width:100vw!important;height:auto!important;min-height:0!important;contain:none!important;content-visibility:visible!important;column-count:1!important;column-width:auto!important;columns:auto 1!important;padding:6vw 5vw 14vw!important;font-size:15px!important;box-shadow:none!important}
+.pages .page .columnSplit{display:none!important}
+.pages .page .wide,.pages .page .monster.wide,.pages .page .spellList.wide{column-count:1!important;column-span:none!important}
+.pages .page table{width:100%!important;max-width:100%}
+.pages .page img{max-width:100%}
+.pages .page h1{font-size:9vw!important}
+.pages .page:has(.frontCover){height:calc(100vw * 1.294)!important;padding:0!important;overflow:hidden!important}
+.pages .page:has(.frontCover) img{max-width:none;left:0!important;right:auto!important;width:100%!important;height:100%!important;object-fit:cover;object-position:60% 30%}
+.pages .page .note,.pages .page .descriptive,.pages .page .classTable,.pages .page .monster{margin-bottom:28px!important}
+.pages .page .footnote{font-size:10px!important}
+.pages .page .frontCover{zoom:calc(100vw / 816px)}
+}
 @media print{.site-bar{display:none}html,body{background:none}.pages{display:block;padding:0!important;gap:0}.pages .page{margin:0!important;box-shadow:none!important;overflow:hidden!important;break-after:page;break-inside:avoid}.pages .page:last-child{break-after:auto}}
 </style></head>
 <body class="">
