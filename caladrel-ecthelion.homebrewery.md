@@ -113,6 +113,32 @@ ___
 
 \page
 
+## Spellbook
+
+*102 spells, from the "On my list" column of [pathfinder_spells](https://github.com/sturlabragason/pathfinder_spells). Opposed schools (enchantment, divination) take two slots to prepare.*
+
+### Cantrips
+*Acid splash, arcane mark, bleed, breeze, chameleon scales, dancing lights, detect magic, disrupt undead, drench, flare, ghost sound, haunted fey aspect, jolt, light, mage hand, mending, message, oath of anonymity, open/close, penumbra, prestidigitation, ray of frost, read magic (not in spellbook), resistance, root, scoop, sotto voce, spark, touch of fatigue, vacuous vessel*
+
+### 1st Level
+*Air bubble, blend, charm person, disguise self, ear-piercing scream, endure elements, expeditious retreat, feather fall, grease, identify, illusion of calm, mage armor, magic missile, mount, mudball, obscuring mist, protection from evil, ray of enfeeblement, Serren's swift girding, shadow trap, shield, silent image, snowball, stone shield, stunning barrier, summon monster I, thunderstomp*
+
+\column
+
+### 2nd Level
+*Blur, bull's strength, burning arc, create pit, false life, fire breath, fog cloud, glitterdust, hideous laughter, invisibility, knock, make whole, mirror image, mount (communal), protection from arrows, resist energy, scorching ray, see invisibility, spider climb, stone call, summon monster II, summon swarm, web*
+
+### 3rd Level
+*Aqueous orb, chain of perdition, dispel magic, displacement, fireball, fly, gaseous form, halt undead, haste, heroism, lightning bolt, mad monkeys, rain of frogs, ray of exhaustion, shifting sand, slow, spiked pit, stinking cloud, stunning barrier (greater), suggestion, summon monster III, thunderstomp (greater)*
+
+### 4th Level
+*None yet. Two slots per day are available.*
+
+{{pageNumber,auto}}
+{{footnote CALADREL ECTHËLION | SPELLBOOK}}
+
+\page
+
 ## Backstory
 
 {{descriptive
