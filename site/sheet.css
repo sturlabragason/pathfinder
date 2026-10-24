@@ -89,7 +89,6 @@ main > section { display: grid; gap: var(--gap); }
 
 .spell-levels { display: grid; gap: var(--gap); align-items: start; }
 @media (min-width: 900px) { .spell-levels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1100px) { .spell-levels { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 .spell-level { padding: 10px 12px 10px; gap: 6px; }
 .lvl-head { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 10px; align-items: stretch; border-bottom: var(--stroke) solid var(--ink); padding-bottom: 8px; }
@@ -97,7 +96,7 @@ main > section { display: grid; gap: var(--gap); }
   display: grid; place-items: center; width: 52px; height: 52px; border: var(--stroke) solid var(--ink); border-radius: 50%;
   font: 800 var(--t-xl)/1 var(--sans); background: var(--grey);
 }
-.lvl-no small { display: block; font: 700 10px/1 var(--sc); letter-spacing: .05em; margin-top: -2px; }
+.lvl-no small { display: block; font: 700 9px/1 var(--sc); letter-spacing: 0; margin-top: -2px; }
 .lvl-box { border: 1.5px solid var(--ink); border-radius: 6px; text-align: center; padding: 3px 8px 2px; display: flex; flex-direction: column; justify-content: space-between; }
 .lvl-box b { font: 800 var(--t-lg)/1.1 var(--sans); }
 .lvl-box .lbl { font-size: 11px; }

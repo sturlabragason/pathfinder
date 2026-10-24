@@ -346,7 +346,13 @@
     BOOK = data.spells.filter((s) => s.level != null && s.level <= 4).sort((a, b) => a.level - b.level || a.name.localeCompare(b.name));
     byName.clear();
     BOOK.forEach((s) => byName.set(s.name, s));
-    for (const lvl of Object.keys(state.prep)) for (const n of Object.keys(prepOf(lvl))) if (!byName.has(n)) delete state.prep[lvl][n];
+    const lower = new Map(BOOK.map((s) => [s.name.toLowerCase(), s.name]));
+    for (const lvl of Object.keys(state.prep)) for (const n of Object.keys(prepOf(lvl))) {
+      if (byName.has(n)) continue;
+      const renamed = lower.get(n.toLowerCase());
+      if (renamed && !state.prep[lvl][renamed]) state.prep[lvl][renamed] = state.prep[lvl][n];
+      delete state.prep[lvl][n];
+    }
     const links = BOOK.filter((s) => linkFor(s).label === "d20pfsrd").length;
     $("#book-src").textContent = from === "remote"
       ? `${BOOK.length} spells from the live spell list${links ? `, linked to d20pfsrd` : ""}.`
