@@ -6,8 +6,8 @@
   const HP_MAX = 40;
   const SLOTS = { 0: 4, 1: 7, 2: 6, 3: 4, 4: 3 };
   const DC = (lvl, school) => 10 + lvl + 6 + (school === "conjuration" ? 2 : 0);
-  const ORD = ["0", "1st", "2nd", "3rd", "4th"];
-  const ABBR = { abjuration: "ABJ", conjuration: "CON", divination: "DIV", enchantment: "ENC", evocation: "EVO", illusion: "ILL", necromancy: "NEC", transmutation: "TRS", universal: "UNI" };
+  const ABBR = { abjuration: "Abj", conjuration: "Conj", divination: "Div", enchantment: "Ench", evocation: "Evoc", illusion: "Illus", necromancy: "Necro", transmutation: "Trans", universal: "Univ" };
+  const PFSRD_SEARCH = (q) => "https://www.d20pfsrd.com/?s=" + encodeURIComponent(q);
 
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -21,32 +21,41 @@
       else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
       else el.setAttribute(k, v === true ? "" : v);
     }
-    for (const k of kids.flat()) if (k != null) el.append(k.nodeType ? k : document.createTextNode(k));
+    for (const k of kids.flat(Infinity)) if (k != null && k !== false) el.append(k.nodeType ? k : document.createTextNode(k));
     return el;
   };
   const sign = (n) => (n < 0 ? "−" + Math.abs(n) : "+" + n);
+  const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- state ---------- */
   const fresh = () => ({ hp: HP_MAX, temp: 0, prep: {}, used: {}, scrolls: {}, day: 1 });
   let state;
   try { state = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch { state = fresh(); }
+  // Older sheets stored prepared spells as [{n: name, c: cast?}] per level; fold them into {name: {n: copies, c: casts}}.
+  for (const [lvl, v] of Object.entries(state.prep)) {
+    if (!Array.isArray(v)) continue;
+    const m = {};
+    for (const p of v) { const e = (m[p.n] ||= { n: 0, c: 0 }); e.n++; if (p.c) e.c++; }
+    state.prep[lvl] = m;
+  }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* private mode */ } };
 
   /* ---------- tabs ---------- */
+  const OLD = { record: "character", skills: "character", powers: "features", kit: "gear", lore: "story" };
   const sections = $$("main > section");
-  const guides = $$(".guide");
+  const tabs = $$(".tab");
   function show() {
-    const id = (location.hash || "#record").slice(1);
+    let id = (location.hash || "#character").slice(1);
+    id = OLD[id] || id;
     const target = sections.find((s) => s.id === "s-" + id) || sections[0];
     sections.forEach((s) => { s.hidden = s !== target; });
-    guides.forEach((g) => {
-      if ("#s-" + g.getAttribute("href").slice(1) === "#" + target.id) g.setAttribute("aria-current", "page");
-      else g.removeAttribute("aria-current");
+    tabs.forEach((t) => {
+      if (t.getAttribute("href") === "#" + target.id.slice(2)) t.setAttribute("aria-current", "page");
+      else t.removeAttribute("aria-current");
     });
-    document.documentElement.style.setProperty("--tab-active", target.dataset.tab);
-    const active = guides.find((g) => g.getAttribute("aria-current"));
-    const rail = $(".guides");
-    if (active && rail) {
+    const active = tabs.find((t) => t.getAttribute("aria-current"));
+    const rail = $(".tabs");
+    if (active && rail && rail.scrollWidth > rail.clientWidth) {
       const l = active.offsetLeft - 12, r = active.offsetLeft + active.offsetWidth + 12;
       if (l < rail.scrollLeft) rail.scrollLeft = l;
       else if (r > rail.scrollLeft + rail.clientWidth) rail.scrollLeft = r - rail.clientWidth;
@@ -85,7 +94,7 @@
   drawHp();
 
   /* ---------- per-day pips ---------- */
-  function pips(id, total, label, keep) {
+  function pips(id, total, label) {
     const wrap = h("div", { class: "pips", role: "group", "aria-label": label });
     const draw = () => {
       wrap.replaceChildren();
@@ -96,76 +105,86 @@
           class: "pip" + (spent ? " spent" : ""), type: "button",
           "aria-pressed": spent ? "true" : "false",
           "aria-label": `${label}: use ${i + 1} of ${total}${spent ? ", spent" : ""}`,
-          onclick: () => { state.used[id] = spent ? i : i + 1; save(); draw(); },
+          onclick: (e) => { state.used[id] = spent ? i : i + 1; save(); draw(); wrap.children[i]?.focus(); e.preventDefault(); },
         }));
       }
       wrap.append(h("span", { class: "pip-count", text: `${total - used} left` }));
     };
-    wrap.dataset.keep = keep ? "1" : "";
     wrap.redraw = draw;
     draw();
     return wrap;
   }
 
-  /* ---------- powers ---------- */
+  /* ---------- features ---------- */
   const POWERS = [
-    { id: "shift", call: "CON · 020", name: "Shift (Su)", per: 9, aside: "swift · 15 ft",
+    { id: "shift", name: "Shift (Su)", per: 9, aside: "swift · 15 ft",
       text: "Teleport up to 15 ft to a space you can see, as dimension door. No attack of opportunity. You can't bring other creatures, except a familiar. Replaces acid dart." },
-    { id: "bond", call: "CON · 021", name: "Arcane bond", per: 1, aside: "Ring of Pengolodh",
+    { id: "bond", name: "Arcane bond", per: 1, aside: "Ring of Pengolodh",
       text: "Once per day, cast any one spell that is in your spellbook, even if it isn't prepared. It uses the spell's normal casting time and level. Without the ring, concentration DC 20 + spell level to cast at all." },
-    { id: "rod", call: "UNI · 022", name: "Lesser extend rod", per: 3, aside: "metamagic",
+    { id: "rod", name: "Lesser extend rod", per: 3, aside: "metamagic",
       text: "Extend a spell of 3rd level or lower: double its duration without raising its level or casting time." },
-    { id: "pentacles", call: "CON · 023", name: "Master of Pentacles", per: 1, aside: "1/day",
+    { id: "pentacles", name: "Master of Pentacles", per: 1, aside: "1/day",
       text: "Rules text isn't on the Roll20 sheet. Check with the GM." },
-    { id: "charm", call: "CON · 024", name: "Summoner's charm (Su)", aside: "always on",
+    { id: "charm", name: "Summoner's charm (Su)", aside: "always on",
       text: "Conjuration (summoning) spells last 3 rounds longer (half wizard level). Extend Spell doesn't double the extra rounds." },
-    { id: "wand", call: "DIV · 025", name: "Wand of detect magic", per: 19, keep: true, aside: "charges",
+    { id: "wand", name: "Wand of detect magic", per: 19, keep: true, aside: "charges",
       text: "One charge per use. Charges don't come back with a new day." },
-    { id: "bolts", call: "WPN · 026", name: "Crossbow bolts", per: 5, keep: true, aside: "ammunition",
-      text: "Tap a box when a bolt is fired. Clear it when you recover the bolt." },
+    { id: "bolts", name: "Crossbow bolts", per: 5, keep: true, aside: "ammunition",
+      text: "Mark a box when a bolt is fired. Clear it when you recover the bolt." },
   ];
-  const powerList = $("#power-list");
   const pipSets = [];
   for (const p of POWERS) {
-    const card = h("article", { class: "card power" },
-      h("header", { class: "card-head" }, h("h3", { text: p.name }), h("span", { class: "aside", text: p.aside })),
-      h("p", { text: p.text }));
-    if (p.per) { const ps = pips(p.id, p.per, p.name, p.keep); pipSets.push(ps); card.append(ps); }
-    powerList.append(card);
+    const feat = h("div", { class: "feat" },
+      h("p", {}, h("b", {}, h("i", { text: p.name + ". " })), p.text, " ", h("span", { class: "aside", text: `(${p.aside})` })));
+    if (p.per) { const ps = pips(p.id, p.per, p.name); pipSets.push(ps); feat.append(ps); }
+    $("#power-list").append(feat);
   }
 
   /* ---------- skills ---------- */
+  // [name, total, ranks, ability, flags: c = class skill, t = trained only]
   const SKILLS = [
-    ["Acrobatics", 4, 0], ["Appraise", 10, 1, "c"], ["Bluff", 1, 3], ["Climb", -2, 0],
-    ["Craft (alchemy)", 10, 1, "c"], ["Craft (calligraphy)", 10, 1, "c"], ["Craft (cartography)", 10, 1, "c"],
-    ["Diplomacy", 2, 4], ["Disable Device", 4, 0, "t"], ["Disguise", -2, 0], ["Escape Artist", 4, 0],
-    ["Fly", 8, 1, "c"], ["Handle Animal", -2, 0, "t"], ["Heal", 0, 0], ["Intimidate", 2, 4],
-    ["Knowledge (arcana)", 16, 7, "ct"], ["Knowledge (dungeoneering)", 11, 2, "ct"], ["Knowledge (engineering)", 11, 2, "ct"],
-    ["Knowledge (geography)", 11, 2, "ct"], ["Knowledge (history)", 10, 1, "ct"], ["Knowledge (local)", 10, 1, "ct"],
-    ["Knowledge (nature)", 10, 1, "ct"], ["Knowledge (nobility)", 10, 1, "ct"], ["Knowledge (planes)", 14, 5, "ct"],
-    ["Knowledge (religion)", 11, 2, "ct"], ["Linguistics", 12, 3, "ct"], ["Perception", 7, 7], ["Perform", -2, 0],
-    ["Profession", 0, 0, "ct"], ["Ride", 4, 0], ["Sense Motive", 2, 2], ["Sleight of Hand", 5, 1, "t"],
-    ["Spellcraft", 16, 1, "ct"], ["Stealth", 4, 0], ["Survival", 1, 1], ["Swim", -1, 1], ["Use Magic Device", -2, 0, "t"],
+    ["Acrobatics", 4, 0, "Dex"], ["Appraise", 10, 1, "Int", "c"], ["Bluff", 1, 3, "Cha"], ["Climb", -2, 0, "Str"],
+    ["Craft (alchemy)", 10, 1, "Int", "c"], ["Craft (calligraphy)", 10, 1, "Int", "c"], ["Craft (cartography)", 10, 1, "Int", "c"],
+    ["Diplomacy", 2, 4, "Cha"], ["Disable Device", 4, 0, "Dex", "t"], ["Disguise", -2, 0, "Cha"], ["Escape Artist", 4, 0, "Dex"],
+    ["Fly", 8, 1, "Dex", "c"], ["Handle Animal", -2, 0, "Cha", "t"], ["Heal", 0, 0, "Wis"], ["Intimidate", 2, 4, "Cha"],
+    ["Knowledge (arcana)", 16, 7, "Int", "ct"], ["Knowledge (dungeoneering)", 11, 2, "Int", "ct"], ["Knowledge (engineering)", 11, 2, "Int", "ct"],
+    ["Knowledge (geography)", 11, 2, "Int", "ct"], ["Knowledge (history)", 10, 1, "Int", "ct"], ["Knowledge (local)", 10, 1, "Int", "ct"],
+    ["Knowledge (nature)", 10, 1, "Int", "ct"], ["Knowledge (nobility)", 10, 1, "Int", "ct"], ["Knowledge (planes)", 14, 5, "Int", "ct"],
+    ["Knowledge (religion)", 11, 2, "Int", "ct"], ["Linguistics", 12, 3, "Int", "ct"], ["Perception", 7, 7, "Wis"], ["Perform", -2, 0, "Cha"],
+    ["Profession", 0, 0, "Wis", "ct"], ["Ride", 4, 0, "Dex"], ["Sense Motive", 2, 2, "Wis"], ["Sleight of Hand", 5, 1, "Dex", "t"],
+    ["Spellcraft", 16, 1, "Int", "ct"], ["Stealth", 4, 0, "Dex"], ["Survival", 1, 1, "Wis"], ["Swim", -1, 1, "Str"], ["Use Magic Device", -2, 0, "Cha", "t"],
   ];
   const skillList = $("#skill-list");
-  for (const [name, total, ranks, flags = ""] of SKILLS) {
+  for (const [name, total, ranks, ab, flags = ""] of SKILLS) {
     const untrained = flags.includes("t") && !ranks;
+    const cls = flags.includes("c");
     skillList.append(h("li", { "data-name": name.toLowerCase(), class: untrained ? "untrained" : null },
-      h("span", {}, name, flags.includes("c") ? h("span", { class: "cs", title: "class skill", text: "c" }) : null,
-        flags.includes("t") ? h("span", { class: "tr", title: "trained only", text: "t" }) : null),
-      h("span", { class: "lead" }),
-      h("b", { text: untrained ? "—" : sign(total) })));
+      h("i", { class: "bub" + (cls && ranks ? " on" : ""), title: cls ? "class skill" : null, "aria-hidden": "true" }),
+      h("span", { class: "slot", text: untrained ? "—" : sign(total) }),
+      h("span", { class: "nm" }, name, " ", h("small", { text: `(${ab})` }),
+        flags.includes("t") ? h("span", { class: "tr", title: "trained only", text: "T" }) : null,
+        cls ? h("span", { class: "visually-hidden", text: ", class skill" }) : null)));
   }
   $("#skill-q").addEventListener("input", (e) => {
     const q = e.target.value.trim().toLowerCase();
-    $$("li", skillList).forEach((li) => { li.hidden = q && !li.dataset.name.includes(q); });
+    $$("li", skillList).forEach((li) => { li.hidden = !!q && !li.dataset.name.includes(q); });
   });
 
-  /* ---------- kit ---------- */
-  const aon = (q) => "https://aonprd.com/Search.aspx?Query=" + encodeURIComponent(q);
+  /* ---------- spellbook data ---------- */
+  let BOOK = [];
+  const byName = new Map();
+  const slug = (n) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const cost = (s) => (s && s.opposed ? 2 : 1);
+  const linkFor = (s) => {
+    const url = s.url || PFSRD_SEARCH(s.name);
+    const aonLink = s.link_source === "aon" || /aonprd\.com/.test(url);
+    return { url, label: aonLink ? "Archives of Nethys" : "d20pfsrd" };
+  };
+
+  /* ---------- equipment ---------- */
   const WORN = [
-    ["Headband of Vast Intelligence", "+2 Int"], ["Rauð skikkja með logandi öxi", "resist. +2"],
-    ["Amulet of Natural Armor", "+1 AC"], ["Gloves of Arrow Snaring", "", "Gloves of Arrow Snaring"],
+    ["Headband of Vast Intelligence", "+2 Int"], ["Rauð skikkja með logandi öxi", "cloak of resistance +2"],
+    ["Amulet of Natural Armor", "+1 AC"], ["Gloves of Arrow Snaring", ""],
     ["Ring of Pengolodh", "bonded"], ["Ecthëlion signet ring", ""], ["Lesser extend metamagic rod", "3/day"],
     ["Light crossbow", "4 lb"], ["Dagger", "1 lb"], ["Wand of detect magic", "19 ch."], ["Scholar's outfit", "6 lb"],
   ];
@@ -176,162 +195,166 @@
   ];
   const SCROLLS = ["Obscuring Mist", "Bull's Strength", "Swift Girding", "Knock", "Feather Fall", "Illusion of Calm",
     "Protection from Evil", "Mudball", "False Life", "Mount", "Fog Cloud", "See Invisibility", "Unidentified scroll"];
-  const row = ([name, v, link]) => h("li", {}, link ? h("a", { href: aon(link), text: name }) : h("span", { text: name }), v ? h("span", { class: "lead" }) : null, v ? h("b", { class: "nowrap", text: v }) : null);
+  // Verified d20pfsrd pages for the scrolls (checked when the sheet was built); the spellbook's own URL wins when present.
+  const SCROLL_URL = Object.fromEntries(Object.entries({ "Obscuring Mist": "obscuring-mist", "Bull's Strength": "bull-s-strength", "Swift Girding": "swift-girding", "Knock": "knock", "Feather Fall": "feather-fall", "Illusion of Calm": "illusion-of-calm", "Protection from Evil": "protection-from-evil", "Mudball": "mudball", "False Life": "false-life", "Mount": "mount", "Fog Cloud": "fog-cloud", "See Invisibility": "see-invisibility" }).map(([n, sl]) => [n, `https://www.d20pfsrd.com/magic/all-spells/${sl[0]}/${sl}/`]));
+  const row = ([name, v]) => h("li", {}, h("span", { text: name }), v ? h("b", { text: v }) : null);
   WORN.forEach((w) => $("#kit-worn").append(row(w)));
   PACK.forEach((w) => $("#kit-pack").append(row(w)));
   function drawScrolls() {
     const ul = $("#kit-scrolls");
     ul.replaceChildren();
     let left = 0;
-    for (const s of SCROLLS) {
+    SCROLLS.forEach((s, i) => {
       const used = !!state.scrolls[s];
       if (!used) left++;
-      const link = s === "Unidentified scroll" ? h("span", { text: s }) : h("a", { href: "https://aonprd.com/SpellDisplay.aspx?ItemName=" + encodeURIComponent(s), text: s });
-      ul.append(h("li", { class: used ? "used" : null }, link, h("span", { class: "lead" }),
-        used ? h("span", { class: "stamp", text: "Void" }) : null,
-        h("button", { class: "key slim", type: "button", "aria-pressed": used ? "true" : "false",
-          text: used ? "Undo" : "Read",
-          "aria-label": used ? `Restore scroll of ${s}` : `Read scroll of ${s}`,
-          onclick: () => { state.scrolls[s] = !used; save(); drawScrolls(); } })));
-    }
-    $("#scroll-count").textContent = `${left} of ${SCROLLS.length}`;
+      const known = byName.get(s);
+      const href = known && !/aonprd/.test(known.url || "") ? known.url : SCROLL_URL[s];
+      const name = s === "Unidentified scroll" ? h("span", { text: s })
+        : h("span", {}, h("a", { href: href || PFSRD_SEARCH(s), rel: "noopener", text: s }));
+      ul.append(h("li", { class: used ? "used" : null },
+        h("button", { class: "pip" + (used ? " spent" : ""), type: "button", "aria-pressed": used ? "true" : "false",
+          "aria-label": used ? `Scroll of ${s} used; mark unused` : `Mark scroll of ${s} as used`,
+          onclick: () => { state.scrolls[s] = !used; save(); drawScrolls(); $$("#kit-scrolls .pip")[i]?.focus(); } }),
+        name, used ? h("b", { text: "used" }) : null));
+    });
+    $("#scroll-count").textContent = `${left} of ${SCROLLS.length} unread`;
   }
   drawScrolls();
 
-  /* ---------- spells ---------- */
-  let BOOK = [];
-  const byName = new Map();
-  const slug = (n) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-  const cost = (s) => (s && s.opposed ? 2 : 1);
+  /* ---------- spells page ---------- */
+  const book = $("#book"), bookQ = $("#book-q");
+  const openSet = new Set();
+  let view = "known";
+  const prepOf = (lvl) => (state.prep[lvl] ||= {});
+  const slotsUsed = (lvl) => Object.entries(prepOf(lvl)).reduce((a, [n, p]) => a + p.n * cost(byName.get(n)), 0);
+  const slotsCast = (lvl) => Object.entries(prepOf(lvl)).reduce((a, [n, p]) => a + p.c * cost(byName.get(n)), 0);
 
-  function spellCard(s) {
-    const open = h("div", { class: "unfold" });
-    const id = "sp-" + slug(s.name);
-    const facts = [["Casting", s.casting_time], ["Components", s.components], ["Range", s.range], ["Area", s.area], ["Effect", s.effect],
-      ["Targets", s.targets], ["Duration", s.duration], ["Save", s.save], ["SR", s.sr]].filter(([, v]) => v);
-    const hasSave = s.save && !/^none/i.test(s.save);
-    const inner = h("div", { class: "unfold-inner", id },
-      h("dl", { class: "facts" }, facts.flatMap(([k, v]) => [h("dt", { text: k }), h("dd", { text: v })])),
-      hasSave ? h("p", { class: "dcline" }, "Save DC ", h("b", { text: String(DC(s.level, s.school)) })) : null,
-      h("div", { class: "rules ruled", html: s.text }),
-      h("p", { class: "src" }, s.source ? `${s.source} · ` : "", h("a", { href: s.url, rel: "noopener", text: "Archives of Nethys" })));
-    open.append(inner);
-    const btn = h("button", { class: "spell-btn", type: "button", "aria-expanded": "false", "aria-controls": id },
-      h("span", { class: "call", text: `${ABBR[s.school] || "UNI"}·${s.level}` }),
-      h("span", { class: "spell-name", text: s.name }),
-      h("span", { class: "school-mark", text: s.school + (s.subschool ? ` (${s.subschool})` : "") }),
-      h("span", { class: "spell-short", text: s.short }),
-      h("svg", { class: "chev", viewBox: "0 0 16 16", "aria-hidden": "true", html: '<path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/>' }));
-    btn.addEventListener("click", () => {
-      const on = btn.getAttribute("aria-expanded") !== "true";
-      btn.setAttribute("aria-expanded", String(on));
-      card.classList.toggle("open", on);
+  function setPrep(lvl, name, n) {
+    const m = prepOf(lvl);
+    if (n <= 0) delete m[name];
+    else { const e = (m[name] ||= { n: 0, c: 0 }); e.n = n; e.c = Math.min(e.c, n); }
+    save();
+  }
+
+  function spellLine(s) {
+    const lvl = s.level, k = slug(s.name);
+    const p = prepOf(lvl)[s.name] || { n: 0, c: 0 };
+    const free = SLOTS[lvl] - slotsUsed(lvl);
+    const did = "sd-" + k;
+    const isOpen = openSet.has(s.name);
+    const nameBtn = h("button", { class: "sp-name", type: "button", "aria-expanded": String(isOpen), "aria-controls": did, "data-k": "n-" + k },
+      s.name, p.n > 1 ? h("span", { class: "x", text: ` ×${p.n}` }) : null);
+    nameBtn.addEventListener("click", () => {
+      if (openSet.has(s.name)) openSet.delete(s.name); else openSet.add(s.name);
+      redrawLevel(lvl, "n-" + k);
     });
-    const stamps = [];
-    if (!s.in_book) stamps.push(h("span", { class: "stamp", text: "From memory" }));
-    else if (s.opposed) stamps.push(h("span", { class: "stamp", text: "Opposed · 2 slots" }));
-    const card = h("article", { class: "card spell", id: "card-" + slug(s.name), "data-school": s.school, "data-level": s.level,
-      "data-q": (s.name + " " + s.short + " " + s.school + " " + s.subschool + " " + s.descriptor).toLowerCase() },
-      stamps.length ? h("div", { class: "stamps" }, stamps) : null, btn, open);
-    return card;
+    const casts = h("span", { class: "casts" });
+    if (lvl > 0) {
+      for (let i = 0; i < p.n; i++) {
+        const on = i < p.c;
+        casts.append(h("button", { class: "cast-b", type: "button", "aria-pressed": String(on), "data-k": `c${i}-${k}`,
+          "aria-label": on ? `${s.name}: copy ${i + 1} cast; undo` : `Cast ${s.name}${p.n > 1 ? ` (copy ${i + 1})` : ""}`,
+          onclick: () => { setPrep(lvl, s.name, p.n); prepOf(lvl)[s.name].c = on ? i : i + 1; save(); redrawLevel(lvl, `c${i}-${k}`); } }));
+      }
+      if (p.n > 0 && free >= cost(s))
+        casts.append(h("button", { class: "more-b", type: "button", text: "+", "data-k": "m-" + k, "aria-label": `Prepare another copy of ${s.name}`,
+          onclick: () => { setPrep(lvl, s.name, p.n + 1); redrawLevel(lvl, "m-" + k); } }));
+    }
+    const canPrep = p.n > 0 || free >= cost(s);
+    const facts = [["Casting time", s.casting_time], ["Components", s.components], ["Range", s.range], ["Area", s.area], ["Effect", s.effect],
+      ["Targets", s.targets], ["Duration", s.duration], ["Saving throw", s.save], ["Spell resistance", s.sr]].filter(([, v]) => v);
+    const hasSave = s.save && !/^none/i.test(s.save);
+    const link = linkFor(s);
+    const school = s.school + (s.subschool ? ` (${s.subschool})` : "") + (s.descriptor ? ` [${s.descriptor}]` : "");
+    const detail = h("div", { class: "sp-detail", id: did, hidden: !isOpen },
+      h("p", { class: "short" }, s.short || "", " ", h("span", { class: "src", text: school })),
+      h("dl", { class: "facts" }, facts.map(([a, b]) => [h("dt", { text: a }), h("dd", { text: b })])),
+      hasSave ? h("p", { class: "dcline" }, "Save DC ", h("b", { text: String(DC(lvl, s.school)) })) : null,
+      isOpen ? h("div", { class: "rules", html: s.text || "" }) : null,
+      h("p", { class: "src" }, s.source ? `${s.source} · ` : "", h("a", { href: link.url, rel: "noopener", text: `Read on ${link.label}` })));
+    return h("li", {
+      class: "sp" + (s.school === "conjuration" ? " conj" : "") + (lvl > 0 && p.n > 0 && p.c >= p.n ? " all-cast" : ""),
+      id: "sp-" + k, "data-name": s.name,
+      "data-q": [s.name, s.short, s.school, s.subschool, s.descriptor].join(" ").toLowerCase(),
+      "data-prepared": p.n > 0 ? "1" : null, "data-opposed": s.opposed ? "" : null, "data-memory": s.in_book === false ? "" : null,
+    },
+      h("div", { class: "sp-row" },
+        h("button", { class: "prep-b", type: "button", "aria-pressed": String(p.n > 0), disabled: !canPrep, "data-k": "p-" + k,
+          "aria-label": p.n > 0 ? `Unprepare ${s.name}` : `Prepare ${s.name}${s.opposed ? " (2 slots)" : ""}`,
+          onclick: () => { setPrep(lvl, s.name, p.n > 0 ? 0 : 1); redrawLevel(lvl, "p-" + k); } }),
+        nameBtn,
+        h("span", { class: "sch-ab", title: s.school, text: ABBR[s.school] || "Univ" }),
+        casts),
+      detail);
+  }
+
+  function levelBlock(lvl) {
+    const list = BOOK.filter((s) => s.level === lvl);
+    const used = slotsUsed(lvl), cast = slotsCast(lvl);
+    const ticks = h("span", { class: "ticks", "aria-hidden": "true" });
+    for (let i = 0; i < SLOTS[lvl]; i++) ticks.append(h("i", { class: lvl && i < cast ? "cast" : i < used ? "filled" : null }));
+    const head = h("div", { class: "lvl-head" },
+      h("span", { class: "lvl-no" }, String(lvl), h("small", { text: lvl ? "level" : "cantrip" })),
+      h("span", { class: "lvl-box" }, h("b", { text: String(SLOTS[lvl]) }), h("span", { class: "lbl", text: "Slots" })),
+      h("span", { class: "lvl-used" }, ticks,
+        h("span", { class: "lbl", text: lvl ? `${used} prepared · ${cast} expended · DC ${DC(lvl)}/${DC(lvl, "conjuration")}` : `${used} prepared · at will · DC ${DC(0)}/${DC(0, "conjuration")}` })));
+    const ul = h("ul", { class: "spell-lines" }, list.map(spellLine));
+    const sec = h("section", { class: "box spell-level", "data-level": lvl, "aria-label": lvl ? `Level ${lvl} spells` : "Cantrips" },
+      head, ul, h("p", { class: "empty", hidden: true }));
+    return sec;
+  }
+
+  function filterBook() {
+    const q = bookQ.value.trim().toLowerCase();
+    $$(".spell-level", book).forEach((sec) => {
+      let n = 0;
+      $$(".sp", sec).forEach((li) => {
+        const ok = (view === "known" || li.dataset.prepared) && (!q || li.dataset.q.includes(q));
+        li.hidden = !ok; if (ok) n++;
+      });
+      const empty = $(".empty", sec);
+      empty.hidden = n > 0;
+      empty.textContent = q ? "No match at this level." : view === "prepared" ? "Nothing prepared. Switch to All known and tap a bubble." : "No spells of this level in the book yet.";
+    });
+  }
+
+  function redrawLevel(lvl, focusKey) {
+    const old = $(`.spell-level[data-level="${lvl}"]`, book);
+    const fresh = levelBlock(lvl);
+    old.replaceWith(fresh);
+    filterBook();
+    if (focusKey) {
+      const el = $(`[data-k="${focusKey}"]`, fresh) || $(`[data-k="p-${focusKey.split("-").slice(1).join("-")}"]`, fresh);
+      el?.focus({ preventScroll: true });
+    }
   }
 
   function drawBook() {
-    const book = $("#book");
-    book.replaceChildren();
-    for (let lvl = 0; lvl <= 4; lvl++) {
-      const list = BOOK.filter((s) => s.level === lvl);
-      const sec = h("section", { class: "level", "data-level": lvl, "aria-label": `${ORD[lvl]} level` },
-        h("div", { class: "level-guide" },
-          h("h3", { text: lvl ? `${ORD[lvl]} level` : "Cantrips" }),
-          h("span", { text: `${list.length} cards · ${SLOTS[lvl]}/day · DC ${DC(lvl)}` })));
-      if (!list.length) sec.append(h("p", { class: "empty on-oak", text: "No cards filed at this level yet." }));
-      list.forEach((s) => sec.append(spellCard(s)));
-      book.append(sec);
-    }
+    book.replaceChildren(...[0, 1, 2, 3, 4].map(levelBlock));
     filterBook();
   }
-  let lvlFilter = "all";
-  function filterBook() {
-    const q = $("#book-q").value.trim().toLowerCase();
-    let shown = 0;
-    $$(".level", $("#book")).forEach((sec) => {
-      const lvlOk = lvlFilter === "all" || sec.dataset.level === lvlFilter;
-      let n = 0;
-      $$(".spell", sec).forEach((c) => { const ok = lvlOk && (!q || c.dataset.q.includes(q)); c.hidden = !ok; if (ok) n++; });
-      sec.hidden = !lvlOk || (q && !n);
-      shown += n;
-    });
-    $("#book-count").textContent = q || lvlFilter !== "all" ? `${shown} of ${BOOK.length}` : `${BOOK.length} cards`;
-  }
-  $("#book-q").addEventListener("input", filterBook);
-  $$("[data-lvl]").forEach((b) => b.addEventListener("click", () => {
-    lvlFilter = b.dataset.lvl;
-    $$("[data-lvl]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+
+  function setView(v) {
+    view = v;
+    $$(".seg-b[data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === v)));
     filterBook();
-  }));
-
-  function openSpell(name) {
-    const card = document.getElementById("card-" + slug(name));
-    if (!card) return;
-    const btn = card.querySelector(".spell-btn");
-    if (btn.getAttribute("aria-expanded") !== "true") btn.click();
-    card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-    btn.focus({ preventScroll: true });
   }
-
-  function drawPrep() {
-    const root = $("#prep");
-    root.replaceChildren();
-    let open = 0, total = 0;
-    for (let lvl = 0; lvl <= 4; lvl++) {
-      const list = (state.prep[lvl] ||= []).filter((p) => byName.has(p.n));
-      state.prep[lvl] = list;
-      const used = list.reduce((a, p) => a + cost(byName.get(p.n)), 0);
-      const free = SLOTS[lvl] - used;
-      open += Math.max(0, free); total += SLOTS[lvl];
-      const known = BOOK.filter((s) => s.level === lvl);
-      const boxes = h("span", { class: "slots", "aria-label": `${used} of ${SLOTS[lvl]} slots filed` });
-      for (let i = 0; i < SLOTS[lvl]; i++) boxes.append(h("i", { class: i < used ? "full" : "" }));
-      const block = h("div", { class: "prep-level" },
-        h("div", { class: "prep-head" }, h("h4", { text: lvl ? `${ORD[lvl]} · DC ${DC(lvl)}` : `Cantrips · DC ${DC(0)}` }), boxes));
-      const ul = h("ul", { class: "prep-list" });
-      list.forEach((p, i) => {
-        const s = byName.get(p.n);
-        ul.append(h("li", { "data-school": s.school, class: p.c ? "cast" : null },
-          h("button", { class: "sch linkish", type: "button", text: s.name + (s.opposed ? " (2 slots)" : ""), "aria-label": `Read ${s.name}`, onclick: () => openSpell(s.name) }),
-          p.c ? h("span", { class: "stamp", text: "Cast" }) : null,
-          lvl ? h("button", { class: "key slim", type: "button", "aria-pressed": p.c ? "true" : "false",
-            text: p.c ? "Undo" : "Cast", "aria-label": `${p.c ? "Undo casting" : "Cast"} ${s.name}`,
-            onclick: () => { p.c = !p.c; save(); drawPrep(); } }) : null,
-          p.c ? null : h("button", { class: "key slim ghost", type: "button", text: "Unfile", "aria-label": `Remove ${s.name} from today's slots`,
-            onclick: () => { list.splice(i, 1); save(); drawPrep(); } })));
-      });
-      block.append(ul);
-      if (lvl && known.length && !list.some((p) => byName.get(p.n).school === "conjuration"))
-        block.append(h("p", { class: "hint", text: "The school slot wants a conjuration spell." }));
-      if (!known.length) {
-        block.append(h("p", { class: "empty", text: "No spells of this level in the book yet." }));
-      } else if (free > 0) {
-        const sel = h("select", { class: "field", "aria-label": `File a ${ORD[lvl]}-level spell` },
-          h("option", { value: "", text: `File a spell… (${free} open)` }),
-          known.map((s) => h("option", { value: s.name, disabled: cost(s) > free ? true : null,
-            text: s.name + (s.opposed ? " · 2 slots" : "") + (s.school === "conjuration" ? " · conj." : "") })));
-        sel.addEventListener("change", () => { if (sel.value) { list.push({ n: sel.value, c: false }); save(); drawPrep(); } });
-        block.append(sel);
-      }
-      root.append(block);
-    }
-    $("#prep-aside").textContent = `${open} of ${total} open`;
-  }
+  $$(".seg-b[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
+  bookQ.addEventListener("input", () => { if (bookQ.value && view === "prepared") setView("known"); else filterBook(); });
 
   function setBook(data, from) {
-    BOOK = data.spells.filter((s) => s.level != null && s.level <= 9);
+    BOOK = data.spells.filter((s) => s.level != null && s.level <= 4).sort((a, b) => a.level - b.level || a.name.localeCompare(b.name));
+    byName.clear();
     BOOK.forEach((s) => byName.set(s.name, s));
+    for (const lvl of Object.keys(state.prep)) for (const n of Object.keys(prepOf(lvl))) if (!byName.has(n)) delete state.prep[lvl][n];
+    const links = BOOK.filter((s) => linkFor(s).label === "d20pfsrd").length;
     $("#book-src").textContent = from === "remote"
-      ? `Filed from pathfinder_spells: ${BOOK.length} spells.`
+      ? `${BOOK.length} spells from the live spell list${links ? `, linked to d20pfsrd` : ""}.`
       : `Offline copy: ${BOOK.length} spells. The live list couldn't be reached.`;
-    drawBook(); drawPrep();
+    const anyPrepared = Object.values(state.prep).some((m) => Object.keys(m).length);
+    view = anyPrepared ? "prepared" : "known";
+    $$(".seg-b[data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === view)));
+    drawBook(); drawScrolls();
   }
   const getJson = (url, ms) => {
     const ctl = new AbortController();
@@ -341,7 +364,7 @@
   getJson(REMOTE, 4000).then((d) => setBook(d, "remote"))
     .catch(() => getJson(LOCAL, 8000).then((d) => setBook(d, "local")))
     .catch((e) => {
-      $("#prep").replaceChildren(h("p", { class: "empty", text: `The spellbook didn't load (${e.message || e}). Check the connection and reload.` }));
+      book.replaceChildren(h("p", { class: "empty", text: `The spellbook didn't load (${e.message || e}). Check the connection and reload.` }));
     });
 
   /* ---------- new day ---------- */
@@ -350,10 +373,25 @@
   drawDay();
   $("#new-day").addEventListener("click", () => {
     for (const p of POWERS) if (p.per && !p.keep) delete state.used[p.id];
-    Object.values(state.prep).forEach((l) => l.forEach((p) => { p.c = false; }));
+    Object.values(state.prep).forEach((m) => Object.values(m).forEach((p) => { p.c = 0; }));
     state.temp = 0;
     state.day += 1;
-    save(); drawDay(); drawHp(); drawPrep(); pipSets.forEach((p) => p.redraw());
+    save(); drawDay(); drawHp(); if (BOOK.length) drawBook(); pipSets.forEach((p) => p.redraw());
     const b = $("#new-day"); b.textContent = `Day ${state.day} begun`; setTimeout(() => { b.textContent = "Begin a new day"; }, 1800);
   });
+
+  // Deep link: #spells/<spell-name-slug> opens that spell.
+  const m = location.hash.match(/^#spells\/(.+)$/);
+  if (m) {
+    location.hash = "#spells";
+    const wait = setInterval(() => {
+      if (!BOOK.length) return;
+      clearInterval(wait);
+      const s = BOOK.find((x) => slug(x.name) === m[1]);
+      if (!s) return;
+      setView("known"); openSet.add(s.name); redrawLevel(s.level);
+      $("#sp-" + slug(s.name))?.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "center" });
+    }, 100);
+    setTimeout(() => clearInterval(wait), 10000);
+  }
 })();

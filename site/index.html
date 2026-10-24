@@ -4,331 +4,374 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#17110c">
+<meta name="theme-color" content="#d8d4cb">
 <title>Caladrel Ecthëlion · Wizard 7</title>
-<link rel="preload" href="fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="catalog.css?v=2">
-<link rel="stylesheet" href="sheet.css?v=2">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23b8925a'/%3E%3Crect x='5' y='9' width='22' height='14' fill='%23f5f4ee'/%3E%3Cpath d='M5 13h22' stroke='%23c23b2e' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/AlegreyaSans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/alegreya.css?v=4">
+<link rel="stylesheet" href="paper.css?v=4">
+<link rel="stylesheet" href="sheet.css?v=4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-<header class="plate">
-  <div class="plate-label">
-    <h1>ECTHËLION, Caladrel</h1>
-    <p><span class="long">Wizard 7 · Conjurer (Teleportation)</span><span class="short">Wiz 7 · Conj.</span> <span class="nowrap">· Elf · LG</span></p>
+<div class="paper">
+
+<header class="masthead">
+  <div class="namebox">
+    <div class="scroll">
+      <span class="field-line name">Caladrel Ecthëlion</span>
+      <span class="lbl">Character name</span>
+    </div>
   </div>
+  <dl class="bio box">
+    <div><dt>Class &amp; level</dt><dd>Wizard 7 <span class="nb">(Conjurer · Teleportation)</span></dd></div>
+    <div><dt>Race</dt><dd>Elf</dd></div>
+    <div><dt>Alignment</dt><dd>Lawful good</dd></div>
+    <div><dt>Player</dt><dd>Sturla</dd></div>
+    <div><dt>Size · speed</dt><dd>Medium · 30 ft</dd></div>
+    <div><dt>Experience</dt><dd>0 <span class="nb">/ next 2,000</span></dd></div>
+  </dl>
 </header>
 
-<nav class="guides" aria-label="Sheet sections">
-  <a class="guide" href="#record" style="--tab:var(--guide-buff)">Record</a>
-  <a class="guide" href="#spells" style="--tab:var(--guide-cadet)">Spells</a>
-  <a class="guide" href="#skills" style="--tab:var(--guide-sage)">Skills</a>
-  <a class="guide" href="#powers" style="--tab:var(--guide-salmon)">Powers</a>
-  <a class="guide" href="#kit" style="--tab:var(--guide-ochre)">Kit</a>
-  <a class="guide" href="#lore" style="--tab:var(--guide-lilac)">Lore</a>
+<nav class="tabs" aria-label="Sheet pages">
+  <a class="tab" href="#character">Character</a>
+  <a class="tab" href="#spells">Spells</a>
+  <a class="tab" href="#features">Features</a>
+  <a class="tab" href="#gear">Equipment</a>
+  <a class="tab" href="#story">Backstory</a>
 </nav>
-<div class="guide-rule" aria-hidden="true"></div>
 
 <main>
-<!-- RECORD -->
-<section id="s-record" class="drawer" data-tab="var(--guide-buff)" aria-labelledby="h-record">
-  <h2 id="h-record" class="visually-hidden">Record</h2>
+<!-- ============ CHARACTER ============ -->
+<section id="s-character" class="page page-character" aria-labelledby="h-character">
+  <h2 id="h-character" class="visually-hidden">Character</h2>
 
-  <article class="card record">
-    <header class="card-head"><h3>Main record</h3><span class="aside">HD d6</span></header>
-    <div class="form">
-      <div class="cell big"><span class="lbl">Armor Class</span><span class="val">15</span></div>
-      <div class="cell big"><span class="lbl">Touch</span><span class="val">14</span></div>
-      <div class="cell big"><span class="lbl">Flat-footed</span><span class="val">11</span></div>
+  <div class="col col-abilities">
+    <ul class="abilities" aria-label="Ability scores">
+      <li class="ability"><span class="lbl">Strength</span><b class="mod">−2</b><span class="score">7</span></li>
+      <li class="ability"><span class="lbl">Dexterity</span><b class="mod">+4</b><span class="score">18</span></li>
+      <li class="ability"><span class="lbl">Constitution</span><b class="mod">+1</b><span class="score">12</span></li>
+      <li class="ability key-ability"><span class="lbl">Intelligence</span><b class="mod">+6</b><span class="score">22</span></li>
+      <li class="ability"><span class="lbl">Wisdom</span><b class="mod">+0</b><span class="score">10</span></li>
+      <li class="ability"><span class="lbl">Charisma</span><b class="mod">−2</b><span class="score">7</span></li>
+    </ul>
+    <p class="fine">Intelligence includes the Headband of Vast Intelligence +2.</p>
+  </div>
 
-      <div class="cell hp" aria-labelledby="hp-lbl">
-        <span class="lbl" id="hp-lbl">Hit points</span>
+  <div class="col col-skills">
+    <div class="pill"><b>+3</b><span class="lbl">Base attack bonus</span></div>
+    <div class="pill"><b>+13</b><span class="lbl">Concentration</span></div>
+
+    <div class="box panel saves">
+      <ul class="lines">
+        <li><span class="slot">+5</span><span class="nm">Fortitude <small>(Con)</small></span></li>
+        <li><span class="slot">+8</span><span class="nm">Reflex <small>(Dex)</small></span></li>
+        <li><span class="slot">+7</span><span class="nm">Will <small>(Wis)</small></span></li>
+      </ul>
+      <span class="lbl">Saving throws</span>
+      <p class="fine">Include the cloak of resistance +2.</p>
+    </div>
+
+    <div class="box panel skills">
+      <label class="visually-hidden" for="skill-q">Find a skill</label>
+      <input class="input skill-q" id="skill-q" type="search" placeholder="Find a skill" autocomplete="off">
+      <ul class="lines bubbles" id="skill-list"></ul>
+      <span class="lbl">Skills</span>
+      <p class="fine"><i class="bub on" aria-hidden="true"></i> class skill with ranks · <span class="tr">T</span> trained only · 56/56 ranks</p>
+    </div>
+  </div>
+
+  <div class="col col-combat">
+    <div class="grey">
+      <div class="trio">
+        <div class="shield" aria-label="Armor class 15"><b>15</b><span class="lbl">Armor class</span></div>
+        <div class="sq"><b>+10</b><span class="lbl">Initiative</span></div>
+        <div class="sq"><b>30</b><span class="lbl">Speed</span></div>
+      </div>
+      <div class="trio small">
+        <div class="sq"><b>14</b><span class="lbl">Touch</span></div>
+        <div class="sq"><b>11</b><span class="lbl">Flat-footed</span></div>
+        <div class="sq"><b>15</b><span class="lbl">CMD</span></div>
+      </div>
+
+      <div class="box hp" aria-labelledby="hp-lbl">
+        <p class="max">Hit point maximum <span class="u">40</span></p>
         <div class="hp-row">
-          <output class="val hp-now" id="hp-now" aria-live="polite">40</output><span class="hp-max">/ 40</span>
+          <output class="hp-now" id="hp-now" aria-live="polite">40</output>
           <span class="hp-temp" id="hp-temp-wrap" hidden>+<output id="hp-temp">0</output> temp</span>
-          <span class="stamp red hp-stamp" id="hp-stamp" hidden>Disabled</span>
+          <span class="state" id="hp-stamp" hidden>Disabled</span>
         </div>
         <div class="hp-ctl">
           <label class="visually-hidden" for="hp-amt">Amount</label>
-          <input class="field hp-amt" id="hp-amt" type="number" inputmode="numeric" min="0" max="99" placeholder="0">
-          <button class="key" type="button" data-hp="dmg">Damage</button>
-          <button class="key" type="button" data-hp="heal">Heal</button>
-          <button class="key" type="button" data-hp="temp">Temp</button>
+          <input class="input hp-amt" id="hp-amt" type="number" inputmode="numeric" min="0" max="99" placeholder="0">
+          <button class="btn" type="button" data-hp="dmg">Damage</button>
+          <button class="btn" type="button" data-hp="heal">Heal</button>
+          <button class="btn" type="button" data-hp="temp">Temp</button>
         </div>
+        <span class="lbl" id="hp-lbl">Current hit points</span>
       </div>
 
-      <div class="cell"><span class="lbl">Initiative</span><span class="val">+10</span></div>
-      <div class="cell"><span class="lbl">Speed</span><span class="val">30<small> ft</small></span></div>
-      <div class="cell"><span class="lbl">Spell DC</span><span class="val">16<small>+lvl</small></span></div>
-
-      <div class="cell"><span class="lbl">Fortitude</span><span class="val">+5</span></div>
-      <div class="cell"><span class="lbl">Reflex</span><span class="val">+8</span></div>
-      <div class="cell"><span class="lbl">Will</span><span class="val">+7</span></div>
-
-      <div class="cell"><span class="lbl">BAB</span><span class="val">+3</span></div>
-      <div class="cell"><span class="lbl">CMB</span><span class="val">+1</span></div>
-      <div class="cell"><span class="lbl">CMD</span><span class="val">15</span></div>
-    </div>
-    <p class="note">Saves include the Cloak of Resistance +2. Run ×4 (120 ft), swim 5, climb 5. Low-light vision.</p>
-  </article>
-
-  <article class="card">
-    <header class="card-head"><h3>Attacks</h3><span class="aside">roll d20 +</span></header>
-    <ul class="typed">
-      <li><span>Light crossbow</span><span class="lead"></span><b>+7</b></li>
-      <li class="sub"><span>1d8 · 19–20/×2 · 80 ft · bolts 5</span></li>
-      <li><span>Dagger, melee</span><span class="lead"></span><b>+1</b></li>
-      <li class="sub"><span>1d4−2 · 19–20/×2 · thrown 10 ft (+7)</span></li>
-      <li><span>Ranged touch (rays)</span><span class="lead"></span><b>+7</b></li>
-      <li><span>Melee touch</span><span class="lead"></span><b>+1</b></li>
-    </ul>
-  </article>
-
-  <article class="card">
-    <header class="card-head"><h3>Casting</h3><span class="aside">Int 22</span></header>
-    <ul class="typed">
-      <li><span>Caster level</span><span class="lead"></span><b>7</b></li>
-      <li><span>Concentration</span><span class="lead"></span><b>+13</b></li>
-      <li class="sub"><span>+4 more casting defensively or grappled (Combat Casting)</span></li>
-      <li><span>Shift, swift, 15 ft</span><span class="lead"></span><b><a href="#powers">9/day</a></b></li>
-    </ul>
-    <table class="dc">
-      <caption class="visually-hidden">Spell save DCs and slots by spell level</caption>
-      <thead><tr><th scope="col">Level</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">DC</th><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
-        <tr data-school="conjuration"><th scope="row" class="sch"><abbr title="Conjuration">Conj.</abbr></th><td class="sch">18</td><td class="sch">19</td><td class="sch">20</td><td class="sch">21</td><td class="sch">22</td></tr>
-        <tr><th scope="row">Slots</th><td>4</td><td>7</td><td>6</td><td>4</td><td>3</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Slots include one conjuration school slot at 1st–4th. Opposed: <span class="sch" data-school="enchantment">enchantment</span>, <span class="sch" data-school="divination">divination</span> (two slots each).</p>
-  </article>
-
-  <article class="card">
-    <header class="card-head"><h3>Abilities</h3><span class="aside">score · mod</span></header>
-    <ul class="typed abil">
-      <li><span>Strength</span><span class="lead"></span><span class="v">7</span><b>−2</b></li>
-      <li><span>Dexterity</span><span class="lead"></span><span class="v">18</span><b>+4</b></li>
-      <li><span>Constitution</span><span class="lead"></span><span class="v">12</span><b>+1</b></li>
-      <li><span>Intelligence</span><span class="lead"></span><span class="v">22</span><b>+6</b></li>
-      <li><span>Wisdom</span><span class="lead"></span><span class="v">10</span><b>+0</b></li>
-      <li><span>Charisma</span><span class="lead"></span><span class="v">7</span><b>−2</b></li>
-    </ul>
-    <p class="note">Intelligence includes the Headband of Vast Intelligence +2.</p>
-  </article>
-
-  <article class="card">
-    <header class="card-head"><h3>Day ledger</h3><span class="aside" id="day-aside"></span></header>
-    <p>A new day clears cast stamps, per-day powers and temporary hit points. Hit points and wand charges stay as they are.</p>
-    <button class="key wide" type="button" id="new-day">Begin a new day</button>
-  </article>
-</section>
-
-<!-- SPELLS -->
-<section id="s-spells" class="drawer" data-tab="var(--guide-cadet)" aria-labelledby="h-spells">
-  <h2 id="h-spells" class="visually-hidden">Spells</h2>
-  <article class="card" id="prep-card">
-    <header class="card-head"><h3>Prepared today</h3><span class="aside" id="prep-aside"></span></header>
-    <p class="note">File a spell into each slot. Tap <em>Cast</em> to stamp it. Cantrips are never used up.</p>
-    <div id="prep"><p class="empty">Pulling the cards…</p></div>
-  </article>
-
-  <article class="card" id="book-card">
-    <header class="card-head"><h3>Spellbook</h3><span class="aside" id="book-count"></span></header>
-    <div class="book-tools">
-      <label class="visually-hidden" for="book-q">Search the spellbook</label>
-      <input class="field" id="book-q" type="search" placeholder="Search name or effect" autocomplete="off">
-      <div class="lvl-filter" role="group" aria-label="Spell level">
-        <button class="key" type="button" data-lvl="all" aria-pressed="true">All</button>
-        <button class="key" type="button" data-lvl="0" aria-pressed="false">0</button>
-        <button class="key" type="button" data-lvl="1" aria-pressed="false">1</button>
-        <button class="key" type="button" data-lvl="2" aria-pressed="false">2</button>
-        <button class="key" type="button" data-lvl="3" aria-pressed="false">3</button>
-        <button class="key" type="button" data-lvl="4" aria-pressed="false">4</button>
+      <div class="duo">
+        <div class="box sm"><p class="pair"><span>Total</span><b>7d6</b></p><span class="lbl">Hit dice</span></div>
+        <div class="box sm"><p class="pair"><span>CMB</span><b>+1</b></p><span class="lbl">Maneuvers</span></div>
       </div>
     </div>
-    <p class="note" id="book-src"></p>
-  </article>
-  <div id="book" class="book"></div>
-  <p class="drawer-foot"><a href="https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/">Full spell drawer</a> · <a href="https://sturlabragason.github.io/pathfinder_spells/">Every wizard spell</a></p>
-</section>
 
-<!-- SKILLS -->
-<section id="s-skills" class="drawer" data-tab="var(--guide-sage)" aria-labelledby="h-skills">
-  <h2 id="h-skills" class="visually-hidden">Skills</h2>
-  <article class="card">
-    <header class="card-head"><h3>Skills</h3><span class="aside">56 / 56 ranks</span></header>
-    <label class="visually-hidden" for="skill-q">Find a skill</label>
-    <input class="field skill-q" id="skill-q" type="search" placeholder="Find a skill" autocomplete="off">
-    <ul class="typed skills" id="skill-list"></ul>
-    <p class="note"><span class="cs">c</span> class skill · <span class="tr">t</span> trained only · checks are d20 + total.</p>
-  </article>
-  <article class="card">
-    <header class="card-head"><h3>Languages</h3></header>
-    <p>Common, Elven, Draconic, Celestial, Orc, Sylvan, Infernal.</p>
-    <p class="note">Learning, needs a teacher: Giant, Ancient Dwarven.</p>
-  </article>
-</section>
+    <div class="box attacks">
+      <table class="grid">
+        <thead><tr><th scope="col">Name</th><th scope="col">Atk</th><th scope="col">Damage / notes</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Light crossbow</th><td>+7</td><td>1d8 · 19–20/×2 · 80 ft</td></tr>
+          <tr><th scope="row">Dagger</th><td>+1</td><td>1d4−2 · 19–20/×2</td></tr>
+          <tr><th scope="row">Dagger, thrown</th><td>+7</td><td>1d4−2 · 10 ft</td></tr>
+          <tr><th scope="row">Ranged touch</th><td>+7</td><td>rays</td></tr>
+          <tr><th scope="row">Melee touch</th><td>+1</td><td>touch spells</td></tr>
+        </tbody>
+      </table>
+      <span class="lbl">Attacks</span>
+    </div>
+  </div>
 
-<!-- POWERS -->
-<section id="s-powers" class="drawer" data-tab="var(--guide-salmon)" aria-labelledby="h-powers">
-  <h2 id="h-powers" class="visually-hidden">Powers</h2>
-  <div id="power-list" class="power-list"></div>
-  <article class="card">
-    <header class="card-head"><h3>Feats</h3></header>
-    <ul class="typed plain">
-      <li><span><b>Spell Focus (Conjuration)</b>: +1 DC, from Overwhelming Magic</span></li>
-      <li><span><b>Greater Spell Focus (Conjuration)</b>: +1 DC more</span></li>
-      <li><span><b>Improved Initiative</b>: +4 initiative</span></li>
-      <li><span><b>Combat Casting</b>: +4 concentration when casting defensively or grappled</span></li>
-      <li><span><b>Eschew Materials</b>: no material components costing 1 gp or less</span></li>
-      <li><span><b>Scribe Scroll</b>: wizard bonus feat</span></li>
-      <li><span class="unrec">Level 7 feat: not recorded</span></li>
-    </ul>
-  </article>
-  <article class="card">
-    <header class="card-head"><h3>Traits &amp; race</h3></header>
-    <ul class="typed plain">
-      <li><span><b>Warrior of Old</b>: +2 trait bonus on initiative</span></li>
-      <li><span><b>Moonkissed</b>: +1 racial bonus on all saving throws; replaces elven immunities (no sleep immunity) and keen senses</span></li>
-      <li><span><b>Overwhelming Magic</b>: Spell Focus as a bonus feat; replaces elven magic and weapon familiarity</span></li>
-      <li><span><b>Low-light vision</b>: see twice as far as humans in dim light</span></li>
-    </ul>
-  </article>
-</section>
+  <div class="col col-casting">
+    <div class="box casting">
+      <div class="trio small">
+        <div class="sq"><b>Int</b><span class="lbl">Casting ability</span></div>
+        <div class="sq"><b>7</b><span class="lbl">Caster level</span></div>
+        <div class="sq"><b>16</b><span class="lbl">Base save DC</span></div>
+      </div>
+      <table class="grid dc">
+        <caption class="visually-hidden">Spell save DCs and slots by spell level</caption>
+        <thead><tr><th scope="col">Level</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Save DC</th><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+          <tr class="hl"><th scope="row">Conjuration</th><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+          <tr><th scope="row">Slots / day</th><td>4</td><td>7</td><td>6</td><td>4</td><td>3</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">Slots include one conjuration school slot at 1st–4th. Opposed schools: enchantment, divination (two slots each). Concentration +4 more when casting defensively or grappled.</p>
+      <span class="lbl">Spellcasting</span>
+    </div>
 
-<!-- KIT -->
-<section id="s-kit" class="drawer" data-tab="var(--guide-ochre)" aria-labelledby="h-kit">
-  <h2 id="h-kit" class="visually-hidden">Kit</h2>
-  <article class="card">
-    <header class="card-head"><h3>Worn &amp; wielded</h3></header>
-    <ul class="typed" id="kit-worn"></ul>
-  </article>
-  <article class="card">
-    <header class="card-head"><h3>Scrolls</h3><span class="aside" id="scroll-count"></span></header>
-    <ul class="typed" id="kit-scrolls"></ul>
-  </article>
-  <article class="card">
-    <header class="card-head"><h3>Pack</h3></header>
-    <ul class="typed" id="kit-pack"></ul>
-  </article>
-  <article class="card">
-    <header class="card-head"><h3>Purse &amp; load</h3></header>
-    <ul class="typed">
-      <li><span>Gold</span><span class="lead"></span><b>14 gp</b></li>
-      <li><span>Carried</span><span class="lead"></span><b>19.8 lb</b></li>
-      <li><span>Light / medium / heavy</span><span class="lead"></span><b>23 / 46 / 70</b></li>
-      <li><span>Lift off ground · drag</span><span class="lead"></span><b>140 · 350</b></li>
-    </ul>
-  </article>
-</section>
-
-<!-- LORE -->
-<section id="s-lore" class="drawer" data-tab="var(--guide-lilac)" aria-labelledby="h-lore">
-  <h2 id="h-lore" class="visually-hidden">Lore</h2>
-  <article class="card portrait-card">
-    <header class="card-head"><h3>Description</h3></header>
-    <div class="portrait-wrap">
-      <figure class="portrait"><img src="caladrel-720.jpg?v=1" width="720" height="720" alt="Portrait of Caladrel: a silver-haired elf wizard in dark robes" loading="lazy" decoding="async"></figure>
-      <ul class="typed">
-        <li><span>Race</span><span class="lead"></span><b>Elf</b></li>
-        <li><span>Gender · age</span><span class="lead"></span><b>M · 85</b></li>
-        <li><span>Height · weight</span><span class="lead"></span><b>6 ft 2 · 140 lb</b></li>
-        <li><span>Hair</span><span class="lead"></span><b>Dark silver-grey</b></li>
-        <li><span>Eyes</span><span class="lead"></span><b>Dark blue</b></li>
-        <li><span>Alignment</span><span class="lead"></span><b>Lawful good</b></li>
-        <li><span>Deity · homeland</span><span class="lead"></span><b class="unrec">not recorded</b></li>
-        <li><span>Player</span><span class="lead"></span><b>Sturla</b></li>
+    <div class="box">
+      <ul class="lines plain">
+        <li><b>Shift</b> · swift, teleport 15 ft · 9/day</li>
+        <li><b>Arcane bond</b> · Ring of Pengolodh · 1/day</li>
+        <li><b>Extend rod</b> · lesser · 3/day</li>
       </ul>
+      <p class="fine"><a href="#features">Track uses on the Features page</a></p>
+      <span class="lbl">Daily powers</span>
     </div>
-  </article>
 
-  <article class="card prose">
-    <header class="card-head"><h3>Backstory</h3></header>
+    <div class="box">
+      <p>Common, Elven, Draconic, Celestial, Orc, Sylvan, Infernal.</p>
+      <p class="fine">Learning, needs a teacher: Giant, Ancient Dwarven. Low-light vision.</p>
+      <span class="lbl">Languages &amp; senses</span>
+    </div>
+
+    <div class="box day">
+      <p>A new day clears cast spells, per-day powers and temporary hit points. Hit points, wand charges and bolts stay.</p>
+      <button class="btn wide" type="button" id="new-day">Begin a new day</button>
+      <span class="lbl">Rest · <span id="day-aside"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPELLS ============ -->
+<section id="s-spells" class="page page-spells" aria-labelledby="h-spells">
+  <h2 id="h-spells" class="visually-hidden">Spells</h2>
+
+  <div class="spell-head">
+    <div class="namebox small"><div class="scroll"><span class="field-line">Wizard · Conjurer</span><span class="lbl">Spellcasting class</span></div></div>
+    <div class="box spell-stats">
+      <div class="sq"><b>Int</b><span class="lbl">Ability</span></div>
+      <div class="sq"><b>16<small>+lvl</small></b><span class="lbl">Save DC</span></div>
+      <div class="sq"><b>18<small>+lvl</small></b><span class="lbl">Conj. DC</span></div>
+      <div class="sq"><b>+7</b><span class="lbl">Ranged touch</span></div>
+    </div>
+  </div>
+
+  <div class="spell-tools">
+    <div class="seg" role="group" aria-label="Which spells to show">
+      <button class="seg-b" type="button" data-view="known" aria-pressed="true">All known</button>
+      <button class="seg-b" type="button" data-view="prepared" aria-pressed="false">Prepared</button>
+    </div>
+    <label class="visually-hidden" for="book-q">Search the spellbook</label>
+    <input class="input" id="book-q" type="search" placeholder="Search spells" autocomplete="off">
+  </div>
+  <p class="fine spell-help">Tap the bubble to prepare a spell (opposed-school spells take two slots). Tap a box when you cast it. Tap the name for the full rules. <span id="book-src"></span></p>
+
+  <div id="book" class="spell-levels"><p class="empty">Opening the spellbook…</p></div>
+  <p class="fine center"><a href="https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/">Caladrel's spell list</a> · <a href="https://sturlabragason.github.io/pathfinder_spells/">Every wizard spell</a></p>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="s-features" class="page page-features" aria-labelledby="h-features">
+  <h2 id="h-features" class="visually-hidden">Features</h2>
+  <div class="box feature-box" id="power-list-box">
+    <div id="power-list" class="features"></div>
+    <span class="lbl">Class features &amp; daily uses</span>
+  </div>
+  <div class="box">
+    <div class="features">
+      <p><b><i>Spell Focus (Conjuration).</i></b> +1 DC on conjuration spells. Bonus feat from Overwhelming Magic.</p>
+      <p><b><i>Greater Spell Focus (Conjuration).</i></b> +1 DC more on conjuration spells.</p>
+      <p><b><i>Improved Initiative.</i></b> +4 on initiative.</p>
+      <p><b><i>Combat Casting.</i></b> +4 on concentration checks to cast defensively or while grappled.</p>
+      <p><b><i>Eschew Materials.</i></b> No material components costing 1 gp or less.</p>
+      <p><b><i>Scribe Scroll.</i></b> Wizard bonus feat.</p>
+      <p class="unrec"><b><i>Level 7 feat.</i></b> Not recorded.</p>
+    </div>
+    <span class="lbl">Feats</span>
+  </div>
+  <div class="box">
+    <div class="features">
+      <p><b><i>Warrior of Old.</i></b> +2 trait bonus on initiative.</p>
+      <p><b><i>Moonkissed.</i></b> +1 racial bonus on all saving throws. Replaces elven immunities (no sleep immunity) and keen senses.</p>
+      <p><b><i>Overwhelming Magic.</i></b> Spell Focus as a bonus feat. Replaces elven magic and weapon familiarity.</p>
+      <p><b><i>Low-light vision.</i></b> See twice as far as humans in dim light.</p>
+    </div>
+    <span class="lbl">Traits &amp; racial features</span>
+  </div>
+</section>
+
+<!-- ============ EQUIPMENT ============ -->
+<section id="s-gear" class="page page-gear" aria-labelledby="h-gear">
+  <h2 id="h-gear" class="visually-hidden">Equipment</h2>
+  <div class="box equipment">
+    <ul class="coins" aria-label="Money">
+      <li><span class="lbl">CP</span><b>0</b></li>
+      <li><span class="lbl">SP</span><b>0</b></li>
+      <li class="gp"><span class="lbl">GP</span><b>14</b></li>
+      <li><span class="lbl">PP</span><b>0</b></li>
+    </ul>
+    <div class="equip-lists">
+      <h3 class="sub">Worn &amp; wielded</h3>
+      <ul class="lines items" id="kit-worn"></ul>
+      <h3 class="sub">Pack</h3>
+      <ul class="lines items" id="kit-pack"></ul>
+    </div>
+    <span class="lbl">Equipment</span>
+  </div>
+  <div class="box">
+    <ul class="lines items checks" id="kit-scrolls"></ul>
+    <span class="lbl">Scrolls · <span id="scroll-count"></span></span>
+  </div>
+  <div class="box">
+    <ul class="lines items">
+      <li><span>Carried</span><b>19.8 lb</b></li>
+      <li><span>Light / medium / heavy</span><b>23 / 46 / 70 lb</b></li>
+      <li><span>Lift over head · off ground · drag</span><b>70 · 140 · 350</b></li>
+    </ul>
+    <span class="lbl">Load</span>
+  </div>
+</section>
+
+<!-- ============ BACKSTORY ============ -->
+<section id="s-story" class="page page-story" aria-labelledby="h-story">
+  <h2 id="h-story" class="visually-hidden">Backstory</h2>
+
+  <dl class="box bio looks">
+    <div><dt>Age</dt><dd>85</dd></div>
+    <div><dt>Height</dt><dd>6 ft 2 in</dd></div>
+    <div><dt>Weight</dt><dd>140 lb</dd></div>
+    <div><dt>Eyes</dt><dd>Dark blue</dd></div>
+    <div><dt>Hair</dt><dd>Dark silver-grey</dd></div>
+    <div><dt>Gender</dt><dd>Male</dd></div>
+    <div><dt>Deity</dt><dd class="unrec">not recorded</dd></div>
+    <div><dt>Homeland</dt><dd class="unrec">not recorded</dd></div>
+  </dl>
+
+  <div class="box portrait-box">
+    <figure class="portrait"><img src="caladrel-720.jpg?v=1" width="720" height="720" alt="Portrait of Caladrel: a silver-haired elf wizard in dark robes" loading="lazy" decoding="async"></figure>
+    <span class="lbl">Character appearance</span>
+  </div>
+
+  <div class="box prose">
     <p>Beneath the unwavering gaze of a full moon, I drew my first breath. Crystalline spires, rising defiantly from the desert's embrace, bore silent witness. Here, in this city of mirrors and secrets, my destiny was etched.</p>
     <p>While others sought solace in fleeting moments of joy, my days were claimed by ancient knowledge and relentless discipline. Tutors, their eyes heavy with the burdens of lost realms, schooled me in the shadows and wonders lurking just beyond the veil of reality. And while children danced under the moonlight's caress, I wrestled with ethereal forces. I felt an innate potential surging within, a promise that one day, my fingers would weave patterns powerful enough to challenge and reshape the very fabric of existence.</p>
     <p>The legacy of the Ecthëlions whispered its weighty expectations, an ever-present echo in my every step. Though born of noble blood, the warmth of my parents' embrace was a tale I knew only from secondhand whispers. Their lives, so intertwined with the affairs of realms and realities beyond, left little room for the son who walked among them.</p>
     <p>In the heart of this maze of reflections, surrounded by the weight of ancient legacies, my resolve was forged. The arcane became more than just gestures and incantations; it was the very essence of my being. To many, my words seemed ensnared in cryptic mysteries, but to me, they were the desperate utterances of one who has peered into the abyss and felt its chilling stare in return.</p>
     <p>As night's mantle enveloped the city, I felt the pull of a deeper, darker purpose. Beneath the very stars that witnessed my birth, a burning resolve kindled. I would harness the boundless powers of the cosmos, pit ancient evil against eldritch horrors, and in the crucible of that apocalyptic clash, eradicate the scourge of malevolence. For within the vast expanse of the universe's enigmas, one truth was irrefutable: I was destined to be its instrument of reckoning.</p>
-  </article>
+    <span class="lbl">Character backstory</span>
+  </div>
 
-  <article class="card" lang="is">
-    <header class="card-head"><h3>Fólk</h3></header>
-    <ul class="typed people">
-      <li><span>Ægnor Ecthëlion</span><span class="lead"></span><b>faðir</b></li>
-      <li><span>Tuilë Ecthëlion</span><span class="lead"></span><b>móðir</b></li>
-      <li><span>Beren Ecthëlion</span><span class="lead"></span><b>afi</b></li>
-      <li><span>Haruuv</span><span class="lead"></span><b>galdrameistari, Horeck</b></li>
-      <li><span>Elísen Venra</span><span class="lead"></span><b>yfirbókavörður, Horeck</b></li>
-      <li><span>Alicia</span><span class="lead"></span><b>leynireglutengiliður</b></li>
-      <li><span>Valeska Evergreen</span><span class="lead"></span><b>Lathander hof</b></li>
-      <li><span>Tristar</span><span class="lead"></span><b>æðstiprestur Lathanders, Ruthol</b></li>
-      <li><span>Safana</span><span class="lead"></span><b>rauð eldseiðkona</b></li>
-      <li><span>Bernharð</span><span class="lead"></span><b>fjallamaður</b></li>
+  <div class="box" lang="is">
+    <ul class="lines items">
+      <li><span>Ægnor Ecthëlion</span><b>faðir</b></li>
+      <li><span>Tuilë Ecthëlion</span><b>móðir</b></li>
+      <li><span>Beren Ecthëlion</span><b>afi</b></li>
+      <li><span>Haruuv</span><b>galdrameistari, Horeck</b></li>
+      <li><span>Elísen Venra</span><b>yfirbókavörður, Horeck</b></li>
+      <li><span>Alicia</span><b>leynireglutengiliður</b></li>
+      <li><span>Valeska Evergreen</span><b>Lathander hof</b></li>
+      <li><span>Tristar</span><b>æðstiprestur Lathanders, Ruthol</b></li>
+      <li><span>Safana</span><b>rauð eldseiðkona</b></li>
+      <li><span>Bernharð</span><b>fjallamaður</b></li>
     </ul>
-  </article>
+    <span class="lbl">Fólk · allies &amp; contacts</span>
+  </div>
 
-  <article class="card" lang="is">
-    <header class="card-head"><h3>Reglur</h3></header>
-    <h4>Regla Rauða Riddarans</h4>
-    <ul class="typed people">
-      <li><span>Sahdina</span><span class="lead"></span><b>skipuleggjandi</b></li>
-      <li><span>Ulgrim</span><span class="lead"></span><b>hátt settur · bogi</b></li>
-      <li><span>Tarvic</span><span class="lead"></span><b>meðlimur · melee</b></li>
-      <li><span>Styrmir, Ormur</span><span class="lead"></span><b>skátar</b></li>
-      <li><span>Páll</span><span class="lead"></span><b>handaxir · <span class="stamp red">dáinn</span></b></li>
-      <li><span>Jón</span><span class="lead"></span><b>langsverð, lásbogi · <span class="stamp red">dáinn</span></b></li>
+  <div class="box" lang="is">
+    <h3 class="sub">Regla Rauða Riddarans</h3>
+    <ul class="lines items">
+      <li><span>Sahdina</span><b>skipuleggjandi</b></li>
+      <li><span>Ulgrim</span><b>hátt settur · bogi</b></li>
+      <li><span>Tarvic</span><b>meðlimur · melee</b></li>
+      <li><span>Styrmir, Ormur</span><b>skátar</b></li>
+      <li class="dead"><span>Páll</span><b>handaxir · dáinn</b></li>
+      <li class="dead"><span>Jón</span><b>langsverð, lásbogi · dáinn</b></li>
     </ul>
-    <p class="note">Lausamenn: Ormur, fær með boga, skáti. Styrmir, ekki ferskur.</p>
-    <h4>Leyniregla Áttavitans</h4>
+    <p class="fine">Lausamenn: Ormur, fær með boga, skáti. Styrmir, ekki ferskur.</p>
+    <h3 class="sub">Leyniregla Áttavitans</h3>
     <p>Kenniorð: „Það lítur út fyrir að það ætli að rigna í kvöld.“ Ákveðin týpa af drykkjum. Áttaviti. Óvinir reglunnar.</p>
-  </article>
+    <span class="lbl">Reglur · organizations</span>
+  </div>
 
-  <article class="card" lang="is">
-    <header class="card-head"><h3>Staðir</h3></header>
-    <ul class="typed people">
-      <li><span>Korras</span><span class="lead"></span><b>höfuðborg</b></li>
-      <li><span>Horeck</span><span class="lead"></span><b>galdraborg</b></li>
-      <li><span>Ragholt</span><span class="lead"></span><b>námubær</b></li>
-      <li><span>Vekk</span><span class="lead"></span><b>hafnarborg í vestri</b></li>
-      <li><span>Ruthol</span><span class="lead"></span><b>klaustur Lathanders</b></li>
-      <li><span>Nanfort við „Lake“</span><span class="lead"></span><b>fen, hættulegt</b></li>
-      <li><span>Skull Island</span><span class="lead"></span><b>tengist gamla heiminum</b></li>
+  <div class="box" lang="is">
+    <ul class="lines items">
+      <li><span>Korras</span><b>höfuðborg</b></li>
+      <li><span>Horeck</span><b>galdraborg</b></li>
+      <li><span>Ragholt</span><b>námubær</b></li>
+      <li><span>Vekk</span><b>hafnarborg í vestri</b></li>
+      <li><span>Ruthol</span><b>klaustur Lathanders</b></li>
+      <li><span>Nanfort við „Lake“</span><b>fen, hættulegt</b></li>
+      <li><span>Skull Island</span><b>tengist gamla heiminum</b></li>
     </ul>
-    <p class="note">Horeck: Torven Windborrow bæjarstjóri (B Caravan), Jane aðalskona, Kuldo kynntur fyrir okkur. Fjöllin hjá Horeck: risar, drekar, fleiri óvættir. Nanfort: kentárar, tröll, wyverns, bugbears.</p>
-  </article>
+    <p class="fine">Horeck: Torven Windborrow bæjarstjóri (B Caravan), Jane aðalskona, Kuldo kynntur fyrir okkur. Fjöllin hjá Horeck: risar, drekar, fleiri óvættir. Nanfort: kentárar, tröll, wyverns, bugbears.</p>
+    <span class="lbl">Staðir · places</span>
+  </div>
 
-  <article class="card" lang="is">
-    <header class="card-head"><h3>Ferðin</h3></header>
-    <ul class="typed people">
-      <li><span>Ný vagnlest</span><span class="lead"></span><b>Larúka stjóri</b></li>
-      <li class="sub"><span>Halon, Aeslin, nokkrir málaliðar</span></li>
-      <li><span>Úr tröllahelli</span><span class="lead"></span><b>töframerki</b></li>
-      <li class="sub"><span>lítil sýni af sveppum og mosa</span></li>
-      <li><span>Dagur 13</span><span class="lead"></span><b>frá Ruthol</b></li>
+  <div class="box" lang="is">
+    <ul class="lines items">
+      <li><span>Ný vagnlest</span><b>Larúka stjóri</b></li>
+      <li class="note"><span>Halon, Aeslin, nokkrir málaliðar</span></li>
+      <li><span>Úr tröllahelli</span><b>töframerki</b></li>
+      <li class="note"><span>lítil sýni af sveppum og mosa</span></li>
+      <li><span>Dagur 13</span><b>frá Ruthol</b></li>
     </ul>
-  </article>
+    <span class="lbl">Ferðin · the journey</span>
+  </div>
 
-  <article class="card unrec-card">
-    <header class="card-head"><h3>Not yet filed</h3><span class="stamp">Check</span></header>
+  <div class="box unrec-box">
     <ul class="checklist">
       <li>Level 7 feat is not on the Roll20 sheet.</li>
-      <li>The two free spells for levels 6 and 7 aren't recorded; no 4th-level spells are filed.</li>
+      <li>The two free spells for levels 6 and 7 aren't recorded; no 4th-level spells are known yet.</li>
       <li>4th-level slots: the rules give 3 (1 + Int bonus + school slot). The older sheet said 2.</li>
       <li>Moonkissed's +1 on saves isn't in the Roll20 totals. With it: Fort +6, Ref +9, Will +8.</li>
       <li>Roll20 shows concentration +16. Caster level 7 + Int 6 gives +13.</li>
       <li>Master of Pentacles (1/day): rules text not recorded.</li>
       <li>Deity and homeland are blank.</li>
     </ul>
-  </article>
+    <span class="lbl">To check with the GM</span>
+  </div>
 </section>
 </main>
 
 <footer class="foot">
-  <p>Copied from Roll20 on 23 Oct 2026. Spells from <a href="https://github.com/sturlabragason/pathfinder_spells">pathfinder_spells</a>. Rules: <a href="https://aonprd.com/">Archives of Nethys</a>. <a href="caladrel-ecthelion.pdf">Printable PDF</a> · <a href="homebrewery/">old Homebrewery sheet</a></p>
+  <p>Copied from Roll20 on 23 Oct 2026. Spell rules from <a href="https://www.d20pfsrd.com/magic/">d20pfsrd</a>, list kept in <a href="https://github.com/sturlabragason/pathfinder_spells">pathfinder_spells</a>. <a href="caladrel-ecthelion.pdf">Printable PDF</a> · <a href="homebrewery/">old Homebrewery sheet</a></p>
 </footer>
+</div>
 
-<script src="sheet.js?v=2" defer></script>
+<script src="sheet.js?v=4" defer></script>
 </body>
 </html>

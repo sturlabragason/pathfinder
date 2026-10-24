@@ -26,7 +26,7 @@ Built for this one character only. It knows his school, opposed schools, Spell F
 
 ## Operating Context
 
-- Pathfinder 1st edition rules (Archives of Nethys, aonprd.com, is the reference used for spell links).
+- Pathfinder 1st edition rules. Spell links go to d20pfsrd.com (Sturla's choice, 2026-10-24); Archives of Nethys is the fallback only where d20pfsrd has no page.
 - Roll20 holds the live character; this site is a read-mostly companion that mirrors it by hand.
 - Spell data: `spells.tsv` in pathfinder_spells (1,897 sorcerer/wizard spells, refreshed by `scripts/update_spells.py` from the Foundry VTT PF1 pack). His known spells: `caladrel_ecthelion/spellbook.txt` in the same repo.
 - The table plays in Icelandic and English; campaign notes are in Icelandic.
@@ -40,7 +40,7 @@ Built for this one character only. It knows his school, opposed schools, Spell F
 
 ## Brand Commitments
 
-None beyond the subject: Pathfinder 1e, an elven conjurer of the Handanvaldur, old-school D&D inspiration requested by Sturla (2026-10-24). Homebrewery and the 5e PHB look are explicitly rejected.
+None beyond the subject: Pathfinder 1e, an elven conjurer of the Handanvaldur, the pen-and-paper D&D 5e character sheet look ("kind of like modern AD&D"), requested by Sturla on 2026-10-24. Homebrewery and the earlier card-catalogue design are rejected.
 
 ## Evidence on Hand
 
