@@ -4,25 +4,26 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 
 | File | What it is |
 |---|---|
-| `caladrel-ecthelion.md` | Full character sheet in plain markdown |
-| `caladrel-ecthelion.homebrewery.md` | The same character as a [Homebrewery](https://homebrewery.naturalcrit.com/) brew |
-| `caladrel.jpg` | Portrait, used by the brew |
-| `site/` | Static HTML render of the brew, plus `caladrel-ecthelion.pdf` |
+| `caladrel-ecthelion.md` | Full character sheet in plain markdown (source of truth) |
+| `site/` | The online sheet, served at <https://caladrel.sturlabragason.online> |
+| `site/caladrel-ecthelion.pdf` | Printable copy of the online sheet (A4) |
+| `site/homebrewery/` | The old Homebrewery render and its PDF, kept for reference |
+| `caladrel-ecthelion.homebrewery.md` | The character as a [Homebrewery](https://homebrewery.naturalcrit.com/) brew (no longer the main sheet) |
+| `caladrel.jpg` | Portrait |
+| `PRODUCT.md`, `DESIGN.md` | What the sheet is for, and its design system |
 
-## Using the brew
+## The online sheet
 
-1. Open <https://homebrewery.naturalcrit.com/new>.
-2. In the **Properties** tab, set the renderer to **V3** and the theme to **5e PHB**.
-3. Paste the contents of `caladrel-ecthelion.homebrewery.md` into the editor.
-4. For A4 printing, add the **PRINT → A4 Pagesize** snippet, then print from Chrome with "Background graphics" on.
+`site/` is plain HTML, CSS and JavaScript with no build step. It is styled as a library card catalogue: one index card per block, coloured guide tabs, one ink per spell school, Courier Prime throughout.
 
-Homebrewery only loads images from the web, so the brew pulls the portrait from this repo's raw URL:
-`https://raw.githubusercontent.com/sturlabragason/pathfinder/main/caladrel.jpg`
+- `index.html`: the sheet. Tabs: Record, Spells, Skills, Powers, Kit, Lore.
+- `sheet.js`: behaviour. Hit points, per-day pips, prepared spells, cast stamps and scroll stamps are saved in the browser (`localStorage`), so each device keeps its own play state. **New day** clears the day's stamps.
+- `catalog.css`: the shared design system, also used by [pathfinder_spells](https://github.com/sturlabragason/pathfinder_spells). Keep the two copies the same.
+- `sheet.css`: layout for this page, including print styles.
+- `data/spellbook.json`: offline copy of the spellbook.
 
-## Web page and PDF
+The Spells tab loads the live spellbook from <https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/spellbook.json> and falls back to `data/spellbook.json`. To learn a spell, add it to `caladrel_ecthelion/spellbook.txt` in pathfinder_spells and run `scripts/update_spells.py`; then copy the new JSON into `site/data/`.
 
-`site/index.html` is a self-contained snapshot of the brew rendered by Homebrewery 3.24.2 (5e PHB theme), with the theme's CSS and fonts inlined under `site/assets/`. `site/caladrel-ecthelion.pdf` is printed from it (Letter, 5 pages).
+The homelab serves `site/` from this repo's `main` branch and pulls it again when the pod restarts. Bump the `?v=` query on the CSS and JS links in `index.html` after changes, because Cloudflare caches them.
 
-It is served at <https://caladrel.sturlabragason.online> from the homelab, which pulls `site/` from this repo's `main` branch on pod start.
-
-The snapshot does not update itself. After editing the brew, re-render it with a local Homebrewery and regenerate `site/`, or paste the brew into homebrewery.naturalcrit.com and print to PDF.
+To regenerate the PDF, print `site/index.html` from Chrome (A4, background graphics on), or use puppeteer `page.pdf` with `printBackground: true`.

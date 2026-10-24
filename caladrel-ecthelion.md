@@ -127,28 +127,46 @@ Total ranks: 56 / 56.
 
 ## Spellcasting
 
-- Caster level 7, Intelligence (mod +6), concentration +16
-- Main school: Conjuration (Teleportation subschool)
-- Opposed schools: Enchantment, Divination
-- Metamagic: Lesser Extend Metamagic Rod
+- Caster level 7, Intelligence (mod +6)
+- Concentration: Roll20 shows +16; caster level 7 + Int 6 = +13 (+4 more casting defensively or grappled, from Combat Casting). Check with the GM.
+- Main school: Conjuration (Teleportation subschool). One extra conjuration slot per level, 1st to 4th.
+- Opposed schools: Enchantment, Divination (each costs two slots to prepare)
+- Metamagic: Lesser Extend Metamagic Rod (3/day)
 
-| Spell level | Per day | DC |
-|---|---|---|
-| 0 | 4 | 16 |
-| 1 | 7 | 17 |
-| 2 | 6 | 18 |
-| 3 | 4 | 19 |
-| 4 | 2 | 20 |
+| Spell level | Per day | DC | Conjuration DC |
+|---|---|---|---|
+| 0 | 4 | 16 | 18 |
+| 1 | 7 | 17 | 19 |
+| 2 | 6 | 18 | 20 |
+| 3 | 4 | 19 | 21 |
+| 4 | 3 | 20 | 22 |
 
-Prepared spells: not in the paste (slot lists were blank).
+4th-level slots: Roll20 shows 2. Wizard 7 with Int 22 gets 1 + 1 (bonus) + 1 (school) = 3.
+
+Spellbook: 105 spells (31 cantrips, 27 first, 24 second, 23 third, no 4th yet), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for levels 6 and 7 are not recorded.
 
 ## Feats and features
 
-Feat names were not in the paste.
+Feats:
+- Spell Focus (Conjuration), bonus feat from Overwhelming Magic
+- Greater Spell Focus (Conjuration)
+- Improved Initiative
+- Combat Casting
+- Eschew Materials
+- Scribe Scroll (wizard bonus feat)
+- Level 7 feat: not recorded
 
-- Trait: +2 trait bonus on initiative checks.
-- Summoner's Charm (Su), 3 + INT mod per day: when you cast a conjuration (summoning) spell, its duration increases by 1/2 wizard level in rounds (minimum 1). Not doubled by Extend Spell. At 20th level, one summon monster spell can be made permanent at a time.
-- Unnamed per-day abilities on the sheet: 1/1, 9/9, 1/1, 2/3.
+Traits and race:
+- Warrior of Old: +2 trait bonus on initiative.
+- Moonkissed: +1 racial bonus on all saving throws; replaces elven immunities and keen senses. The Roll20 save totals do not include it (would be Fort +6, Ref +9, Will +8).
+- Overwhelming Magic: Spell Focus as a bonus feat; replaces elven magic and weapon familiarity.
+- Low-light vision.
+
+Class features:
+- Shift (Su), Teleportation subschool, replaces Acid Dart: swift action, teleport 15 ft, 9/day (3 + Int).
+- Summoner's Charm (Su), always on: conjuration (summoning) spells last 3 rounds longer (1/2 wizard level). Not doubled by Extend Spell.
+- Arcane bond: Ring of Pengolodh, 1/day.
+- Master of Pentacles, 1/day: rules text not on the Roll20 sheet.
 
 ## Equipment
 
