@@ -7,6 +7,8 @@
   const SLOTS = { 0: 4, 1: 7, 2: 6, 3: 4, 4: 3 };
   const DC = (lvl, school) => 10 + lvl + 6 + (school === "conjuration" ? 2 : 0);
   const ABBR = { abjuration: "Abj", conjuration: "Conj", divination: "Div", enchantment: "Ench", evocation: "Evoc", illusion: "Illus", necromancy: "Necro", transmutation: "Trans", universal: "Univ" };
+  const PFSRD = "https://www.d20pfsrd.com/";
+  const slug = (n) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const PFSRD_SEARCH = (q) => "https://www.d20pfsrd.com/?s=" + encodeURIComponent(q);
 
   const $ = (s, el = document) => el.querySelector(s);
@@ -117,25 +119,25 @@
 
   /* ---------- features ---------- */
   const POWERS = [
-    { id: "shift", name: "Shift (Su)", per: 9, aside: "swift · 15 ft",
+    { id: "shift", url: "https://www.d20pfsrd.com/classes/core-classes/wizard/arcane-schools/paizo-arcane-schools/classic-arcane-schools/conjuration/teleportation/", name: "Shift (Su)", per: 9, aside: "swift · 15 ft",
       text: "Teleport up to 15 ft to a space you can see, as dimension door. No attack of opportunity. You can't bring other creatures, except a familiar. Replaces acid dart." },
-    { id: "bond", name: "Arcane bond", per: 1, aside: "Ring of Pengolodh",
+    { id: "bond", url: "https://www.d20pfsrd.com/classes/core-classes/wizard/", name: "Arcane bond", per: 1, aside: "Ring of Pengolodh",
       text: "Once per day, cast any one spell that is in your spellbook, even if it isn't prepared. It uses the spell's normal casting time and level. Without the ring, concentration DC 20 + spell level to cast at all." },
-    { id: "rod", name: "Lesser extend rod", per: 3, aside: "metamagic",
+    { id: "rod", url: "https://www.d20pfsrd.com/magic-items/rods/metamagic-rods/", name: "Lesser extend rod", per: 3, aside: "metamagic",
       text: "Extend a spell of 3rd level or lower: double its duration without raising its level or casting time." },
-    { id: "pentacles", name: "Master of Pentacles", per: 1, aside: "1/day",
+    { id: "pentacles", url: "https://aonprd.com/TraitDisplay.aspx?ItemName=Master%20of%20Pentacles", name: "Master of Pentacles", per: 1, aside: "1/day",
       text: "When you cast a conjuration spell, treat your caster level as 2 higher for its duration." },
-    { id: "charm", name: "Summoner's charm (Su)", aside: "always on",
+    { id: "charm", url: "https://www.d20pfsrd.com/classes/core-classes/wizard/arcane-schools/paizo-arcane-schools/classic-arcane-schools/conjuration/", name: "Summoner's charm (Su)", aside: "always on",
       text: "Conjuration (summoning) spells last 3 rounds longer (half wizard level). Extend Spell doesn't double the extra rounds." },
-    { id: "wand", name: "Wand of detect magic", per: 19, keep: true, aside: "charges",
+    { id: "wand", url: "https://www.d20pfsrd.com/magic/all-spells/d/detect-magic/", name: "Wand of detect magic", per: 19, keep: true, aside: "charges",
       text: "One charge per use. Charges don't come back with a new day." },
-    { id: "bolts", name: "Crossbow bolts", per: 5, keep: true, aside: "ammunition",
+    { id: "bolts", url: "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/crossbow-light/", name: "Crossbow bolts", per: 5, keep: true, aside: "ammunition",
       text: "Mark a box when a bolt is fired. Clear it when you recover the bolt." },
   ];
   const pipSets = [];
   for (const p of POWERS) {
     const feat = h("div", { class: "feat" },
-      h("p", {}, h("b", {}, h("i", { text: p.name + ". " })), p.text, " ", h("span", { class: "aside", text: `(${p.aside})` })));
+      h("p", {}, h("b", {}, h("i", {}, p.url ? h("a", { href: p.url, rel: "noopener", text: p.name }) : p.name, ". ")), p.text, " ", h("span", { class: "aside", text: `(${p.aside})` })));
     if (p.per) { const ps = pips(p.id, p.per, p.name); pipSets.push(ps); feat.append(ps); }
     $("#power-list").append(feat);
   }
@@ -161,7 +163,7 @@
     skillList.append(h("li", { "data-name": name.toLowerCase(), class: untrained ? "untrained" : null },
       h("i", { class: "bub" + (cls && ranks ? " on" : ""), title: cls ? "class skill" : null, "aria-hidden": "true" }),
       h("span", { class: "slot", text: untrained ? "—" : sign(total) }),
-      h("span", { class: "nm" }, name, " ", h("small", { text: `(${ab})` }),
+      h("span", { class: "nm" }, h("a", { href: PFSRD + "skills/" + slug(name.replace(/ \(.*/, "")) + "/", rel: "noopener", text: name }), " ", h("small", { text: `(${ab})` }),
         flags.includes("t") ? h("span", { class: "tr", title: "trained only", text: "T" }) : null,
         cls ? h("span", { class: "visually-hidden", text: ", class skill" }) : null)));
   }
@@ -173,7 +175,6 @@
   /* ---------- spellbook data ---------- */
   let BOOK = [];
   const byName = new Map();
-  const slug = (n) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const cost = (s) => (s && s.opposed ? 2 : 1);
   const linkFor = (s) => {
     const url = s.url || PFSRD_SEARCH(s.name);
@@ -183,21 +184,21 @@
 
   /* ---------- equipment ---------- */
   const WORN = [
-    ["Headband of Vast Intelligence", "+2 Int"], ["Rauð skikkja með logandi öxi", "cloak of resistance +2"],
-    ["Amulet of Natural Armor", "+1 AC"], ["Gloves of Arrow Snaring", ""],
-    ["Ring of Pengolodh", "bonded"], ["Ecthëlion signet ring", ""], ["Lesser extend metamagic rod", "3/day"],
-    ["Light crossbow", "4 lb"], ["Dagger", "1 lb"], ["Wand of detect magic", "19 ch."], ["Scholar's outfit", "6 lb"],
+    ["Headband of Vast Intelligence", "+2 Int", PFSRD + "magic-items/wondrous-items/h-l/headband-of-vast-intelligence/"], ["Rauð skikkja með logandi öxi", "cloak of resistance +2", PFSRD + "magic-items/wondrous-items/c-d/cloak-of-resistance/"],
+    ["Amulet of Natural Armor", "+1 AC", PFSRD + "magic-items/wondrous-items/a-b/amulet-of-natural-armor/"], ["Gloves of Arrow Snaring", "", PFSRD + "magic-items/wondrous-items/e-g/gloves-of-arrow-snaring/"],
+    ["Ring of Pengolodh", "bonded"], ["Ecthëlion signet ring", ""], ["Lesser extend metamagic rod", "3/day", PFSRD + "magic-items/rods/metamagic-rods/"],
+    ["Light crossbow", "4 lb", PFSRD + "equipment/weapons/weapon-descriptions/crossbow-light/"], ["Dagger", "1 lb", PFSRD + "equipment/weapons/weapon-descriptions/dagger/"], ["Wand of detect magic", "19 ch.", PFSRD + "magic-items/wands/"], ["Scholar's outfit", "6 lb", PFSRD + "equipment/goods-and-services/containers-bags-boxes-more/"],
   ];
   const PACK = [
-    ["Spellbook, wizard's", "×2"], ["Spell component pouch", ""], ["Belt pouch", ""], ["Scroll case", "×3"], ["Bandolier", ""],
-    ["Blank scrolls", "×8"], ["Library card, Horeck", ""], ["Maps", ""], ["Notes", ""], ["Ice-salamander tongue", "×3"],
-    ["Ancient Dwarven text", "unread"], ["Crossbow bolts", "×5"],
+    ["Spellbook, wizard's", "×2", PFSRD + "magic/spellbooks/"], ["Spell component pouch", "", PFSRD + "equipment/goods-and-services/containers-bags-boxes-more/"], ["Belt pouch", "", PFSRD + "equipment/goods-and-services/containers-bags-boxes-more/"], ["Scroll case", "×3", PFSRD + "equipment/goods-and-services/containers-bags-boxes-more/"], ["Bandolier", "", PFSRD + "equipment/goods-and-services/containers-bags-boxes-more/"],
+    ["Blank scrolls", "×8", PFSRD + "equipment/goods-and-services/books-paper-writing-supplies/"], ["Library card, Horeck", ""], ["Maps", ""], ["Notes", ""], ["Ice-salamander tongue", "×3"],
+    ["Ancient Dwarven text", "unread"], ["Crossbow bolts", "×5", PFSRD + "equipment/weapons/weapon-descriptions/crossbow-light/"],
   ];
   const SCROLLS = ["Obscuring Mist", "Bull's Strength", "Swift Girding", "Knock", "Feather Fall", "Illusion of Calm",
     "Protection from Evil", "Mudball", "False Life", "Mount", "Fog Cloud", "See Invisibility", "Unidentified scroll"];
   // Verified d20pfsrd pages for the scrolls (checked when the sheet was built); the spellbook's own URL wins when present.
   const SCROLL_URL = Object.fromEntries(Object.entries({ "Obscuring Mist": "obscuring-mist", "Bull's Strength": "bull-s-strength", "Swift Girding": "swift-girding", "Knock": "knock", "Feather Fall": "feather-fall", "Illusion of Calm": "illusion-of-calm", "Protection from Evil": "protection-from-evil", "Mudball": "mudball", "False Life": "false-life", "Mount": "mount", "Fog Cloud": "fog-cloud", "See Invisibility": "see-invisibility" }).map(([n, sl]) => [n, `https://www.d20pfsrd.com/magic/all-spells/${sl[0]}/${sl}/`]));
-  const row = ([name, v]) => h("li", {}, h("span", { text: name }), v ? h("b", { text: v }) : null);
+  const row = ([name, v, url]) => h("li", {}, h("span", {}, url ? h("a", { href: url, rel: "noopener", text: name }) : name), v ? h("b", { text: v }) : null);
   WORN.forEach((w) => $("#kit-worn").append(row(w)));
   PACK.forEach((w) => $("#kit-pack").append(row(w)));
   function drawScrolls() {
