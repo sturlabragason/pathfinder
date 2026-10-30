@@ -124,7 +124,7 @@
     { id: "rod", name: "Lesser extend rod", per: 3, aside: "metamagic",
       text: "Extend a spell of 3rd level or lower: double its duration without raising its level or casting time." },
     { id: "pentacles", name: "Master of Pentacles", per: 1, aside: "1/day",
-      text: "Rules text isn't on the Roll20 sheet. Check with the GM." },
+      text: "When you cast a conjuration spell, treat your caster level as 2 higher for its duration." },
     { id: "charm", name: "Summoner's charm (Su)", aside: "always on",
       text: "Conjuration (summoning) spells last 3 rounds longer (half wizard level). Extend Spell doesn't double the extra rounds." },
     { id: "wand", name: "Wand of detect magic", per: 19, keep: true, aside: "charges",

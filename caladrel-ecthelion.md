@@ -21,7 +21,7 @@ Pathfinder 1e character sheet, copied from Roll20 (sheet v1.303) on 2026-10-23.
 | Eyes | Dark-Blue |
 | Deity | — |
 | Homeland | — |
-| XP | 0 (next level 2000) |
+| XP | 23,000 (next level 35,000, medium track) |
 
 ## Backstory
 
@@ -143,7 +143,7 @@ Total ranks: 56 / 56.
 
 4th-level slots: Roll20 shows 2. Wizard 7 with Int 22 gets 1 + 1 (bonus) + 1 (school) = 3.
 
-Spellbook: 105 spells (31 cantrips, 27 first, 24 second, 23 third, no 4th yet), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for levels 6 and 7 are not recorded.
+Spellbook: 107 spells (31 cantrips, 27 first, 24 second, 23 third, 2 fourth), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for level 7 are Dimension Door and Acid Pit. The two free spells for level 6 are not recorded.
 
 ## Feats and features
 
@@ -166,7 +166,7 @@ Class features:
 - Shift (Su), Teleportation subschool, replaces Acid Dart: swift action, teleport 15 ft, 9/day (3 + Int).
 - Summoner's Charm (Su), always on: conjuration (summoning) spells last 3 rounds longer (1/2 wizard level). Not doubled by Extend Spell.
 - Arcane bond: Ring of Pengolodh, 1/day.
-- Master of Pentacles, 1/day: rules text not on the Roll20 sheet.
+- Master of Pentacles (faction trait), 1/day: when casting a conjuration spell, treat caster level as 2 higher for its duration.
 
 ## Equipment
 
@@ -203,6 +203,12 @@ Money: 14 GP (0 CP, 0 SP, 0 PP).
 Scrolls (1 each): Obscuring Mist, Bull's Strength, Swift Girding, Knock, Feather Fall, Illusion of Calm, Protection from Evil, Mudball, False Life, Mount, Fog Cloud, See Invisibility. Scroll of Fire Breath: 0 left.
 
 Total weight 19.5 lb + 0.3 coins (light load). Loads: light 23, medium 46, heavy 70. Lift over head 70, lift off ground 140, drag/push 350.
+
+## Player notes
+
+### To buy
+
+- Miniature shovel, 10 gp: focus for Acid Pit and Create Pit (Eschew Materials doesn't cover foci).
 
 ## Notes (from the sheet, kept as written)
 
