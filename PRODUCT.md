@@ -36,7 +36,7 @@ Built for this one character only. It knows his school, opposed schools, Spell F
 - Read-only content; any interactive state (prepared spells, used slots, HP) lives in the browser's localStorage only *(inferred)*.
 - No accounts, no backend, no tracking. `noindex`.
 - Must work on a phone at the table, offline-tolerant once loaded.
-- Undecided / unrecorded in any source: his level-7 feat, the two free spells gained at level 6, deity and homeland.
+- Undecided / unrecorded in any source: the two free spells gained at level 6, deity and homeland.
 
 ## Brand Commitments
 

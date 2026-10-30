@@ -154,7 +154,7 @@ Feats:
 - Combat Casting
 - Eschew Materials
 - Scribe Scroll (wizard bonus feat)
-- Level 7 feat: not recorded
+- Dimensional Agility (level 7): after casting dimension door, take any remaining actions; +4 concentration for teleportation spells
 
 Traits and race:
 - Warrior of Old: +2 trait bonus on initiative.
