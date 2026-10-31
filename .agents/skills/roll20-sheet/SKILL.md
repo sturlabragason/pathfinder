@@ -23,6 +23,9 @@ brave-agent                          # Brave agent profile; Roll20 login persist
 python3 roll20/sync.py pull          # Roll20 -> YAML; refuses if there are unpushed local edits
 python3 roll20/sync.py diff          # local edits since the pull + changes made in Roll20 since then
 python3 roll20/sync.py push --apply  # writes, re-reads, confirms
+python3 roll20/sync.py recalc        # clicks the sheet's Recalc (act_le_big_stuff), then pulls; run after every push
+python3 roll20/sync.py check         # offline consistency check against the sheet's own formulas; exit 1 on issues
+python3 roll20/sync.py site          # offline: rewrite site/data/sheet.js (the online sheet's numbers) from the YAML
 ```
 
 If the browser has no Roll20 session, the login page shows (after a Cloudflare check that passes by itself). Ask Sturla to sign in in the Brave window; never type the password.
@@ -30,8 +33,16 @@ If the browser has no Roll20 session, the login page shows (after a Cloudflare c
 ## Rules
 
 - Never write to Roll20 without Sturla's go-ahead for the specific change. Show `sync.py diff` output first.
-- Edit inputs (`*_base`, `*_ranks`, `*_misc`, `caster1_level`, list rows), not totals; the sheet recalculates totals. Whether sheet workers recalculate after a write from this tool is not yet verified: after the first real push, open the sheet and check the totals.
+- Edit inputs (`*_base`, `*_ranks`, `*_misc`, `caster1_level`, list rows), not totals; Sheet workers do **not** run on a push (model.save); run `sync.py recalc` afterwards, which rebuilds totals, `spelldc` (level DC + `spelldc_mod`) and every spell `rollcontent` from the fields. Never hand-edit `rollcontent` or `spelldc`; Recalc overwrites them.
 - Only `push` sends edits; deleting a row from the YAML does not delete it in Roll20.
+
+## Token actions
+
+Character macros live in `Campaign.characters.get(id).abilities` (not in the YAML or sync.py). Create or update with `ch.abilities.create({name, action, istokenaction:true})` through `sync.run_in_game`. Current ones are listed in `CHECKLIST.md` D21. Point concentration at `roll_caster1_concentration_roll`; `roll_concentration` reads an empty attribute.
+
+## Rules lookups
+
+Use the `pf-rules` skill (`tools/srd.py`, cached) and record findings in `roll20/AUDIT.md`. For a full check of one area, run the `sheet-auditor` agent.
 
 ## How it works
 

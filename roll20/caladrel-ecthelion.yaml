@@ -6,7 +6,7 @@ character:
   name: Caladrel Ecthëlion
   id: -NFVT-hcPg_9VIgVZFh1
   sheet: pathfinderofficial
-  pulled: 2026-10-31 20:53
+  pulled: 2026-10-31 21:26
 fields:
   ability_check_condition: 0
   ac: 15
@@ -14,6 +14,7 @@ fields:
   ac_ability_mod: 4
   ac_ability_primary: dexterity
   ac_armor: 0
+  ac_armor_bonus: 0
   ac_bonus: 0
   ac_bonus_flag: 0
   ac_condition: 0
@@ -168,7 +169,7 @@ fields:
   caster1_spells_total_level_1: 7
   caster1_spells_total_level_2: 6
   caster1_spells_total_level_3: 4
-  caster1_spells_total_level_4: 2
+  caster1_spells_total_level_4: '3'
   caster1_spells_total_level_5: 0
   caster1_spells_total_level_6: 0
   caster1_spells_total_level_7: 0
@@ -540,7 +541,7 @@ fields:
   knowledge_arcana_ability: intelligence
   knowledge_arcana_ability_mod: 6
   knowledge_arcana_armor_penalty: '0'
-  knowledge_arcana_bonus: '0'
+  knowledge_arcana_bonus: 0
   knowledge_arcana_classkill: '1'
   knowledge_arcana_flag: 0
   knowledge_arcana_misc: '0'
@@ -550,7 +551,7 @@ fields:
   knowledge_dungeoneering_ability: intelligence
   knowledge_dungeoneering_ability_mod: 6
   knowledge_dungeoneering_armor_penalty: '0'
-  knowledge_dungeoneering_bonus: '0'
+  knowledge_dungeoneering_bonus: 0
   knowledge_dungeoneering_classkill: '1'
   knowledge_dungeoneering_flag: 0
   knowledge_dungeoneering_misc: '0'
@@ -560,7 +561,7 @@ fields:
   knowledge_engineering_ability: intelligence
   knowledge_engineering_ability_mod: 6
   knowledge_engineering_armor_penalty: '0'
-  knowledge_engineering_bonus: '0'
+  knowledge_engineering_bonus: 0
   knowledge_engineering_classkill: '1'
   knowledge_engineering_flag: 0
   knowledge_engineering_misc: '0'
@@ -570,7 +571,7 @@ fields:
   knowledge_geography_ability: intelligence
   knowledge_geography_ability_mod: 6
   knowledge_geography_armor_penalty: '0'
-  knowledge_geography_bonus: '0'
+  knowledge_geography_bonus: 0
   knowledge_geography_classkill: '1'
   knowledge_geography_flag: 0
   knowledge_geography_misc: '0'
@@ -580,7 +581,7 @@ fields:
   knowledge_history_ability: intelligence
   knowledge_history_ability_mod: 6
   knowledge_history_armor_penalty: '0'
-  knowledge_history_bonus: '0'
+  knowledge_history_bonus: 0
   knowledge_history_classkill: '1'
   knowledge_history_flag: 0
   knowledge_history_misc: '0'
@@ -590,7 +591,7 @@ fields:
   knowledge_local_ability: intelligence
   knowledge_local_ability_mod: 6
   knowledge_local_armor_penalty: '0'
-  knowledge_local_bonus: '0'
+  knowledge_local_bonus: 0
   knowledge_local_classkill: '1'
   knowledge_local_flag: 0
   knowledge_local_misc: '0'
@@ -600,7 +601,7 @@ fields:
   knowledge_nature_ability: intelligence
   knowledge_nature_ability_mod: 6
   knowledge_nature_armor_penalty: '0'
-  knowledge_nature_bonus: '0'
+  knowledge_nature_bonus: 0
   knowledge_nature_classkill: '1'
   knowledge_nature_flag: 0
   knowledge_nature_misc: '0'
@@ -610,7 +611,7 @@ fields:
   knowledge_nobility_ability: intelligence
   knowledge_nobility_ability_mod: 6
   knowledge_nobility_armor_penalty: '0'
-  knowledge_nobility_bonus: '0'
+  knowledge_nobility_bonus: 0
   knowledge_nobility_classkill: '1'
   knowledge_nobility_flag: 0
   knowledge_nobility_misc: '0'
@@ -620,7 +621,7 @@ fields:
   knowledge_planes_ability: intelligence
   knowledge_planes_ability_mod: 6
   knowledge_planes_armor_penalty: '0'
-  knowledge_planes_bonus: '0'
+  knowledge_planes_bonus: 0
   knowledge_planes_classkill: '1'
   knowledge_planes_flag: 0
   knowledge_planes_misc: '0'
@@ -630,7 +631,7 @@ fields:
   knowledge_religion_ability: intelligence
   knowledge_religion_ability_mod: 6
   knowledge_religion_armor_penalty: '0'
-  knowledge_religion_bonus: '0'
+  knowledge_religion_bonus: 0
   knowledge_religion_classkill: '1'
   knowledge_religion_flag: 0
   knowledge_religion_misc: '0'
@@ -642,7 +643,7 @@ fields:
   linguistics_ability: intelligence
   linguistics_ability_mod: 6
   linguistics_armor_penalty: '0'
-  linguistics_bonus: '0'
+  linguistics_bonus: 0
   linguistics_classkill: '1'
   linguistics_flag: 0
   linguistics_misc: '0'
@@ -800,7 +801,7 @@ fields:
   spellcraft_classkill: '1'
   spellcraft_flag: 0
   spellcraft_misc: '6'
-  spellcraft_notes: Headband of Vast Intelligence +5 Ranks (Misc)
+  spellcraft_notes: 'Headband of Vast Intelligence +2 (Spellcraft): 7 ranks (= Hit Dice), which replace the 1 rank bought, so misc +6.'
   spellcraft_penalty_flag: 0
   spellcraft_ranks: '1'
   spells_flag: 0
@@ -977,6 +978,21 @@ lists:
       current: '2'
       max: 3
     perday_qty: '3'
+  - _id: -P5IYht6iAvkZXFfXRwT
+    description: |-
+      Twice per day, while wearing both gloves with at least one hand free, act as if you had the Snatch Arrows feat (prerequisites not needed).
+
+      Snatch Arrows: when using Deflect Arrows, you may catch the weapon instead of just deflecting it. Thrown weapons can immediately be thrown back as an attack against the original attacker (even though it is not your turn) or kept for later use. You must have at least one hand free (holding nothing) to use this feat.
+
+      Deflect Arrows: once per round when you would normally be hit by an attack with a ranged weapon, you may deflect it so that you take no damage from it. You must be aware of the attack and not flat-footed. Unusually massive ranged weapons and ranged attacks generated by natural attacks or spell effects cannot be deflected.
+
+      https://aonprd.com/MagicWondrousDisplay.aspx?FinalName=Gloves%20of%20Arrow%20Snaring
+    name: Gloves of Arrow Snaring (2/day)
+    options-flag: '0'
+    perday:
+      current: '2'
+      max: 2
+    perday_qty: '2'
   acitems:
   - _id: -NiR5RVcvD5yz-O06J7F
     ac_bonus: '0'
@@ -1040,20 +1056,22 @@ lists:
     type: Simple
   buff:
   - _id: -NG3DOg4ZoTiA6blvL37
-    mods: +4 Armor Bonus to ac
+    mods: +4 armor to armor ac
     name: Mage Armor
     options-flag: '0'
-    showmods: +4 Armor Bonus to ac
+    showmods: +4 armor to armor ac
     toggle: '0'
   - _id: -NG3E7sVfS9lPsyVYpts
     mods: |-
-      +2 deflection bonus to AC
-      +2 resistance bonus to saves
+      +2 deflection to ac
+      Saves: +2 resistance does not stack with Cloak of Resistance +2 (already in save misc)
+      Against evil only; blocks possession and mental control
     name: Protection From Evil
     options-flag: '0'
     showmods: |-
-      +2 deflection bonus to AC
-      +2 resistance bonus to saves
+      +2 deflection to ac
+      Saves: +2 resistance does not stack with Cloak of Resistance +2 (already in save misc)
+      Against evil only; blocks possession and mental control
     toggle: '0'
   - _id: -NG3F6uLT1Zhs6rn4JFu
     mods: |-
@@ -1069,33 +1087,15 @@ lists:
       +1 Dodge to AC
       +1 Dodge to Reflex
     toggle: '0'
-  - _id: -NIJbo4MdhkZJ2wasBFz
-    mods: |-
-      +2 bonus to attack
-      +2 to damage
-    name: Favored Enemy Allies
-    options-flag: '0'
-    showmods: |-
-      +2 bonus to attack
-      +2 to damage
-    toggle: '0'
-  - _id: -NjZJuMijjwUNKzEQMQl
-    mods: |-
-      +2 competence to attack
-      +2 competence to DMG
-      +2 will saves vs charm and fear
-    name: Bard boost
-    options-flag: '0'
-    showmods: |-
-      +2 competence to attack
-      +2 competence to DMG
-      +2 will saves vs charm and fear
-    toggle: '0'
   - _id: -NjZQE0uE5YzoCDpDQ7s
-    mods: +40 to Stealth
+    mods: |-
+      +20 to stealth
+      Not moving: +40 total (add the extra +20 by hand)
     name: Invisible
     options-flag: '0'
-    showmods: +40 to Stealth
+    showmods: |-
+      +20 to stealth
+      Not moving: +40 total (add the extra +20 by hand)
     toggle: '0'
   - _id: -NtbpeE54ATcvlEAY445
     mods: +4 to Shield
@@ -1104,8 +1104,110 @@ lists:
     showmods: +4 to Shield
     toggle: '0'
   - _id: -O7FugwJDT-Z5ZEPDiXW
+    mods: No Fortitude saves against hot or cold environments (comfortable between 50 below zero and 140 Fahrenheit); equipment protected too. Duration 24 hours. No numeric bonus.
     name: Endure Elements
     options-flag: '0'
+    showmods: No Fortitude saves against hot or cold environments (comfortable between 50 below zero and 140 Fahrenheit); equipment protected too. Duration 24 hours. No numeric bonus.
+    toggle: '0'
+  - _id: -P5IYht7pgzXAkUNssVu
+    mods: |-
+      +2 morale to attack
+      +2 morale to saves
+      +2 morale to skills
+    name: Heroism
+    options-flag: '0'
+    showmods: |-
+      +2 morale to attack
+      +2 morale to saves
+      +2 morale to skills
+    toggle: '0'
+  - _id: -P5IYht7INwNN5NefVDf
+    mods: |-
+      +2 armor to armor ac
+      First 5 lethal damage per attack becomes nonlethal; discharged after 35 points (5 per CL)
+      Does not stack with Mage Armor (higher armor bonus applies)
+    name: Ablative Barrier
+    options-flag: '0'
+    showmods: |-
+      +2 armor to armor ac
+      First 5 lethal damage per attack becomes nonlethal; discharged after 35 points (5 per CL)
+      Does not stack with Mage Armor (higher armor bonus applies)
+    toggle: '0'
+  - _id: -P5IYht7jO9XLVX-yrBi
+    mods: |-
+      +30 enhancement to speed
+      Does not stack with Haste
+    name: Expeditious Retreat
+    options-flag: '0'
+    showmods: |-
+      +30 enhancement to speed
+      Does not stack with Haste
+    toggle: '0'
+  - _id: -P5IYht7kDiWcDAlemcd
+    mods: +4 enhancement to str
+    name: Bull's Strength
+    options-flag: '0'
+    showmods: +4 enhancement to str
+    toggle: '0'
+  - _id: -P5IYht7bVYR3rBWe6ST
+    mods: |-
+      +4 to ac
+      +2 to reflex
+      Cover against one chosen enemy only; until the start of your next turn; shield has hardness 8 and 15 hp
+    name: Stone Shield
+    options-flag: '0'
+    showmods: |-
+      +4 to ac
+      +2 to reflex
+      Cover against one chosen enemy only; until the start of your next turn; shield has hardness 8 and 15 hp
+    toggle: '0'
+  - _id: -P5IYht7E06n8Sd5WMoT
+    mods: Resist energy 20 against one chosen energy type (CL 7)
+    name: Resist Energy
+    options-flag: '0'
+    showmods: Resist energy 20 against one chosen energy type (CL 7)
+    toggle: '0'
+  - _id: -P5IYht7yX2SCGWSyuLz
+    mods: DR 10/magic against ranged weapons; discharged after 70 points prevented (10 per CL)
+    name: Protection from Arrows
+    options-flag: '0'
+    showmods: DR 10/magic against ranged weapons; discharged after 70 points prevented (10 per CL)
+    toggle: '0'
+  - _id: -P5IYht7CuGBWM6kNdXP
+    mods: 20% miss chance (concealment)
+    name: Blur
+    options-flag: '0'
+    showmods: 20% miss chance (concealment)
+    toggle: '0'
+  - _id: -P5IYht7iWNAOEuOcssm
+    mods: 50% miss chance (as total concealment)
+    name: Displacement
+    options-flag: '0'
+    showmods: 50% miss chance (as total concealment)
+    toggle: '0'
+  - _id: -P5IYht7KcoLXfwiPd9D
+    mods: |-
+      Attacks against you: 50% miss chance (20% if attacker can strike ethereal or see invisible)
+      Your attacks: 20% miss chance
+      Targeted spells: 50% chance of failing against you
+    name: Blink
+    options-flag: '0'
+    showmods: |-
+      Attacks against you: 50% miss chance (20% if attacker can strike ethereal or see invisible)
+      Your attacks: 20% miss chance
+      Targeted spells: 50% chance of failing against you
+    toggle: '0'
+  - _id: -P5IYht7zHHRDpxxM6FI
+    mods: 1d4+2 images at CL 7 (max 8)
+    name: Mirror Image
+    options-flag: '0'
+    showmods: 1d4+2 images at CL 7 (max 8)
+    toggle: '0'
+  - _id: -P5IcotBqFtE0GhRemWb
+    mods: +4 to concentration
+    name: Combat Casting (defensive/grappled)
+    options-flag: '0'
+    showmods: +4 to concentration
     toggle: '0'
   feats:
   - _id: -NFot81BQA9BpYxjgDnj
@@ -1340,43 +1442,54 @@ lists:
     weight_total: 0
   - _id: -NHBLw0uZNxUlrS7Njrl
     name: Wand of Detect Magic
+    notes: Wand of Detect Magic, spell level 0, CL 1 (assumed minimum; change if the wand says otherwise). Range 60 ft. Cone-shaped emanation. Duration concentration, up to 1 min./level. Detects spells and magic items within 60 ft. https://www.d20pfsrd.com/magic/all-spells/d/detect-magic/
     quantity: '19'
     weight_total: 0
   - _id: -NH8cKYHA9ScZgksHvj6
     name: Scroll of Obscuring Mist
+    notes: Scroll of Obscuring Mist, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range 20 ft. Cloud spreads in 20-ft. radius from you, 20 ft. high. Duration 1 min (1 min./level). Fog surrounds you. https://www.d20pfsrd.com/magic/all-spells/o/obscuring-mist/
     options-flag: '0'
     quantity: '1'
   - _id: -NG3fRgofz8ce3Oa8nJQ
     name: Scroll of Bull's Strength
+    notes: Scroll of Bull's Strength, spell level 2, CL 3 (assumed minimum; change if the scroll says otherwise). Range touch. Creature touched. Duration 3 mins (1 min./level). +4 enhancement to Str. https://www.d20pfsrd.com/magic/all-spells/b/bull-s-strength/
     quantity: '1'
   - _id: -NH8bvJUsFUoHAV6HN7R
     name: Scroll of Swift Girding
+    notes: Scroll of Serren's Swift Girding, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range close (25 feet + 5 feet/level). One willing creature/level. Duration instantaneous. https://www.d20pfsrd.com/magic/all-spells/s/swift-girding/
     quantity: '1'
     weight_total: 0
   - _id: -NH8cCDiAuEBOCvA8dwK
     name: Scroll of Knock
+    notes: 'Scroll of Knock, spell level 2, CL 3 (assumed minimum; change if the scroll says otherwise). Range medium (100 ft. + 10 ft./level). One door, box, or chest with an area of up to 10 sq. ft./level. Duration instantaneous; see text. Caster level check vs lock DC: [[1d20+3+10]]. https://www.d20pfsrd.com/magic/all-spells/k/knock/'
     quantity: '1'
   - _id: -NHBPW8pQSihpSW7YZnl
     name: Scroll of Feather Fall
+    notes: Scroll of Feather Fall, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range close, 25 ft.. One medium or smaller freefalling object or creature/level, no two of which may be more than 20 ft. apart. Duration until landing or 1 round/level. Falls 60 ft./round, no falling damage. Immediate action. https://www.d20pfsrd.com/magic/all-spells/f/feather-fall/
     quantity: '1'
   - _id: -NHBPakDzA2JfbKte6DR
     name: Scroll of Illusion of Calm
+    notes: Scroll of Illusion of Calm, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range personal. You. Duration 1 minute (1 minute/level). Save Will disbelieve (on hit; see below), DC 11. No AoO for casting, thrown attacks, or moving out of first square on a move action. Attacker who hits gets Will DC 11 to disbelieve. https://www.d20pfsrd.com/magic/all-spells/i/illusion-of-calm/
     quantity: '1'
   - _id: -NHBPcG3bHJ6AJMpGEqt
     name: Scroll of Protection from Evil
+    notes: Scroll of Protection from Evil, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range touch. Creature touched. Duration 1 min (1 min./level (D)). +2 deflection AC, +2 resistance saves vs evil. https://www.d20pfsrd.com/magic/all-spells/p/protection-from-evil/
     quantity: '1'
   - _id: -NHBPdcD-PJTxUhrON6t
     name: Scroll of Mudball
+    notes: Scroll of Mudball, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range close, 25 ft.. Single fist-sized blob of sticky mud. Duration instantaneous. Save Reflex negates; see text, DC 11. Ranged touch [[1d20+@{ranged_mod}]]; hit = blinded, Reflex DC 11 each round to clear. https://www.d20pfsrd.com/magic/all-spells/m/mudball/
     options-flag: '0'
     quantity: '1'
     weight: '0'
     weight_total: 0
   - _id: -NNxW-lrUa8uOLxFN38n
     name: 'Scroll of false life '
+    notes: Scroll of False Life, spell level 2, CL 3 (assumed minimum; change if the scroll says otherwise). Range personal. You. Duration 3 hours (1 hour/level or until discharged; see text). Temp HP [[1d10+3]]. https://www.d20pfsrd.com/magic/all-spells/f/false-life/
     options-flag: '0'
     quantity: '1'
   - _id: -NNxWZHsVPiYZcTlhbMD
     name: Scroll of mount
+    notes: Scroll of Mount, spell level 1, CL 1 (assumed minimum; change if the scroll says otherwise). Range close, 25 ft.. One mount. Duration 2 hours (2 hours/level). Summons riding horse for 2 hours/level. https://www.d20pfsrd.com/magic/all-spells/m/mount/
     quantity: '1'
   - _id: -NiR5QOKp9BWcmi2mR6R
     name: Amulet of Natural Armor
@@ -1409,15 +1522,18 @@ lists:
     quantity: '1'
   - _id: -OF8hj2Sh3RvOoI-MjT1
     name: Scroll of Fog Cloud
+    notes: Scroll of Fog Cloud, spell level 2, CL 3 (assumed minimum; change if the scroll says otherwise). Range medium (100 ft. + 10 ft. level). Fog spreads in 20-ft. radius. Duration 30 mins (10 min./level). Fog obscures vision. https://www.d20pfsrd.com/magic/all-spells/f/fog-cloud/
     quantity: '1'
     weight_total: 0
   - _id: -OF8jJcfAyGOvUp0oVBr
     name: See Invisibility Scroll
+    notes: Scroll of See Invisibility, spell level 2, CL 3 (assumed minimum; change if the scroll says otherwise). Range personal. You. Duration 30 mins (10 min./level). Reveals invisible creatures or objects. https://www.d20pfsrd.com/magic/all-spells/s/see-invisibility/
     quantity: '1'
   skillcraft:
   - _id: -NG2tuqFmnZvGcToOpBk
     ability_mod: 6
     armor_penalty: '0'
+    bonus: 0
     classkill: '1'
     name: Calligraphy
     penalty_flag: 0
@@ -1426,6 +1542,7 @@ lists:
   - _id: -NGdDdOehXl6KdxPloxE
     ability_mod: 6
     armor_penalty: '0'
+    bonus: 0
     classkill: '1'
     name: Cartography
     penalty_flag: 0
@@ -1446,7 +1563,8 @@ lists:
     spellcastingtime: 1 standard action
     spellclasslevel: Sorcerer/wizard 0
     spellcomponent: V, S
-    spelldc: 16
+    spelldc: 18
+    spelldc_mod: '2'
     spelldesc: You fire a small orb of acid at the target. You must succeed on a ranged touch attack to hit your target. The orb deals 1d3 points of acid damage. This acid disappears after 1 round.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Acid Splash
@@ -2029,7 +2147,7 @@ lists:
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
     rollcontent: |-
-      @{whispertype} &{template:pc}{{name=Mage Armor}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=1}}{{school=Conjuration (creation) [force]}}{{castingtime=1 standard action}}{{component=V, S, F (a piece of cured leather)}}{{range=Touch}}{{targets=Creature touched}}{{duration=1 hour/level (D)}}{{save=1}} {{savedc=[[17]]}}{{saveeffect=Will negates (harmless)}}{{descflag=[[1]]}} {{desc=***"Agrum tangibile vi me cingit!"***
+      @{whispertype} &{template:pc}{{name=Mage Armor}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=1}}{{school=Conjuration (creation) [force]}}{{castingtime=1 standard action}}{{component=V, S, F (a piece of cured leather)}}{{range=Touch}}{{targets=Creature touched}}{{duration=1 hour/level (D)}}{{save=1}} {{savedc=[[19]]}}{{saveeffect=Will negates (harmless)}}{{descflag=[[1]]}} {{desc=***"Agrum tangibile vi me cingit!"***
 
       An invisible but tangible field of force surrounds the subject of a mage armor spell, providing a +4 armor bonus to AC.  Unlike mundane armor, mage armor entails no armor check penalty, arcane spell failure chance, or speed reduction. Since mage armor is made of force, incorporeal creatures can't bypass it the way they do normal armor.}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{conditionsnote=}}
     spellcaster: 1
@@ -2038,7 +2156,8 @@ lists:
     spellcastingtime: 1 standard action
     spellclasslevel: Sorcerer/wizard 1
     spellcomponent: V, S, F (a piece of cured leather)
-    spelldc: 17
+    spelldc: 19
+    spelldc_mod: '2'
     spelldesc: |-
       ***"Agrum tangibile vi me cingit!"***
 
@@ -2058,10 +2177,11 @@ lists:
     spelltargets: Creature touched
   - _id: -NFtZ-juUOpiOF8gWybA
     fromcompendium: Spells:Magic Missile
+    notes: 'Missiles: [[{floor((@{caster1_level}+1)/2),5}kl1]] (1d4+1 each; split between targets before rolling).'
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
     rollcontent: '@{whispertype} &{template:pc}{{name=Magic Missile}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=1}}{{school=Evocation [force]}}{{castingtime=1 standard action}}{{component=V, S}}{{range=Medium (100 ft. + 10 ft./level)}}{{targets=Up to five creatures, no two of which can be more than 15 ft. apart}}{{duration=Instantaneous}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=A missile of magical energy darts forth from your fingertip and strikes its target, dealing 1d4+1 points of force damage.  The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can''t be singled out. Objects are not damaged by the spell.  For every two caster levels beyond 1st, you gain an additional missile—two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher. If you shoot multiple
-      missiles, you can have them strike a single creature or several creatures. A single missile can strike only one creature. You must designate targets before you check for Spell Resistance or roll damage.}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[(1d4+1)+(1d4+1)+(1d4+1) + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Force}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{conditionsnote=}}'
+      missiles, you can have them strike a single creature or several creatures. A single missile can strike only one creature. You must designate targets before you check for Spell Resistance or roll damage.}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[[[{floor((@{caster1_level}+1)/2),5}kl1]]d4+[[{floor((@{caster1_level}+1)/2),5}kl1]] + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Force}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{shownotes=[[1]]}}{{notes=Missiles: [[{floor((@{caster1_level}+1)/2),5}kl1]] (1d4+1 each; split between targets before rolling).}}{{conditionsnote=}}'
     spellcaster: 1
     spellcaster1_class: Wizard (Conjurer / Handanvaldur)
     spellcaster2_class: ' '
@@ -2072,7 +2192,7 @@ lists:
     spelldesc: A missile of magical energy darts forth from your fingertip and strikes its target, dealing 1d4+1 points of force damage.  The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.  For every two caster levels beyond 1st, you gain an additional missile—two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher. If you shoot multiple missiles, you can have them strike a single creature or several creatures. A single missile can strike only one creature. You must designate targets before you check for Spell Resistance or roll damage.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Magic Missile
-    spelldmg: (1d4+1)+(1d4+1)+(1d4+1)
+    spelldmg: '[[{floor((@{caster1_level}+1)/2),5}kl1]]d4+[[{floor((@{caster1_level}+1)/2),5}kl1]]'
     spelldmgflag: '{{damage=1}} {{dmg1flag=1}}'
     spelldmgtype: Force
     spellduration: Instantaneous
@@ -2204,7 +2324,10 @@ lists:
     fromcompendium: Spells:Ray of Enfeeblement
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
-    rollcontent: '@{whispertype} &{template:pc}{{name=Ray Of Enfeeblement}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=1}}{{school=Necromancy}}{{castingtime=1 standard action}}{{component=V, S}}{{range=Close (25 ft. + 5 ft./2 levels)}}{{effect=Ray}}{{duration=1 round/level}}{{save=1}} {{savedc=[[17]]}}{{saveeffect=Fortitude half}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=A coruscating ray springs from your hand. You must succeed on a ranged touch attack to strike a target. The subject takes a penalty to Strength equal to 1d6+1 per two caster levels (maximum 1d6+5). The subject''s Strength score cannot drop below 1. A successful Fortitude save reduces this penalty by half. This penalty does not stack with itself. Apply the highest penalty instead.}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{conditionsnote=}}'
+    rollcontent: '@{whispertype} &{template:pc}{{name=Ray Of Enfeeblement}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=1}}{{school=Necromancy}}{{castingtime=1 standard action}}{{component=V, S}}{{range=Close (25 ft. + 5 ft./2 levels)}}{{effect=Ray}}{{duration=1 round/level}}{{save=1}} {{savedc=[[17]]}}{{saveeffect=Fortitude half}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=A coruscating ray springs from your hand. You must succeed on a ranged touch attack to strike a target. The subject takes a penalty to Strength equal to 1d6+1 per two caster levels (maximum 1d6+5). The subject''s Strength score cannot drop below 1. A successful Fortitude save reduces this penalty by half. This penalty does not stack with itself. Apply the highest penalty instead.}}{{attack=1}}{{roll=[[1d20cs>20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]]]}}{{critconfirm=[[1d20cs20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]+@{critconfirm_bonus}[CRIT
+      CONFIRM BONUS]]]}}{{conditionsflag=[[@{attack_condition}]]}}{{conditions=@{conditions_display}}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[1d6+[[{floor(@{caster1_level}/2),5}kl1]] + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Strength penalty (Fort half; does not stack)}}{{dmg1crit=[[(1d6+[[{floor(@{caster1_level}/2),5}kl1]] + 1d6+[[{floor(@{caster1_level}/2),5}kl1]]) + (@{rollmod_damage} * 2)[QUERY]]]}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{conditionsnote=@{attack_condition_note}}}'
+    spellatkflag: '{{attack=1}}'
+    spellatktype: ranged
     spellcaster: 1
     spellcaster1_class: Wizard (Conjurer / Handanvaldur)
     spellcaster2_class: ' '
@@ -2215,6 +2338,9 @@ lists:
     spelldesc: A coruscating ray springs from your hand. You must succeed on a ranged touch attack to strike a target. The subject takes a penalty to Strength equal to 1d6+1 per two caster levels (maximum 1d6+5). The subject's Strength score cannot drop below 1. A successful Fortitude save reduces this penalty by half. This penalty does not stack with itself. Apply the highest penalty instead.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Ray Of Enfeeblement
+    spelldmg: 1d6+[[{floor(@{caster1_level}/2),5}kl1]]
+    spelldmgflag: '{{damage=1}} {{dmg1flag=1}}'
+    spelldmgtype: Strength penalty (Fort half; does not stack)
     spellduration: 1 round/level
     spelleffect: Ray
     spellmulticasters-flag: 0
@@ -2317,7 +2443,7 @@ lists:
     rollcontent: |-
       @{whispertype} &{template:pc}{{name=Snowball}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=1}}{{school=conjuration (creation) [cold, water]}}{{castingtime=1 standard action}}{{component=V, S}}{{range=close (25 ft. + 5 ft./2 levels)}}{{targets=one creature}}{{effect=one ball of ice and snow}}{{duration=instantaneous}}{{save=1}} {{savedc=[[19]]}}{{saveeffect=Fortitude partial (see text)}}{{descflag=[[1]]}} {{desc=***"Globus nivis pro inimicis meis!"***
 
-      You conjure a ball of packed ice and snow that you can throw at a single target as a ranged touch attack. The snowball deals 1d6 points of cold damage per caster level (maximum 5d6) on a successful hit, and the target must make a successful Fortitude saving throw or be staggered for 1 round.}}{{attack=1}}{{roll=[[1d20cs>20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]]]}}{{critconfirm=[[1d20cs20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]+@{critconfirm_bonus}[CRIT CONFIRM BONUS]]]}}{{conditionsflag=[[@{attack_condition}]]}}{{conditions=@{conditions_display}}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[5d6 + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=}}{{dmg1crit=[[(5d6 + 5d6) + (@{rollmod_damage} * 2)[QUERY]]]}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{conditionsnote=@{attack_condition_note}}}
+      You conjure a ball of packed ice and snow that you can throw at a single target as a ranged touch attack. The snowball deals 1d6 points of cold damage per caster level (maximum 5d6) on a successful hit, and the target must make a successful Fortitude saving throw or be staggered for 1 round.}}{{attack=1}}{{roll=[[1d20cs>20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]]]}}{{critconfirm=[[1d20cs20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]+@{critconfirm_bonus}[CRIT CONFIRM BONUS]]]}}{{conditionsflag=[[@{attack_condition}]]}}{{conditions=@{conditions_display}}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[[[{@{caster1_level},5}kl1]]d6 + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Cold}}{{dmg1crit=[[([[{@{caster1_level},5}kl1]]d6 + [[{@{caster1_level},5}kl1]]d6) + (@{rollmod_damage} * 2)[QUERY]]]}}{{concentration=[Concentration](~repeating_spell-1_concentration)}}{{conditionsnote=@{attack_condition_note}}}
     spellatkflag: '{{attack=1}}'
     spellatktype: ranged
     spellcaster: 1
@@ -2333,8 +2459,9 @@ lists:
 
       You conjure a ball of packed ice and snow that you can throw at a single target as a ranged touch attack. The snowball deals 1d6 points of cold damage per caster level (maximum 5d6) on a successful hit, and the target must make a successful Fortitude saving throw or be staggered for 1 round.
     spelldisplay: Snowball
-    spelldmg: 5d6
+    spelldmg: '[[{@{caster1_level},5}kl1]]d6'
     spelldmgflag: '{{damage=1}} {{dmg1flag=1}}'
+    spelldmgtype: Cold
     spellduration: instantaneous
     spelleffect: one ball of ice and snow
     spellmulticasters-flag: 0
@@ -2660,9 +2787,11 @@ lists:
     spelltargets: You
   - _id: -NjZ4hl84vYN7xt2gbUg
     fromcompendium: Spells:Fire Breath
+    notes: 'Up to three cones, one per standard action: 4d6, then 2d6, then 1d6. The spell ends after the third.'
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
-    rollcontent: '@{whispertype} &{template:pc}{{name=Fire Breath}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=2}}{{school=Evocation [fire]}}{{castingtime=1 standard action}}{{component=V, S, M (a chili pepper)}}{{range=15 ft.}}{{area=Cone-shaped burst}}{{duration=1 round/level or until discharged; see text}}{{save=1}} {{savedc=[[18]]}}{{saveeffect=Reflex half; see text}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=Up to thrice during this spell''s duration, you can belch forth a cone of fire as a standard action. The first cone deals 4d6 points of fire damage to every creature in the area. The second cone of flame deals 2d6 points of fire damage to every creature in the area. The third cone of flame deals 1d6 points of fire damage to every creature in the area. A successful Reflex save halves this damage. After the third cone of flame, the spell ends.}}{{concentration=[Concentration](~repeating_spell-2_concentration)}}{{conditionsnote=}}'
+    rollcontent: '@{whispertype} &{template:pc}{{name=Fire Breath}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=2}}{{school=Evocation [fire]}}{{castingtime=1 standard action}}{{component=V, S, M (a chili pepper)}}{{range=15 ft.}}{{area=Cone-shaped burst}}{{duration=1 round/level or until discharged; see text}}{{save=1}} {{savedc=[[18]]}}{{saveeffect=Reflex half; see text}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=Up to thrice during this spell''s duration, you can belch forth a cone of fire as a standard action. The first cone deals 4d6 points of fire damage to every creature in the area. The second cone of flame deals 2d6 points of fire damage to every creature in the area. The third cone of flame deals 1d6 points of fire damage to every creature in the area. A successful Reflex save halves this damage. After the third cone of flame, the spell ends.}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[?{Cone|1st (4d6),4d6|2nd
+      (2d6),2d6|3rd (1d6),1d6} + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Fire (15-ft cone, Reflex half)}}{{concentration=[Concentration](~repeating_spell-2_concentration)}}{{shownotes=[[1]]}}{{notes=Up to three cones, one per standard action: 4d6, then 2d6, then 1d6. The spell ends after the third.}}{{conditionsnote=}}'
     spellarea: Cone-shaped burst
     spellcaster: 1
     spellcaster1_class: Wizard (Conjurer / Handanvaldur)
@@ -2674,6 +2803,9 @@ lists:
     spelldesc: Up to thrice during this spell's duration, you can belch forth a cone of fire as a standard action. The first cone deals 4d6 points of fire damage to every creature in the area. The second cone of flame deals 2d6 points of fire damage to every creature in the area. The third cone of flame deals 1d6 points of fire damage to every creature in the area. A successful Reflex save halves this damage. After the third cone of flame, the spell ends.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Fire Breath
+    spelldmg: ?{Cone|1st (4d6),4d6|2nd (2d6),2d6|3rd (1d6),1d6}
+    spelldmgflag: '{{damage=1}} {{dmg1flag=1}}'
+    spelldmgtype: Fire (15-ft cone, Reflex half)
     spellduration: 1 round/level or until discharged; see text
     spellmulticasters-flag: 0
     spellname: Fire Breath
@@ -2834,7 +2966,7 @@ lists:
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
     rollcontent: '@{whispertype} &{template:pc}{{name=Make Whole}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=2}}{{school=Transmutation}}{{castingtime=10 minutes}}{{component=V, S}}{{range=Close (25 ft. + 5 ft./2 levels)}}{{targets=One object of up to 10 cu. ft./level or one construct creature of any size}}{{duration=Instantaneous}}{{save=1}} {{savedc=[[18]]}}{{saveeffect=Will negates (harmless, object)}}{{sr=1}} {{spellresistance=Yes (Harmless, Object)}}{{descflag=[[1]]}} {{desc=This spell repairs damaged objects, restoring 1d4 hit points to the object. If the object has the broken condition, this condition is removed if the object is restored to at least half its original hit points.  All of the pieces of an object must be present for this spell to function. Magic items can be repaired by this spell, but you must have a caster level equal to or higher than that of the object.&nbsp;Make whole&nbsp;can fix destroyed magic
-      items (at 0 hit points or less), and restores the magic properties of the item if your caster level is at least twice that of the item. Items with charges (such as wands) and single-use items (such as potions and scrolls) cannot be repaired in this way.  This spell&nbsp;repairs 1d6 points of damage per level when cast on a construct creature (maximum 5d6).&nbsp;When&nbsp;make whole&nbsp;is used on a construct creature, the spell bypasses any immunity to magic as if the spell did not allow spell resistance.  This spell has no effect on objects that have been warped or otherwise transmuted, but it can still repair damage done to such items.}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[1d6 per level (maximum 5d6) + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=}}{{concentration=[Concentration](~repeating_spell-2_concentration)}}{{conditionsnote=}}'
+      items (at 0 hit points or less), and restores the magic properties of the item if your caster level is at least twice that of the item. Items with charges (such as wands) and single-use items (such as potions and scrolls) cannot be repaired in this way.  This spell&nbsp;repairs 1d6 points of damage per level when cast on a construct creature (maximum 5d6).&nbsp;When&nbsp;make whole&nbsp;is used on a construct creature, the spell bypasses any immunity to magic as if the spell did not allow spell resistance.  This spell has no effect on objects that have been warped or otherwise transmuted, but it can still repair damage done to such items.}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[[[{@{caster1_level},5}kl1]]d6 + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=repaired (object or construct)}}{{concentration=[Concentration](~repeating_spell-2_concentration)}}{{conditionsnote=}}'
     spellcaster: 1
     spellcaster1_class: Wizard (Conjurer / Handanvaldur)
     spellcaster2_class: ' '
@@ -2846,8 +2978,9 @@ lists:
       on objects that have been warped or otherwise transmuted, but it can still repair damage done to such items.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Make Whole
-    spelldmg: 1d6 per level (maximum 5d6)
+    spelldmg: '[[{@{caster1_level},5}kl1]]d6'
     spelldmgflag: '{{damage=1}} {{dmg1flag=1}}'
+    spelldmgtype: repaired (object or construct)
     spellduration: Instantaneous
     spellmulticasters-flag: 0
     spellname: Make Whole
@@ -3065,7 +3198,8 @@ lists:
     spellcastingtime: 1 round
     spellclasslevel: Bard 2, Druid 2, Sorcerer/wizard 2
     spellcomponent: V, S, M/DF (a square of red cloth)
-    spelldc: 18
+    spelldc: 20
+    spelldc_mod: '2'
     spelldesc: You summon a swarm of bats, rats, or spiders (your choice), which attacks all other creatures within its area. (You may summon the swarm so that it shares the area of other creatures.) If no living creatures are within its area, the swarm attacks or pursues the nearest creature as best it can. The caster has no control over its target or direction of travel.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Summon Swarm
@@ -3114,10 +3248,11 @@ lists:
     spellschool: Conjuration (creation)
   - _id: -NIDZ8skiw-80F22A0Uh
     fromcompendium: Spells:Scorching Ray
+    notes: 'Rays: [[{floor((@{caster1_level}+1)/4),3}kl1]]. Ray 2 (CL 7+): [[1d20+@{ranged_mod}+@{attack_bonus}+@{attack_condition}]] to hit, [[4d6]] fire. Third ray at CL 11. All rays within 30 ft of each other.'
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
     rollcontent: '@{whispertype} &{template:pc}{{name=Scorching Ray}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=2}}{{school=Evocation [fire]}}{{castingtime=1 standard action}}{{component=V, S}}{{range=Close (25 ft. + 5 ft./2 levels)}}{{effect=One or more rays}}{{duration=Instantaneous}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=You blast your enemies with a searing beam of fire. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of fire damage. The rays may be fired at the same or different targets, but all rays must be aimed at targets within 30 feet of each other and fired simultaneously.}}{{attack=1}}{{roll=[[1d20cs>20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]]]}}{{critconfirm=[[1d20cs20+@{ranged_mod}[]+0[MOD]+(@{attack_bonus})[TEMP]+(@{attack_condition})[CONDITION]+@{rollmod_attack}[QUERY]+@{critconfirm_bonus}[CRIT
-      CONFIRM BONUS]]]}}{{conditionsflag=[[@{attack_condition}]]}}{{conditions=@{conditions_display}}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[4d6 + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Fire}}{{dmg1crit=[[(4d6 + 4d6) + (@{rollmod_damage} * 2)[QUERY]]]}}{{concentration=[Concentration](~repeating_spell-2_concentration)}}{{conditionsnote=@{attack_condition_note}}}'
+      CONFIRM BONUS]]]}}{{conditionsflag=[[@{attack_condition}]]}}{{conditions=@{conditions_display}}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[4d6 + @{damage_bonus}[TEMP] + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Fire}}{{dmg1crit=[[(4d6 + 4d6) + (@{rollmod_damage} * 2)[QUERY]]]}}{{concentration=[Concentration](~repeating_spell-2_concentration)}}{{shownotes=[[1]]}}{{notes=Rays: [[{floor((@{caster1_level}+1)/4),3}kl1]]. Ray 2 (CL 7+): [[1d20+@{ranged_mod}+@{attack_bonus}+@{attack_condition}]] to hit, [[4d6]] fire. Third ray at CL 11. All rays within 30 ft of each other.}}{{conditionsnote=@{attack_condition_note}}}'
     spellatkflag: '{{attack=1}}'
     spellatktype: ranged
     spellcaster: 1
@@ -3265,18 +3400,20 @@ lists:
     spelltargets: Creature touched
   - _id: -NFtdgzSMJvo5dc3LF4K
     fromcompendium: Spells:Chain of Perdition
+    notes: 'Chain maneuver: [[1d20+@{caster1_level}+@{intelligence_mod}]] vs CMD (dirty trick blind/entangle, drag, reposition, trip). Chain touch AC [[10+@{intelligence_mod}]]; 10-ft reach; no AoO.'
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
     rollcontent: '@{whispertype} &{template:pc}{{name=Chain Of Perdition}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=3}}{{school=Evocation [force]}}{{castingtime=1 standard action}}{{component=V, S, M/DF (chain link)}}{{range=Close (25 ft. + 5 ft./2 levels)}}{{effect=10-ft. chain}}{{duration=1 round/level (D)}}{{sr=1}} {{spellresistance=Yes}}{{descflag=[[1]]}} {{desc=A floating chain of force with hooks at each end appears within an unoccupied space of your choosing within range. This chain is a Medium object that has a 10-foot reach. Physical attacks cannot hit or harm the chain of perdition, but dispel magic, disintegrate, a sphere of annihilation, or a rod of cancellation affects it normally. The chain''s AC against touch attacks is 10 + your Charisma modifier (sorcerer), Intelligence modifier (wizard), or Wisdom modifier (cleric).  The chain can perform the dirty trick (blind or entangle), drag, reposition, and trip combat
-      maneuvers, using your caster level in place of your Combat Maneuver Bonus, and your Charisma modifier (sorcerer), Intelligence modifier (wizard), or Wisdom modifier (cleric) in place of your Strength or Dexterity modifier. The chain does not provoke attacks of opportunity for making combat maneuvers. It suffers no penalty or miss chance due to darkness, invisibility, or other forms of concealment.  As a move action, you can move the chain up to 30 feet. If the chain goes beyond the spell''s range or out of your sight, it returns to you.  If a creature that the chain attacks has spell resistance, you must make a caster level check (1d20 + caster level) against that spell resistance the first time the chain performs a successful maneuver against that creature. If the chain is successfully resisted, the spell is dispelled. If not, the weapon has its normal full effect on that creature for the duration of the spell.}}{{concentration=[Concentration](~repeating_spell-3_concentration)}}{{conditionsnote=}}'
+      maneuvers, using your caster level in place of your Combat Maneuver Bonus, and your Charisma modifier (sorcerer), Intelligence modifier (wizard), or Wisdom modifier (cleric) in place of your Strength or Dexterity modifier. The chain does not provoke attacks of opportunity for making combat maneuvers. It suffers no penalty or miss chance due to darkness, invisibility, or other forms of concealment.  As a move action, you can move the chain up to 30 feet. If the chain goes beyond the spell''s range or out of your sight, it returns to you.  If a creature that the chain attacks has spell resistance, you must make a caster level check (1d20 + caster level) against that spell resistance the first time the chain performs a successful maneuver against that creature. If the chain is successfully resisted, the spell is dispelled. If not, the weapon has its normal full effect on that creature for the duration of the spell.}}{{concentration=[Concentration](~repeating_spell-3_concentration)}}{{shownotes=[[1]]}}{{notes=Chain
+      maneuver: [[1d20+@{caster1_level}+@{intelligence_mod}]] vs CMD (dirty trick blind/entangle, drag, reposition, trip). Chain touch AC [[10+@{intelligence_mod}]]; 10-ft reach; no AoO.}}{{conditionsnote=}}'
     spellcaster: 1
     spellcaster1_class: Wizard (Conjurer / Handanvaldur)
     spellcaster2_class: ' '
     spellcastingtime: 1 standard action
     spellclasslevel: Cleric 3, Sorcerer/wizard 3
     spellcomponent: V, S, M/DF (chain link)
-    spelldc: 21
-    spelldc_mod: '2'
+    spelldc: 19
+    spelldc_mod: '0'
     spelldesc: A floating chain of force with hooks at each end appears within an unoccupied space of your choosing within range. This chain is a Medium object that has a 10-foot reach. Physical attacks cannot hit or harm the chain of perdition, but dispel magic, disintegrate, a sphere of annihilation, or a rod of cancellation affects it normally. The chain's AC against touch attacks is 10 + your Charisma modifier (sorcerer), Intelligence modifier (wizard), or Wisdom modifier (cleric).  The chain can perform the dirty trick (blind or entangle), drag, reposition, and trip combat maneuvers, using your caster level in place of your Combat Maneuver Bonus, and your Charisma modifier (sorcerer), Intelligence modifier (wizard), or Wisdom modifier (cleric) in place of your Strength or Dexterity modifier. The chain does not provoke attacks of opportunity for making combat maneuvers. It suffers no penalty or miss chance due to darkness, invisibility, or other forms of concealment.  As a move action,
       you can move the chain up to 30 feet. If the chain goes beyond the spell's range or out of your sight, it returns to you.  If a creature that the chain attacks has spell resistance, you must make a caster level check (1d20 + caster level) against that spell resistance the first time the chain performs a successful maneuver against that creature. If the chain is successfully resisted, the spell is dispelled. If not, the weapon has its normal full effect on that creature for the duration of the spell.
     spelldescflag: '{{descflag=[[1]]}}'
@@ -3672,7 +3809,8 @@ lists:
     spellcastingtime: 1 standard action
     spellclasslevel: Druid 3, Sorcerer/wizard 3
     spellcomponent: V, S, M/DF (dust and water)
-    spelldc: 19
+    spelldc: 21
+    spelldc_mod: '2'
     spelldesc: Driving sleet blocks all sight (even darkvision) within it and causes the ground in the area to be icy. A creature can walk within or through the area of sleet at half normal speed with a DC 10 Acrobatics check. Failure means it can't move in that round, while failure by 5 or more means it falls (see the Acrobatics skill for details).  The sleet extinguishes torches and small fires.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Sleet Storm
@@ -3849,6 +3987,7 @@ lists:
     spellclasslevel: Alchemist 2, Bloodrager 2, Magus 2, Occultist 2, Psychic 3, Sorcerer/wizard 3, Summoner 2, Unchained summoner 3
     spellcomponent: V, S, M (a piece of metal cut from a shield)
     spelldc: 21
+    spelldc_mod: '2'
     spelldesc: Invisible layers of solid force surround and protect the target, granting that target a +2 armor bonus to AC. Additionally, the first 5 points of lethal damage the target takes from each attack are converted into nonlethal damage. Against attacks that already deal nonlethal damage, the target gains DR 5/—. Once this spell has converted 5 points of damage to nonlethal damage per caster level (maximum 50 points), the spell is discharged.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Ablative Barrier
@@ -3878,7 +4017,8 @@ lists:
     spellcastingtime: 1 round
     spellclasslevel: Bard 4, Cleric 4, Sorcerer/wizard 4
     spellcomponent: V, S, F/DF (a tiny bag and a small candle)
-    spelldc: 20
+    spelldc: 22
+    spelldc_mod: '2'
     spelldesc: "This spell summons an extraplanar creature (typically an outsider, elemental, or magical beast native to another plane) from the 4th-level list or 1d3 creatures of the same kind from the 3rd-level list below, or 1d4+1 creatures of the same kind from a lower-level list. It appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions. You choose which kind of creature to summon, and you can choose a different one each time you cast the spell. 1st LevelSubtypeDire rat*—Dog*—Dolphin*—Eagle*—Fire beetle*—Poisonous frog*—Pony (horse)*—Viper (snake)*— 2nd LevelSubtypeGiant worker ant*—Elemental (Small)ElementalGiant centipede*—Giant frog*—Giant spider*—Goblin dog*—Horse*—Hyena*—Lemure (devil)Evil, LawfulOctopus*—Squid*—Wolf*— 3rd LevelSubtypeGiant soldier ant*—Ape*—Aurochs (herd animal)*—Boar*—Cheetah*—Constrictor\
       \ snake*—Crocodile*—Dire bat*—Dretch (demon)Chaotic, EvilElectric eel*—Lantern archonGood, LawfulLeopard*—Monitor lizard*—Shark*—Wolverine*— 4th LevelSubtypeGiant drone ant—Bison (herd animal)*—Deinonychus (dinosaur)*—Dire ape*—Dire boar*—Dire wolf*—Elemental (Medium)ElementalGiant scorpion*—Giant wasp*—Grizzly bear*—Hell houndEvil, lawfulHound archonGood, LawfulLion*—Mephit (any)ElementalPteranodon (dinosaur)*—Rhinoceros*— \nA summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them. Creatures summoned using this spell cannot use spells or spell-like abilities that duplicate spells with expensive material components (such as&nbsp;wish).\n  When you use a summoning spell to summon a creature with an alignment or elemental subtype, it is a spell of that type. Creatures on the above table marked with an “*” are summoned with the celestial\
       \ template, if you are good, and the fiendish template, if you are evil. If you are neutral, you may choose which template to apply to the creature. Creatures marked with an “*” always have an alignment that matches yours, regardless of their usual alignment. Summoning these creatures makes the summoning spell's type match your alignment."
@@ -3897,11 +4037,12 @@ lists:
     spellschool: Conjuration (summoning)
   - _id: -OE5hCGBGljep3nzLRaR
     fromcompendium: Spells:Black Tentacles
+    notes: 'Tentacle grapple: [[1d20+@{caster1_level}+5]] vs each CMD in the area (CL + 4 Str + 1 size; roll once per round at the start of your turn).'
     options-flag: '0'
     rollconcentration: '@{whispertype} &{template:pc} {{name=^{concentration}}} {{type=save}} {{showchar=@{rollshowchar}}} {{charname=@{character_name}}} {{casterclass=@{caster1_class}}} {{level=@{caster1_level}}} {{roll=[[1d20+@{caster1_concentration}[MOD]+@{rollmod_save}[QUERY]]]}} {{shownotes=@{rollnotes_save}}} {{notes=@{caster1_concentration_notes}}}'
     rollcontent: '@{whispertype} &{template:pc}{{name=Black Tentacles}}{{type=spell}}{{showchar=@{rollshowchar}}}{{charname=@{character_name}}}{{nonlethal=[[1[Nonlethal]]]}}{{level=4}}{{school=Conjuration (creation)}}{{castingtime=1 standard action}}{{component=V, S, M (octopus or squid tentacle)}}{{range=Medium (100 ft. + 10 ft./level)}}{{area=20-ft.-radius spread}}{{duration=1 round/level (D)}}{{descflag=[[1]]}} {{desc=This spell causes a field of rubbery black tentacles to appear, burrowing up from the floor and reaching for any creature in the area.   Every creature within the area of the spell is the target of a combat maneuver check made to grapple each round at the beginning of your turn, including the round that black tentacles is cast. Creatures that enter the area of effect are also automatically attacked. The tentacles do not provoke attacks of opportunity. When determining the tentacles'' CMB, the tentacles use your caster level as their base attack bonus and receive a +4 bonus
       due to their Strength and a +1 size bonus. Roll only once for the entire spell effect each round and apply the result to all creatures in the area of effect.  If the tentacles succeed in grappling a foe, that foe takes 1d6+4 points of damage and gains the grappled condition. Grappled opponents cannot move without first breaking the grapple. All other movement is prohibited unless the creature breaks the grapple first. The black tentacles spell receives a +5 bonus on grapple checks made against opponents it is already grappling, but cannot move foes or pin foes. Each round that black tentacles succeeds on a grapple check, it deals an additional 1d6+4 points of damage. The CMD of black tentacles, for the purposes of escaping the grapple, is equal to 10 + its CMB.  The tentacles created by this spell cannot be damaged, but they can be dispelled as normal. The entire area of effect is considered difficult terrain while the tentacles last.}}{{damage=1}} {{dmg1flag=1}} {{dmg1=[[1d6+4 + @{damage_bonus}[TEMP]
-      + @{rollmod_damage}[QUERY]]]}} {{dmg1type=}}{{concentration=[Concentration](~repeating_spell-4_concentration)}}{{conditionsnote=}}'
+      + @{rollmod_damage}[QUERY]]]}} {{dmg1type=Bludgeoning (on a successful grapple)}}{{concentration=[Concentration](~repeating_spell-4_concentration)}}{{shownotes=[[1]]}}{{notes=Tentacle grapple: [[1d20+@{caster1_level}+5]] vs each CMD in the area (CL + 4 Str + 1 size; roll once per round at the start of your turn).}}{{conditionsnote=}}'
     spellarea: 20-ft.-radius spread
     spellcaster: 1
     spellcaster1_class: Wizard (Conjurer / Handanvaldur)
@@ -3909,13 +4050,15 @@ lists:
     spellcastingtime: 1 standard action
     spellclasslevel: Sorcerer/wizard 4
     spellcomponent: V, S, M (octopus or squid tentacle)
-    spelldc: 20
+    spelldc: 22
+    spelldc_mod: '2'
     spelldesc: This spell causes a field of rubbery black tentacles to appear, burrowing up from the floor and reaching for any creature in the area.   Every creature within the area of the spell is the target of a combat maneuver check made to grapple each round at the beginning of your turn, including the round that black tentacles is cast. Creatures that enter the area of effect are also automatically attacked. The tentacles do not provoke attacks of opportunity. When determining the tentacles' CMB, the tentacles use your caster level as their base attack bonus and receive a +4 bonus due to their Strength and a +1 size bonus. Roll only once for the entire spell effect each round and apply the result to all creatures in the area of effect.  If the tentacles succeed in grappling a foe, that foe takes 1d6+4 points of damage and gains the grappled condition. Grappled opponents cannot move without first breaking the grapple. All other movement is prohibited unless the creature breaks the grapple
       first. The black tentacles spell receives a +5 bonus on grapple checks made against opponents it is already grappling, but cannot move foes or pin foes. Each round that black tentacles succeeds on a grapple check, it deals an additional 1d6+4 points of damage. The CMD of black tentacles, for the purposes of escaping the grapple, is equal to 10 + its CMB.  The tentacles created by this spell cannot be damaged, but they can be dispelled as normal. The entire area of effect is considered difficult terrain while the tentacles last.
     spelldescflag: '{{descflag=[[1]]}}'
     spelldisplay: Black Tentacles
     spelldmg: 1d6+4
     spelldmgflag: '{{damage=1}} {{dmg1flag=1}}'
+    spelldmgtype: Bludgeoning (on a successful grapple)
     spellduration: 1 round/level (D)
     spellmulticasters-flag: 0
     spellname: Black Tentacles

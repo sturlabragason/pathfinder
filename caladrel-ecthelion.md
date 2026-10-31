@@ -143,7 +143,7 @@ Total ranks: 56 / 56.
 
 4th-level slots: Roll20 shows 2. Wizard 7 with Int 22 gets 1 + 1 (bonus) + 1 (school) = 3.
 
-Spellbook: 108 spells (31 cantrips, 27 first, 24 second, 24 third, 2 fourth), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for level 7 are Black Tentacles and Summon Monster IV. The two free spells for level 6 are Sleet Storm and Ablative Barrier (Ablative Barrier added 2026-10-31).
+Spellbook: 110 spells (31 cantrips incl. Read Magic from memory, 27 first, 24 second, 26 third, 2 fourth), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for level 7 are Black Tentacles and Summon Monster IV. The two free spells for level 6 are Sleet Storm and Ablative Barrier (Ablative Barrier added 2026-10-31).
 
 ## Feats and features
 
