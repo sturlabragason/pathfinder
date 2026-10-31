@@ -6,6 +6,8 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 |---|---|
 | `caladrel-ecthelion.md` | Full character sheet in plain markdown (source of truth) |
 | `roll20/` | Mirror of the Roll20 sheet as YAML, with pull/diff/push (`roll20/README.md`) and an open-items checklist |
+| `roll20/AUDIT.md` | Rules audit of race, traits, feats, class features and sheet maths, with quoted sources |
+| `tools/srd.py` | Cached rules lookup on d20pfsrd and Archives of Nethys (`pf-rules` skill) |
 | `site/` | The online sheet, served at <https://caladrel.sturlabragason.online> |
 | `site/caladrel-ecthelion.pdf` | Printable copy of the online sheet (A4) |
 | `site/homebrewery/` | The old Homebrewery render and its PDF, kept for reference |
@@ -25,6 +27,8 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 - `data/spellbook.json`: offline copy of the spellbook.
 
 The Spells tab loads the live spellbook from <https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/spellbook.json> and falls back to `data/spellbook.json`. Spell links go to d20pfsrd.com; pathfinder_spells checks each URL against the d20pfsrd sitemap. To learn a spell, add it to `caladrel_ecthelion/spellbook.txt` in pathfinder_spells and run `scripts/update_spells.py`; then copy the new JSON into `site/data/`.
+
+The sheet's numbers (abilities, saves, AC, attacks, DCs, slots, skills, uses per day, money, load, scrolls) come from `site/data/sheet.js`, which `roll20/sync.py` writes from the Roll20 YAML on every pull, push and recalc (or `sync.py site`). Elements with `data-f="path"` in `index.html` take their text from it; the literal values in the HTML are only fallbacks. Prose (feat and power descriptions) is hand-written.
 
 The homelab serves `site/` from this repo's `main` branch and pulls it again when the pod restarts. Bump the `?v=` query on the CSS and JS links in `index.html` after changes, because Cloudflare caches them.
 

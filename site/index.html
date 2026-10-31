@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/alegreya.css?v=10">
 <link rel="stylesheet" href="paper.css?v=10">
-<link rel="stylesheet" href="sheet.css?v=10">
+<link rel="stylesheet" href="sheet.css?v=11">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -49,28 +49,29 @@
 
   <div class="col col-abilities">
     <ul class="abilities" aria-label="Ability scores">
-      <li class="ability"><span class="lbl">Strength</span><b class="mod">−2</b><span class="score">7</span></li>
-      <li class="ability"><span class="lbl">Dexterity</span><b class="mod">+4</b><span class="score">18</span></li>
-      <li class="ability"><span class="lbl">Constitution</span><b class="mod">+1</b><span class="score">12</span></li>
-      <li class="ability key-ability"><span class="lbl">Intelligence</span><b class="mod">+6</b><span class="score">22</span></li>
-      <li class="ability"><span class="lbl">Wisdom</span><b class="mod">+0</b><span class="score">10</span></li>
-      <li class="ability"><span class="lbl">Charisma</span><b class="mod">−2</b><span class="score">7</span></li>
+      <li class="ability"><span class="lbl">Strength</span><b class="mod" data-f="abilities.Str.mod" data-fmt="sign">−2</b><span class="score" data-f="abilities.Str.score">7</span></li>
+      <li class="ability"><span class="lbl">Dexterity</span><b class="mod" data-f="abilities.Dex.mod" data-fmt="sign">+4</b><span class="score" data-f="abilities.Dex.score">18</span></li>
+      <li class="ability"><span class="lbl">Constitution</span><b class="mod" data-f="abilities.Con.mod" data-fmt="sign">+1</b><span class="score" data-f="abilities.Con.score">12</span></li>
+      <li class="ability key-ability"><span class="lbl">Intelligence</span><b class="mod" data-f="abilities.Int.mod" data-fmt="sign">+6</b><span class="score" data-f="abilities.Int.score">22</span></li>
+      <li class="ability"><span class="lbl">Wisdom</span><b class="mod" data-f="abilities.Wis.mod" data-fmt="sign">+0</b><span class="score" data-f="abilities.Wis.score">10</span></li>
+      <li class="ability"><span class="lbl">Charisma</span><b class="mod" data-f="abilities.Cha.mod" data-fmt="sign">−2</b><span class="score" data-f="abilities.Cha.score">7</span></li>
     </ul>
     <p class="fine">Intelligence includes the Headband of Vast Intelligence +2.</p>
+    <p class="fine" id="facts-src"></p>
   </div>
 
   <div class="col col-skills">
-    <div class="pill"><b>+3</b><span class="lbl">Base attack bonus</span></div>
-    <div class="pill"><b>+13</b><span class="lbl">Concentration</span></div>
+    <div class="pill"><b data-f="bab" data-fmt="sign">+3</b><span class="lbl">Base attack bonus</span></div>
+    <div class="pill"><b data-f="concentration" data-fmt="sign">+13</b><span class="lbl">Concentration</span></div>
 
     <div class="box panel saves">
       <ul class="lines">
-        <li><span class="slot">+5</span><span class="nm">Fortitude <small>(Con)</small></span></li>
-        <li><span class="slot">+8</span><span class="nm">Reflex <small>(Dex)</small></span></li>
-        <li><span class="slot">+7</span><span class="nm">Will <small>(Wis)</small></span></li>
+        <li><span class="slot" data-f="saves.fort" data-fmt="sign">+6</span><span class="nm">Fortitude <small>(Con)</small></span></li>
+        <li><span class="slot" data-f="saves.ref" data-fmt="sign">+9</span><span class="nm">Reflex <small>(Dex)</small></span></li>
+        <li><span class="slot" data-f="saves.will" data-fmt="sign">+8</span><span class="nm">Will <small>(Wis)</small></span></li>
       </ul>
       <span class="lbl">Saving throws</span>
-      <p class="fine">Include the cloak of resistance +2.</p>
+      <p class="fine">Include Moonkissed +1 (racial) and the cloak of resistance +2.</p>
     </div>
 
     <div class="box panel skills">
@@ -78,25 +79,25 @@
       <input class="input skill-q" id="skill-q" type="search" placeholder="Find a skill" autocomplete="off">
       <ul class="lines bubbles" id="skill-list"></ul>
       <span class="lbl">Skills</span>
-      <p class="fine"><i class="bub on" aria-hidden="true"></i> class skill with ranks · <span class="tr">T</span> trained only · 56/56 ranks</p>
+      <p class="fine"><i class="bub on" aria-hidden="true"></i> class skill with ranks · <span class="tr">T</span> trained only · <span data-f="ranks.spent">56</span>/<span data-f="ranks.pool">56</span> ranks</p>
     </div>
   </div>
 
   <div class="col col-combat">
     <div class="grey">
       <div class="trio">
-        <div class="shield" aria-label="Armor class 15"><b>15</b><span class="lbl">Armor<br>class</span></div>
-        <div class="sq"><b>+10</b><span class="lbl">Initiative</span></div>
-        <div class="sq"><b>30</b><span class="lbl">Speed</span></div>
+        <div class="shield" aria-label="Armor class"><b data-f="ac">15</b><span class="lbl">Armor<br>class</span></div>
+        <div class="sq"><b data-f="initiative" data-fmt="sign">+10</b><span class="lbl">Initiative</span></div>
+        <div class="sq"><b data-f="speed">30</b><span class="lbl">Speed</span></div>
       </div>
       <div class="trio small">
-        <div class="sq"><b>14</b><span class="lbl">Touch</span></div>
-        <div class="sq"><b>11</b><span class="lbl">Flat-footed</span></div>
-        <div class="sq"><b>15</b><span class="lbl">CMD</span></div>
+        <div class="sq"><b data-f="touch">14</b><span class="lbl">Touch</span></div>
+        <div class="sq"><b data-f="flatfooted">11</b><span class="lbl">Flat-footed</span></div>
+        <div class="sq"><b data-f="cmd">15</b><span class="lbl">CMD</span></div>
       </div>
 
       <div class="box hp" aria-labelledby="hp-lbl">
-        <p class="max">Hit point maximum <span class="u">40</span></p>
+        <p class="max">Hit point maximum <span class="u" data-f="hp_max">40</span></p>
         <div class="hp-row">
           <output class="hp-now" id="hp-now" aria-live="polite">40</output>
           <span class="hp-temp" id="hp-temp-wrap" hidden>+<output id="hp-temp">0</output> temp</span>
@@ -113,8 +114,8 @@
       </div>
 
       <div class="duo">
-        <div class="box sm"><p class="pair"><span>Total</span><b>7d6</b></p><span class="lbl">Hit dice</span></div>
-        <div class="box sm"><p class="pair"><span>CMB</span><b>+1</b></p><span class="lbl">Maneuvers</span></div>
+        <div class="box sm"><p class="pair"><span>Total</span><b data-f="hit_dice">7d6</b></p><span class="lbl">Hit dice</span></div>
+        <div class="box sm"><p class="pair"><span>CMB</span><b data-f="cmb" data-fmt="sign">+1</b></p><span class="lbl">Maneuvers</span></div>
       </div>
     </div>
 
@@ -122,11 +123,11 @@
       <table class="grid">
         <thead><tr><th scope="col">Name</th><th scope="col">Atk</th><th scope="col">Damage / notes</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Light crossbow</th><td>+7</td><td>1d8 · 19–20/×2 · 80 ft</td></tr>
-          <tr><th scope="row">Dagger</th><td>+1</td><td>1d4−2 · 19–20/×2</td></tr>
-          <tr><th scope="row">Dagger, thrown</th><td>+7</td><td>1d4−2 · 10 ft</td></tr>
-          <tr><th scope="row">Ranged touch</th><td>+7</td><td>rays</td></tr>
-          <tr><th scope="row">Melee touch</th><td>+1</td><td>touch spells</td></tr>
+          <tr><th scope="row">Light crossbow</th><td data-f="attacks.crossbow_light.atk">+7</td><td data-f="attacks.crossbow_light.line">1d8 · 19–20/×2 · 80 ft</td></tr>
+          <tr><th scope="row">Dagger</th><td data-f="attacks.dagger.atk">+1</td><td data-f="attacks.dagger.line">1d4−2 · 19–20/×2</td></tr>
+          <tr><th scope="row">Dagger, thrown</th><td data-f="attacks.dagger_thrown.atk">+7</td><td data-f="attacks.dagger_thrown.line">1d4−2 · 10 ft</td></tr>
+          <tr><th scope="row">Ranged touch</th><td data-f="ranged" data-fmt="sign">+7</td><td>rays</td></tr>
+          <tr><th scope="row">Melee touch</th><td data-f="melee" data-fmt="sign">+1</td><td>touch spells</td></tr>
         </tbody>
       </table>
       <span class="lbl">Attacks</span>
@@ -137,16 +138,16 @@
     <div class="box casting">
       <div class="trio small">
         <div class="sq"><b>Int</b><span class="lbl">Casting ability</span></div>
-        <div class="sq"><b>7</b><span class="lbl">Caster level</span></div>
-        <div class="sq"><b>16</b><span class="lbl">Base save DC</span></div>
+        <div class="sq"><b data-f="caster_level">7</b><span class="lbl">Caster level</span></div>
+        <div class="sq"><b data-f="dc.0">16</b><span class="lbl">Base save DC</span></div>
       </div>
       <table class="grid dc">
         <caption class="visually-hidden">Spell save DCs and slots by spell level</caption>
         <thead><tr><th scope="col">Level</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Save DC</th><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
-          <tr class="hl"><th scope="row">Conjuration</th><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
-          <tr><th scope="row">Slots / day</th><td>4</td><td>7</td><td>6</td><td>4</td><td>3</td></tr>
+          <tr><th scope="row">Save DC</th><td data-f="dc.0">16</td><td data-f="dc.1">17</td><td data-f="dc.2">18</td><td data-f="dc.3">19</td><td data-f="dc.4">20</td></tr>
+          <tr class="hl"><th scope="row">Conjuration</th><td data-f="dc_conj.0">18</td><td data-f="dc_conj.1">19</td><td data-f="dc_conj.2">20</td><td data-f="dc_conj.3">21</td><td data-f="dc_conj.4">22</td></tr>
+          <tr><th scope="row">Slots / day</th><td data-f="slots.0">4</td><td data-f="slots.1">7</td><td data-f="slots.2">6</td><td data-f="slots.3">4</td><td data-f="slots.4">3</td></tr>
         </tbody>
       </table>
       <p class="fine">Slots include one conjuration school slot at 1st–4th. Opposed schools: enchantment, divination (two slots each). Concentration +4 more when casting defensively or grappled.</p>
@@ -155,17 +156,18 @@
 
     <div class="box">
       <ul class="lines plain">
-        <li><b>Shift</b> · swift, teleport 15 ft · 9/day</li>
-        <li><b>Arcane bond</b> · Ring of Pengolodh · 1/day</li>
-        <li><b>Extend rod</b> · lesser · 3/day</li>
+        <li><b>Shift</b> · swift, teleport 15 ft · <span data-f="uses.shift">9</span>/day</li>
+        <li><b>Arcane bond</b> · Ring of Pengolodh · <span data-f="uses.bond">1</span>/day</li>
+        <li><b>Extend rod</b> · lesser · <span data-f="uses.rod">3</span>/day</li>
+        <li><b>Arrow snaring</b> · gloves · <span data-f="uses.gloves">2</span>/day</li>
       </ul>
       <p class="fine"><a href="#features">Track uses on the Features page</a></p>
       <span class="lbl">Daily powers</span>
     </div>
 
     <div class="box">
-      <p>Common, Elven, Draconic, Celestial, Orc, Sylvan, Infernal.</p>
-      <p class="fine">Learning, needs a teacher: Giant, Ancient Dwarven. Low-light vision.</p>
+      <p><span data-f="languages">Common, Elven, Draconic, Celestial, Orc, Sylvan, Infernal</span>.</p>
+      <p class="fine">Learning, needs a teacher: <span data-f="learning">Giant, Ancient Dwarven</span>. <span data-f="senses">Low-light vision</span>.</p>
       <span class="lbl">Languages &amp; senses</span>
     </div>
 
@@ -185,9 +187,9 @@
     <div class="namebox small"><div class="scroll"><span class="field-line">Wizard · Conjurer</span><span class="lbl">Spellcasting class</span></div></div>
     <div class="box spell-stats">
       <div class="sq"><b>Int</b><span class="lbl">Ability</span></div>
-      <div class="sq"><b>16<small>+lvl</small></b><span class="lbl">Save DC</span></div>
-      <div class="sq"><b>18<small>+lvl</small></b><span class="lbl">Conj. DC</span></div>
-      <div class="sq"><b>+7</b><span class="lbl">Ranged touch</span></div>
+      <div class="sq"><b><span data-f="dc.0">16</span><small>+lvl</small></b><span class="lbl">Save DC</span></div>
+      <div class="sq"><b><span data-f="dc_conj.0">18</span><small>+lvl</small></b><span class="lbl">Conj. DC</span></div>
+      <div class="sq"><b data-f="ranged" data-fmt="sign">+7</b><span class="lbl">Ranged touch</span></div>
     </div>
   </div>
 
@@ -240,10 +242,10 @@
   <h2 id="h-gear" class="visually-hidden">Equipment</h2>
   <div class="box equipment">
     <ul class="coins" aria-label="Money">
-      <li><span class="lbl">CP</span><b>0</b></li>
-      <li><span class="lbl">SP</span><b>0</b></li>
-      <li class="gp"><span class="lbl">GP</span><b>14</b></li>
-      <li><span class="lbl">PP</span><b>0</b></li>
+      <li><span class="lbl">CP</span><b data-f="money.cp">0</b></li>
+      <li><span class="lbl">SP</span><b data-f="money.sp">0</b></li>
+      <li class="gp"><span class="lbl">GP</span><b data-f="money.gp">14</b></li>
+      <li><span class="lbl">PP</span><b data-f="money.pp">0</b></li>
     </ul>
     <div class="equip-lists">
       <h3 class="sub">Worn &amp; wielded</h3>
@@ -259,9 +261,9 @@
   </div>
   <div class="box">
     <ul class="lines items">
-      <li><span>Carried</span><b>19.8 lb</b></li>
-      <li><span>Light / medium / heavy</span><b>23 / 46 / 70 lb</b></li>
-      <li><span>Lift over head · off ground · drag</span><b>70 · 140 · 350</b></li>
+      <li><span>Carried</span><b><span data-f="load.carried">19.5</span> lb</b></li>
+      <li><span>Light / medium / heavy</span><b><span data-f="load.light">23</span> / <span data-f="load.medium">46</span> / <span data-f="load.heavy">70</span> lb</b></li>
+      <li><span>Lift over head · off ground · drag</span><b><span data-f="load.lift_head">70</span> · <span data-f="load.lift_ground">140</span> · <span data-f="load.drag">350</span></b></li>
     </ul>
     <span class="lbl">Load</span>
   </div>
@@ -382,6 +384,7 @@
 </footer>
 </div>
 
-<script src="sheet.js?v=10" defer></script>
+<script src="data/sheet.js?v=11" defer></script>
+<script src="sheet.js?v=11" defer></script>
 </body>
 </html>

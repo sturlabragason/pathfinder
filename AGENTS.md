@@ -8,6 +8,8 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e, wiza
 2. `roll20/caladrel-ecthelion.yaml` is a mirror of Roll20. Pull before reading it.
 3. `caladrel-ecthelion.md`, `site/` and the spellbook (`site/data/spellbook.json`, from sturlabragason/pathfinder_spells) were made from Roll20 PDFs and pastes and contain agent errors. They have not yet been rechecked against Roll20; open items are in `roll20/CHECKLIST.md`.
 
+Rules: use the `pf-rules` skill (`.agents/skills/pf-rules/`, cached lookups via `python3 tools/srd.py`) and quote the source; findings so far are in `roll20/AUDIT.md`. The read-only `sheet-auditor` agent (`.agents/agents/`, linked from `.github/agents/` and `.claude/agents/`) audits one area at a time.
+
 When you state something about the character (a feat is missing, a number is wrong), check it in Roll20 first and count every source (racial and class bonus feats included).
 
 ## Rules
