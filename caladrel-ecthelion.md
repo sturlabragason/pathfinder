@@ -128,7 +128,7 @@ Total ranks: 56 / 56.
 ## Spellcasting
 
 - Caster level 7, Intelligence (mod +6)
-- Concentration: Roll20 shows +16; caster level 7 + Int 6 = +13 (+4 more casting defensively or grappled, from Combat Casting). Check with the GM.
+- Concentration: +13 (caster level 7 + Int 6); +17 when casting defensively or grappled (Combat Casting). Ruthol casting-defensively DC: 15 + 2 × spell level + (highest threatening BAB − 10, min 0) + 2 per extra threatening enemy.
 - Main school: Conjuration (Teleportation subschool). One extra conjuration slot per level, 1st to 4th.
 - Opposed schools: Enchantment, Divination (each costs two slots to prepare)
 - Metamagic: Lesser Extend Metamagic Rod (3/day)
@@ -143,7 +143,7 @@ Total ranks: 56 / 56.
 
 4th-level slots: Roll20 shows 2. Wizard 7 with Int 22 gets 1 + 1 (bonus) + 1 (school) = 3.
 
-Spellbook: 107 spells (31 cantrips, 27 first, 24 second, 23 third, 2 fourth), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for level 7 are Dimension Door and Acid Pit. The two free spells for level 6 are not recorded.
+Spellbook: 108 spells (31 cantrips, 27 first, 24 second, 24 third, 2 fourth), kept in [pathfinder_spells](https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/). The two free spells for level 7 are Black Tentacles and Summon Monster IV. The two free spells for level 6 are Sleet Storm and Ablative Barrier (Ablative Barrier added 2026-10-31).
 
 ## Feats and features
 
@@ -154,7 +154,7 @@ Feats:
 - Combat Casting
 - Eschew Materials
 - Scribe Scroll (wizard bonus feat)
-- Dimensional Agility (level 7): after casting dimension door, take any remaining actions; +4 concentration for teleportation spells
+- Augment Summoning (level 7): creatures you summon get +4 enhancement to Strength and Constitution
 
 Traits and race:
 - Warrior of Old: +2 trait bonus on initiative.
@@ -208,7 +208,7 @@ Total weight 19.5 lb + 0.3 coins (light load). Loads: light 23, medium 46, heavy
 
 ### To buy
 
-- Miniature shovel, 10 gp: focus for Acid Pit and Create Pit (Eschew Materials doesn't cover foci).
+- Miniature shovel, 10 gp: focus for Create Pit (Eschew Materials doesn't cover foci).
 
 ## Notes (from the sheet, kept as written)
 

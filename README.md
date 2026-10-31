@@ -5,6 +5,7 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 | File | What it is |
 |---|---|
 | `caladrel-ecthelion.md` | Full character sheet in plain markdown (source of truth) |
+| `roll20/` | Mirror of the Roll20 sheet as YAML, with pull/diff/push (`roll20/README.md`) and an open-items checklist |
 | `site/` | The online sheet, served at <https://caladrel.sturlabragason.online> |
 | `site/caladrel-ecthelion.pdf` | Printable copy of the online sheet (A4) |
 | `site/homebrewery/` | The old Homebrewery render and its PDF, kept for reference |
