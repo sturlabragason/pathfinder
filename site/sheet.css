@@ -184,8 +184,8 @@ dl.looks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 /* Two balanced columns for the long, uneven pages. */
 @media (min-width: 900px) {
-  main > .page-features:not([hidden]), main > .page-gear:not([hidden]), main > .page-story:not([hidden]) { display: block; column-count: 2; column-gap: var(--gap); }
-  .page-features > *, .page-gear > *, .page-story > * { break-inside: avoid; margin: 0 0 var(--gap); }
+  main > .page-features:not([hidden]), main > .page-gear:not([hidden]), main > .page-story:not([hidden]), main > .page-notes:not([hidden]) { display: block; column-count: 2; column-gap: var(--gap); }
+  .page-features > *, .page-gear > *, .page-story > *, .page-notes > * { break-inside: avoid; margin: 0 0 var(--gap); }
   main > .page-story > .looks { column-span: all; margin-bottom: var(--gap); }
 }
 
@@ -227,8 +227,8 @@ dl.looks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sp-name { padding: 1px 0; font-size: var(--t-sm); }
   .casts, .sp-detail { display: none !important; }
 
-  main > .page-features, main > .page-gear, main > .page-story { display: block !important; }
-  .page-features > *, .page-gear > *, .page-story > * { margin: 0 0 8px; }
+  main > .page-features, main > .page-gear, main > .page-story, main > .page-notes { display: block !important; }
+  .page-features > *, .page-gear > *, .page-story > *, .page-notes > * { margin: 0 0 8px; }
   .page-story .portrait img { max-width: 220px; }
   .equipment .lines li { padding: 0; }
 }
