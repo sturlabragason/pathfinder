@@ -233,3 +233,16 @@ dl.looks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipment .lines li { padding: 0; }
 }
 .sp, .spell-level, .box { scroll-margin-top: 64px; }
+
+/* ---------- wizard tips (caladrel-tips) ---------- */
+.page-tips { align-items: start; }
+.tips p { border-bottom: 1px solid var(--hair); padding: 6px 0 8px; margin: 0; }
+.tips p:last-child { border-bottom: 0; }
+@media (min-width: 900px) {
+  main > .page-tips:not([hidden]) { display: block; column-count: 2; column-gap: var(--gap); }
+  .page-tips > * { break-inside: avoid; margin: 0 0 var(--gap); }
+}
+@media print {
+  main > .page-tips { display: block !important; }
+  .page-tips > * { margin: 0 0 8px; }
+}

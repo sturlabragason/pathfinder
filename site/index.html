@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/alegreya.css?v=10">
 <link rel="stylesheet" href="paper.css?v=10">
-<link rel="stylesheet" href="sheet.css?v=11">
+<link rel="stylesheet" href="sheet.css?v=12">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -40,6 +40,7 @@
   <a class="tab" href="#gear">Equipment</a>
   <a class="tab" href="#story">Backstory</a>
   <a class="tab" href="#notes">Notes</a>
+  <a class="tab" href="#tips">Tips</a>
 </nav>
 
 <main>
@@ -376,6 +377,62 @@
     </ul>
     <span class="lbl">Ferðin · the journey</span>
   </div>
+</section>
+
+<!-- ============ WIZARD TIPS ============ -->
+<section id="s-tips" class="page page-tips" aria-labelledby="h-tips">
+  <h2 id="h-tips" class="visually-hidden">Wizard tips</h2>
+
+  <div class="box">
+    <div class="features tips">
+      <p><b><i>Act first, shape the fight.</i></b> Initiative <b data-f="initiative" data-fmt="sign">+10</b> (Improved Initiative + Warrior of Old) means you usually go before the enemy. Spend that turn on control, not damage: a blinded, nauseated or grappled enemy is worth more to the party than a few hit points of damage.</p>
+      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/b/black-tentacles/" rel="noopener">Black Tentacles</a>.</i></b> No save and no spell resistance. The tentacles grapple everything in a 20-ft radius with CMB +12 (caster level 7, +4 Str, +1 size), one roll for the whole area each round. Your best opener against a group, but allies in the area get grappled too.</p>
+      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/g/glitterdust/" rel="noopener">Glitterdust</a>.</i></b> Will DC <span data-f="dc_conj.2">20</span> or blinded. Even on a save, invisible creatures are outlined and everyone in it takes −40 on Stealth. Blinded creatures save again at the end of each of their turns, so the party should hit them fast.</p>
+      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/s/stinking-cloud/" rel="noopener">Stinking Cloud</a>.</i></b> Fort DC <span data-f="dc_conj.3">21</span> or nauseated (only a move action each turn). Creatures that stay inside save again every round. It is fog too: it blocks your line of sight and the party's arrows.</p>
+      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/c/create-pit/" rel="noopener">Create Pit</a> / <a href="https://www.d20pfsrd.com/magic/all-spells/s/spiked-pit/" rel="noopener">Spiked Pit</a>.</i></b> Reflex DC <span data-f="dc_conj.2">20</span> / <span data-f="dc_conj.3">21</span>. At caster level 7 the pit is 30 ft deep (falling damage), Climb DC 25 to get out; Spiked Pit adds 2d6 piercing on the fall and 1d6 a round to climbers. Creatures that end their turn next to it save at +2 or slide in, and a bull rush into it allows no save. It needs a horizontal surface.</p>
+      <p><b><i>Spell resistance.</i></b> Nearly all your control is conjuration (creation): Black Tentacles, Glitterdust, Web, Stinking Cloud, the pits, Grease, Aqueous Orb, Sleet Storm all say <i>SR no</i>. Against outsiders, fey and casters with SR, use those first.</p>
+    </div>
+    <span class="lbl">Opening moves &amp; control</span>
+  </div>
+
+  <div class="box">
+    <div class="features tips">
+      <p><b><i>Every turn.</i></b> One standard action (a spell), one move, one swift. Shift is your swift: 15 ft of teleport that provokes no attacks of opportunity, so Shift out of reach, then cast normally.</p>
+      <p><b><i>Casting defensively.</i></b> DC 15 + twice the spell level. Concentration +<span data-f="concentration">13</span>, +4 from Combat Casting = +17: 1st level always works, 2nd on a 2+, 3rd on a 4+, 4th on a 6+. Shift or a 5-ft step needs no roll, so try those first.</p>
+      <p><b><i>Summons take a full round.</i></b> Summon Monster has a 1-round casting time: it takes effect just before your next turn, and the creature then acts on your turn. Being hit while casting forces a concentration check, so summon from behind the line. Summoner's charm adds 3 rounds, Augment Summoning gives +4 Str and Con (+2 to hit and damage, +2 hp per Hit Die).</p>
+      <p><b><i>The extend rod is free.</i></b> As a prepared caster you use the lesser extend rod without a longer casting time. It works on spells of 3rd level or lower, so not Black Tentacles.</p>
+      <p><b><i>Spellcraft +16.</i></b> Identifying a spell as it is cast is DC 15 + spell level, so spells of 2nd level or lower are automatic and even 7th level needs only a 6. Tell the table what the enemy caster is doing and whether to Dispel it.</p>
+    </div>
+    <span class="lbl">Action economy</span>
+  </div>
+
+  <div class="box">
+    <div class="features tips">
+      <p><b><i>Mage Armor every morning.</i></b> AC <span data-f="ac">15</span> → 19 (touch AC is unchanged), 7 hours. Use the extend rod for 14 hours, or Master of Pentacles for 9.</p>
+      <p><b><i>Shift, <span data-f="uses.shift">9</span>/day.</i></b> They come back every day. Use them for movement and repositioning, not only for escapes.</p>
+      <p><b><i>Arcane bond, 1/day.</i></b> Casts any spell in your spellbook without preparing it. Keep it for the spell you didn't expect to need: Dispel Magic, Fly, Rope Trick, Aqueous Orb. Divination and enchantment are your opposed schools and take two slots each to prepare.</p>
+      <p><b><i>Master of Pentacles, 1/day.</i></b> Caster level 9 for the duration of one conjuration spell: pits last 10 rounds instead of 8, summons 12 instead of 10 (with Summoner's charm). Use it on the fight's big spell, not on a cantrip.</p>
+      <p><b><i>Lesser extend rod, <span data-f="uses.rod">3</span>/day.</i></b> Best on buffs and long fights: Haste, Fly, Glitterdust, Stinking Cloud, Summon Monster III. Summoner's charm rounds are not doubled.</p>
+      <p><b><i>Scrolls.</i></b> Fog Cloud, Knock, See Invisibility, Feather Fall and Mount are utility spells you don't need to prepare. Scribe Scroll and <span data-f="gear.blank_scrolls">8</span> blank scrolls turn spare slots at the end of the day into more.</p>
+    </div>
+    <span class="lbl">Daily resources</span>
+  </div>
+
+  <div class="box unrec-box">
+    <ul class="checklist">
+      <li><b>Buy a miniature shovel (10 gp).</b> Create Pit and Spiked Pit need it as a focus. The spell component pouch only covers components with no listed cost, and Eschew Materials only covers material components, not foci. You have <span data-f="money.gp">14</span> gp.</li>
+      <li><b>No sleep immunity.</b> Moonkissed traded the elven immunities for +1 on all saves: magic sleep effects work on you, and there is no +2 against enchantments.</li>
+      <li><b>Your area spells hit friends.</b> Black Tentacles, Stinking Cloud, Glitterdust, Web and Sleet Storm don't pick targets. Tell the party where the area goes before you cast.</li>
+      <li><b>Your own fog.</b> Obscuring Mist, Fog Cloud and Stinking Cloud block your line of sight as much as the enemy's. Cast them when you don't need to see through them.</li>
+      <li><b>Web needs anchors.</b> It needs two opposite solid points or it collapses.</li>
+      <li><b>You are fragile.</b> <span data-f="hp_max">40</span> hp, AC <span data-f="ac">15</span>, Str 7. Most of your control spells are medium range (170 ft at caster level 7): use it.</li>
+      <li><b>Watch the load.</b> <span data-f="load.carried">19.5</span> of <span data-f="load.light">23</span> lb light load. A few more pounds is a medium load: slower and a lower Dex cap on AC.</li>
+      <li><b>The wand doesn't recharge.</b> <span data-f="gear.wand">19</span> charges of detect magic in total. The cantrip is divination, an opposed school, so preparing it costs two of your <span data-f="slots.0">4</span> cantrip slots. Pick which one you spend.</li>
+    </ul>
+    <span class="lbl">Common pitfalls</span>
+  </div>
+
+  <p class="fine">Rules quoted from <a href="https://www.d20pfsrd.com/magic/">d20pfsrd</a> and the spellbook; numbers come from the Roll20 sheet and update with it.</p>
 </section>
 </main>
 
