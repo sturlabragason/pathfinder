@@ -37,19 +37,27 @@
   const sign = (n) => (n < 0 ? "−" + Math.abs(n) : "+" + n);
   const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // <el data-f="saves.fort" data-fmt="sign"> gets its text from window.SHEET.
-  $$("[data-f]").forEach((el) => {
-    let v = el.dataset.f.split(".").reduce((o, k) => (o == null ? o : o[k]), S);
-    if (v == null) return;
-    if (el.dataset.fmt === "sign") v = sign(v);
-    else if (Array.isArray(v)) v = v.join(", ");
-    el.textContent = v;
-  });
+  // <el data-f="saves.fort" data-fmt="sign"> gets its text from window.SHEET, or from D (SHEET with buffs and conditions applied).
+  const get = (o, path) => path.split(".").reduce((x, k) => (x == null ? x : x[k]), o);
+  let D = S;
+  function fill(root = document) {
+    $$("[data-f]", root).forEach((el) => {
+      let v = get(D, el.dataset.f);
+      if (v == null) return;
+      const base = get(S, el.dataset.f);
+      const fmt = (x) => (el.dataset.fmt === "sign" ? sign(x) : Array.isArray(x) ? x.join(", ") : x);
+      el.textContent = fmt(v);
+      const changed = v !== base;
+      el.classList.toggle("fx", changed);
+      if (changed) el.title = `Without buffs and conditions: ${fmt(base)}`; else el.removeAttribute("title");
+    });
+  }
+  fill();
   const factsSrc = $("#facts-src");
   if (factsSrc && S.pulled) factsSrc.textContent = `Numbers from Roll20, pulled ${S.pulled}.`;
 
   /* ---------- state ---------- */
-  const fresh = () => ({ hp: HP_MAX, temp: 0, prep: {}, used: {}, scrolls: {}, day: 1 });
+  const fresh = () => ({ hp: HP_MAX, temp: 0, prep: {}, used: {}, scrolls: {}, fx: {}, day: 1 });
   let state;
   try { state = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch { state = fresh(); }
   // Older sheets stored prepared spells as [{n: name, c: cast?}] per level; fold them into {name: {n: copies, c: casts}}.
@@ -85,6 +93,103 @@
   window.addEventListener("hashchange", () => { show(); window.scrollTo(0, 0); });
   show();
 
+  /* ---------- buffs and conditions ---------- */
+  // b: [targets, bonus type, value]. Same-type bonuses don't stack (the highest wins); dodge bonuses and penalties do.
+  // Targets: ac touch ff cmd fort ref will atk (all attacks) melee ranged cmb. str/dex change the ability score.
+  // Sources: d20pfsrd spell pages and https://www.d20pfsrd.com/gamemastering/conditions/
+  const SP = (n) => `${PFSRD}magic/all-spells/${n[0]}/${n}/`;
+  const COND = PFSRD + "gamemastering/conditions/";
+  const SAVES = "fort ref will";
+  const FX = [
+    { id: "mage-armor", name: "Mage Armor", url: SP("mage-armor"), b: [["ac ff", "armor", 4]] },
+    { id: "shield", name: "Shield", url: SP("shield"), b: [["ac ff", "shield", 4]], note: "Magic missiles against you are negated." },
+    { id: "haste", name: "Haste", url: SP("haste"), b: [["atk", "haste", 1], ["ac touch cmd ref", "dodge", 1]], speed: 30,
+      note: "One extra attack at full base attack bonus on a full attack." },
+    { id: "heroism", name: "Heroism", url: SP("heroism"), b: [["atk " + SAVES, "morale", 2]], note: "+2 on skill checks too." },
+    { id: "bless", name: "Bless", url: SP("bless"), b: [["atk", "morale", 1]], note: "+1 on saves against fear." },
+    { id: "bulls", name: "Bull's Strength", url: SP("bull-s-strength"), str: 4, note: "+2 on melee damage." },
+    { id: "pfe", name: "Prot. from Evil", url: SP("protection-from-evil"),
+      note: (d) => `Against evil: AC ${d.ac + 2}, touch ${d.touch + 2} (+2 deflection). Its +2 resistance on saves doesn't stack with the cloak of resistance +2.` },
+    { id: "blur", name: "Blur", url: SP("blur"), note: "Attacks against you have a 20% miss chance." },
+    { id: "displacement", name: "Displacement", url: SP("displacement"), note: "Attacks against you have a 50% miss chance." },
+    { id: "shaken", cond: true, name: "Shaken", b: [["atk " + SAVES, "pen", -2]], note: "−2 on skill and ability checks." },
+    { id: "sickened", cond: true, name: "Sickened", b: [["atk " + SAVES, "pen", -2]], note: "−2 on weapon damage, skill and ability checks." },
+    { id: "fatigued", cond: true, name: "Fatigued", str: -2, dex: -2, note: "Can't run or charge." },
+    { id: "exhausted", cond: true, name: "Exhausted", str: -6, dex: -6, half: true, replaces: "fatigued", note: "Half speed; can't run or charge." },
+    { id: "entangled", cond: true, name: "Entangled", b: [["atk", "pen", -2]], dex: -4, half: true,
+      note: "Half speed. Concentration DC 15 + spell level to cast." },
+    { id: "grappled", cond: true, name: "Grappled", b: [["atk cmb", "pen", -2]], dex: -4, still: true,
+      note: "Can't move. Concentration DC 10 + grappler's CMB + spell level to cast. The −2 CMB doesn't apply to grapple or escape checks." },
+    { id: "dazzled", cond: true, name: "Dazzled", b: [["atk", "pen", -1]], note: "−1 on sight-based Perception." },
+    { id: "prone", cond: true, name: "Prone", b: [["melee", "pen", -4]], note: "+4 AC against ranged attacks, −4 against melee. Of your ranged weapons only the crossbow works." },
+    { id: "flat", cond: true, name: "Flat-footed", noDex: true, note: "No Dex or dodge bonus to AC and CMD; no attacks of opportunity." },
+  ];
+  const abil = (k) => S.abilities?.[k] || { score: 10, mod: 0 };
+  const num = (v) => (typeof v === "number" ? v : parseInt(String(v).replace("−", "-"), 10) || 0);
+  const activeFx = () => FX.filter((f) => state.fx[f.id] && !FX.some((g) => g.replaces === f.id && state.fx[g.id]));
+
+  function derive() {
+    const on = activeFx();
+    if (!on.length || S.ac == null) return S;
+    const by = {};
+    for (const f of on) for (const [targets, type, v] of f.b || []) for (const t of targets.split(" ")) ((by[t] ||= {})[type] ||= []).push(v);
+    const bonus = (t, only) => Object.entries(by[t] || {}).reduce((a, [type, vs]) =>
+      (only && type !== only) ? a : a + (type === "dodge" || type === "pen" ? vs.reduce((x, y) => x + y, 0) : Math.max(...vs)), 0);
+    const modOf = (k, delta) => Math.floor((abil(k).score + delta - 10) / 2);
+    const dexMod = modOf("Dex", on.reduce((a, f) => a + (f.dex || 0), 0));
+    const strMod = modOf("Str", on.reduce((a, f) => a + (f.str || 0), 0));
+    const dDex = dexMod - abil("Dex").mod, dStr = strMod - abil("Str").mod;
+    const noDex = on.some((f) => f.noDex);
+    const d = structuredClone(S);
+    // Flat-footed loses the Dex bonus (not a penalty) and dodge bonuses.
+    const lose = (t) => (noDex ? Math.max(dexMod, 0) + bonus(t, "dodge") : 0);
+    d.ac = S.ac + bonus("ac") + dDex - lose("ac");
+    d.touch = S.touch + bonus("touch") + dDex - lose("touch");
+    d.flatfooted = S.flatfooted + bonus("ff") + Math.min(dexMod, 0) - Math.min(abil("Dex").mod, 0);
+    d.cmd = S.cmd + bonus("cmd") + dDex + dStr - lose("cmd");
+    d.saves = { fort: S.saves.fort + bonus("fort"), ref: S.saves.ref + bonus("ref") + dDex, will: S.saves.will + bonus("will") };
+    d.initiative = S.initiative + dDex;
+    const ranged = bonus("atk") + bonus("ranged") + dDex, melee = bonus("atk") + bonus("melee") + dStr;
+    d.ranged = S.ranged + ranged;
+    d.melee = S.melee + melee;
+    d.cmb = S.cmb + bonus("cmb") + dStr;
+    const RANGED = { crossbow_light: true, dagger_thrown: true };
+    for (const [k, a] of Object.entries(S.attacks || {})) d.attacks[k].atk = sign(num(a.atk) + (RANGED[k] ? ranged : melee));
+    let speed = S.speed + Math.min(S.speed, Math.max(0, ...on.map((f) => f.speed || 0)));
+    if (on.some((f) => f.half)) speed = Math.floor(speed / 10) * 5;
+    if (on.some((f) => f.still)) speed = 0;
+    d.speed = speed;
+    return d;
+  }
+
+  const fxPanels = [];
+  function fxPanel(root) {
+    const draw = () => {
+      const on = new Set(activeFx().map((f) => f.id));
+      const chip = (f) => h("button", { class: "chip" + (f.cond ? " cond" : ""), type: "button", "aria-pressed": String(!!state.fx[f.id]),
+        title: state.fx[f.id] && !on.has(f.id) ? "Replaced by a worse condition" : null,
+        onclick: () => { state.fx[f.id] = !state.fx[f.id]; if (!state.fx[f.id]) delete state.fx[f.id]; save(); applyFx(); $(`[data-fx-id="${f.id}"]`, root)?.focus(); },
+        "data-fx-id": f.id, text: f.name });
+      const notes = activeFx().filter((f) => f.note).map((f) =>
+        h("li", {}, h("b", {}, f.url ? h("a", { href: f.url, rel: "noopener", text: f.name }) : h("a", { href: COND, rel: "noopener", text: f.name })), ": ",
+          typeof f.note === "function" ? f.note(D) : f.note));
+      root.replaceChildren(
+        h("div", { class: "chips", role: "group", "aria-label": "Buffs" }, FX.filter((f) => !f.cond).map(chip)),
+        h("div", { class: "chips", role: "group", "aria-label": "Conditions" }, FX.filter((f) => f.cond).map(chip)),
+        on.size ? h("ul", { class: "fx-notes" }, notes) : null,
+        on.size ? h("p", { class: "fine fx-legend" }, h("span", { class: "fx", text: "Red numbers" }), " include these. ",
+          h("button", { class: "linkish", type: "button", text: "Clear all", onclick: () => { state.fx = {}; save(); applyFx(); } })) : null);
+    };
+    fxPanels.push(draw);
+    draw();
+  }
+  function applyFx() {
+    D = derive();
+    fill();
+    fxPanels.forEach((p) => p.call());
+  }
+  $$("[data-fx]").forEach(fxPanel);
+  applyFx();
   /* ---------- hit points ---------- */
   const hpNow = $("#hp-now"), hpAmt = $("#hp-amt"), hpTemp = $("#hp-temp"), hpTempWrap = $("#hp-temp-wrap"), hpStamp = $("#hp-stamp");
   function drawHp() {
@@ -403,8 +508,9 @@
     for (const p of POWERS) if (p.per && !p.keep) delete state.used[p.id];
     Object.values(state.prep).forEach((m) => Object.values(m).forEach((p) => { p.c = 0; }));
     state.temp = 0;
+    state.fx = {};
     state.day += 1;
-    save(); drawDay(); drawHp(); if (BOOK.length) drawBook(); pipSets.forEach((p) => p.redraw());
+    save(); drawDay(); drawHp(); applyFx(); if (BOOK.length) drawBook(); pipSets.forEach((p) => p.redraw());
     const b = $("#new-day"); b.textContent = `Day ${state.day} begun`; setTimeout(() => { b.textContent = "Begin a new day"; }, 1800);
   });
 

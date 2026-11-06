@@ -66,6 +66,24 @@ main > section { display: grid; gap: var(--gap); }
 .casting tr.hl th, .casting tr.hl td { background: var(--grey-2); font-weight: 800; }
 .day p { font-size: var(--t-sm); }
 
+/* buffs and conditions */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips + .chips { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--rule); }
+.chip {
+  min-height: 34px; padding: 0 11px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper);
+  font: 700 var(--t-sm)/1 var(--sans); color: var(--ink); cursor: pointer;
+}
+.chip.cond { border-style: dashed; }
+.chip:hover { background: var(--grey); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-style: solid; }
+.chip.cond[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); }
+.fx-notes { margin: 10px 0 0; padding-left: 1.1em; font-size: var(--t-sm); }
+.fx-notes li { margin-bottom: 3px; }
+.fx-legend { margin: 6px 0 0; }
+.fx { color: var(--accent); }
+.linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); text-decoration: underline; cursor: pointer; }
+.linkish:hover { color: var(--accent); }
+
 @media (min-width: 720px) {
   .page-character { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "abil abil" "combat skills" "cast skills"; align-items: start; }
   .abilities { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -198,7 +216,7 @@ dl.looks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   html { font-size: 12px; }
   body { background: #fff; }
   .paper { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: none; }
-  .tabs, .hp-ctl, .skill-q, .spell-tools, .spell-help, .day, .more-b, .foot, .center, .col-casting > .box:nth-child(2) .fine { display: none !important; }
+  .tabs, .hp-ctl, .fx-box, .skill-q, .spell-tools, .spell-help, .day, .more-b, .foot, .center, .col-casting > .box:nth-child(2) .fine { display: none !important; }
   main > section[hidden] { display: grid !important; }
   main > section { break-before: page; gap: 8px; }
   main > section:first-child { break-before: auto; }
