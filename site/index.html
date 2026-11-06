@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/alegreya.css?v=10">
 <link rel="stylesheet" href="paper.css?v=10">
-<link rel="stylesheet" href="sheet.css?v=17">
+<link rel="stylesheet" href="sheet.css?v=18">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
@@ -494,86 +494,144 @@
 <section id="s-tips" class="page page-tips" aria-labelledby="h-tips">
   <h2 id="h-tips" class="visually-hidden">Wizard tips</h2>
 
-  <div class="box">
-    <div class="features tips">
-      <p><b><i>Act first, shape the fight.</i></b> Initiative <b data-f="initiative" data-fmt="sign">+10</b> (Improved Initiative + Warrior of Old) means you usually go before the enemy. Spend that turn on control, not damage: a blinded, nauseated or grappled enemy is worth more to the party than a few hit points of damage.</p>
-      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/b/black-tentacles/" rel="noopener">Black Tentacles</a>.</i></b> No save and no spell resistance. The tentacles grapple everything in a 20-ft radius with CMB +12 (caster level 7, +4 Str, +1 size), one roll for the whole area each round. Your best opener against a group, but allies in the area get grappled too.</p>
-      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/g/glitterdust/" rel="noopener">Glitterdust</a>.</i></b> Will DC <span data-f="dc_conj.2">20</span> or blinded. Even on a save, invisible creatures are outlined and everyone in it takes −40 on Stealth. Blinded creatures save again at the end of each of their turns, so the party should hit them fast.</p>
-      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/s/stinking-cloud/" rel="noopener">Stinking Cloud</a>.</i></b> Fort DC <span data-f="dc_conj.3">21</span> or nauseated (only a move action each turn). Creatures that stay inside save again every round. It is fog too: it blocks your line of sight and the party's arrows.</p>
-      <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/c/create-pit/" rel="noopener">Create Pit</a> / <a href="https://www.d20pfsrd.com/magic/all-spells/s/spiked-pit/" rel="noopener">Spiked Pit</a>.</i></b> Reflex DC <span data-f="dc_conj.2">20</span> / <span data-f="dc_conj.3">21</span>. At caster level 7 the pit is 30 ft deep (falling damage), Climb DC 25 to get out; Spiked Pit adds 2d6 piercing on the fall and 1d6 a round to climbers. Creatures that end their turn next to it save at +2 or slide in, and a bull rush into it allows no save. It needs a horizontal surface.</p>
-      <p><b><i>Spell resistance.</i></b> Nearly all your control is conjuration (creation): Black Tentacles, Glitterdust, Web, Stinking Cloud, the pits, Grease, Aqueous Orb, Sleet Storm all say <i>SR no</i>. Against outsiders, fey and casters with SR, use those first.</p>
-    </div>
-    <span class="lbl">Opening moves &amp; control</span>
-  </div>
+  <p class="fine tips-intro">Decisions, not rules text. Numbers come from the sheet and update with it; anything marked <i>Not verified</i> is a GM call. The spell-by-spell basics are in the rules reference at the bottom.</p>
 
   <div class="box">
     <div class="features tips">
-      <p><b><i>Every turn.</i></b> One standard action (a spell), one move, one swift. Shift is your swift: 15 ft of teleport that provokes no attacks of opportunity, so Shift out of reach, then cast normally.</p>
-      <p><b><i>Casting defensively.</i></b> DC 15 + twice the spell level. Concentration +<span data-f="concentration">13</span>, +4 from Combat Casting = +17: 1st level always works, 2nd on a 2+, 3rd on a 4+, 4th on a 6+. Shift or a 5-ft step needs no roll, so try those first.</p>
-      <p><b><i>Summons take a full round.</i></b> Summon Monster has a 1-round casting time: it takes effect just before your next turn, and the creature then acts on your turn. Being hit while casting forces a concentration check, so summon from behind the line. Summoner's charm adds 3 rounds, Augment Summoning gives +4 Str and Con (+2 to hit and damage, +2 hp per Hit Die).</p>
-      <p><b><i>The extend rod is free.</i></b> As a prepared caster you use the lesser extend rod without a longer casting time. It works on spells of 3rd level or lower, so not Black Tentacles.</p>
-      <p><b><i>Spellcraft +16.</i></b> Identifying a spell as it is cast is DC 15 + spell level, so spells of 2nd level or lower are automatic and even 7th level needs only a 6. Tell the table what the enemy caster is doing and whether to Dispel it.</p>
+      <p><b><i>Tentacles first, then the cloud.</i></b> Turn 1: <a href="https://www.d20pfsrd.com/magic/all-spells/b/black-tentacles/" rel="noopener">Black Tentacles</a> on the group. Turn 2: <a href="https://www.d20pfsrd.com/magic/all-spells/s/stinking-cloud/" rel="noopener">Stinking Cloud</a> on the same point (Fort DC <span data-f="dc_conj.3">21</span>). Both are 20-ft radius, medium range, no SR. <b>Why it works:</b> grappled creatures can't move, so they stay in the cloud, and anyone who saves has to save again every round they stay inside. A nauseated creature gets only a move action, but breaking a grapple takes a standard action, so it can't break free and it can't cast. <b>Order matters:</b> cloud first and the nauseated just walk out, sick for only 1d4+1 more rounds. Fog doesn't block line of effect, so you can place the second spell in the first. <b>The cost:</b> the fog hides them from the party too (total concealment past 5 ft), and you can't see in to identify spells or Shift there. Use it to take half the enemies out of the fight for 7 rounds while the party kills the other half, not as a kill zone. <b>Fails</b> against undead, constructs, oozes and plants (the cloud only works on living creatures and is poison), and on one bad tentacle roll (below).</p>
+      <p><b><i>Tentacles, then Glitterdust: the kill zone.</i></b> When the party should finish them now, use <a href="https://www.d20pfsrd.com/magic/all-spells/g/glitterdust/" rel="noopener">Glitterdust</a> (Will DC <span data-f="dc_conj.2">20</span>, 10-ft radius) on the grappled group instead of the cloud. Blinded and grappled, they lose Dex to AC, take −2 AC, and every attack they make has a 50% miss chance, while the archers see them clearly. Melee allies still have to stay outside the tentacles; reach weapons can hit from the edge.</p>
+      <p><b><i>Pit at the choke point, then a shove.</i></b> <a href="https://www.d20pfsrd.com/magic/all-spells/c/create-pit/" rel="noopener">Create Pit</a> (Reflex DC <span data-f="dc_conj.2">20</span>) where they have to come through: 30 ft deep at caster level 7, Climb DC 25, 8 rounds. Creatures pushed in by a bull rush get <b>no save</b>, so tell the fighter before you cast. Anyone who ends a turn next to it saves at +2 or falls in. <b>Fails:</b> flyers, no horizontal floor, and right now you can't cast it at all: both pits need a 10 gp miniature shovel (a focus, not covered by the pouch or Eschew Materials). You have <span data-f="money.gp">14</span> gp.</p>
+      <p><b><i>Stopping a caster: ready damage, not Dispel.</i></b> Readied <a href="https://www.d20pfsrd.com/magic/all-spells/d/dispel-magic/" rel="noopener">Dispel Magic</a> as a counterspell needs no Spellcraft roll, but it only works on a dispel check, 1d20+<span data-f="caster_level">7</span> against 11 + their caster level: 50% against caster level 7. Ready <b>Magic Missile</b> ("when he starts casting") instead: it can't miss, deals about 14 (4d4+4), and he must make concentration DC 10 + damage + spell level, about 24 + the level. If he has SR, ready <b>Snowball</b> (no SR, ranged touch <span data-f="ranged" data-fmt="sign">+7</span>, 5d6, but only 40 ft). Spellcraft <span data-f="skills.32.1" data-fmt="sign">+16</span> identifies a spell as it is cast with no action (DC 15 + level), but only if you can clearly see him. Use it to decide whether the next ready is worth your turn. <i>Not verified:</i> whether a bond-cast copy of the same spell counts as a true counterspell, which would cancel it with no roll. The rules say you need the spell "prepared"; ask the GM first. The bond can't cast divination or enchantment, so it can never counter a charm this way.</p>
     </div>
-    <span class="lbl">Action economy</span>
+    <span class="lbl">Combinations · turn by turn</span>
   </div>
 
   <div class="box">
     <div class="features tips">
-      <p><b><i>Mage Armor every morning.</i></b> AC <span data-f="ac">15</span> → 19 (touch AC is unchanged), 7 hours. Use the extend rod for 14 hours, or Master of Pentacles for 9.</p>
-      <p><b><i>Shift, <span data-f="uses.shift">9</span>/day.</i></b> They come back every day. Use them for movement and repositioning, not only for escapes.</p>
-      <p><b><i>Arcane bond, 1/day.</i></b> Casts any spell in your spellbook without preparing it. Keep it for the spell you didn't expect to need: Dispel Magic, Fly, Rope Trick, Aqueous Orb. Divination and enchantment are your opposed schools and take two slots each to prepare.</p>
-      <p><b><i>Master of Pentacles, 1/day.</i></b> Caster level 9 for the duration of one conjuration spell: pits last 10 rounds instead of 8, summons 12 instead of 10 (with Summoner's charm). Use it on the fight's big spell, not on a cantrip.</p>
-      <p><b><i>Lesser extend rod, <span data-f="uses.rod">3</span>/day.</i></b> Best on buffs and long fights: Haste, Fly, Glitterdust, Stinking Cloud, Summon Monster III. Summoner's charm rounds are not doubled.</p>
-      <p><b><i>Scrolls.</i></b> Fog Cloud, Knock, See Invisibility, Feather Fall and Mount are utility spells you don't need to prepare. Scribe Scroll and <span data-f="gear.blank_scrolls">8</span> blank scrolls turn spare slots at the end of the day into more.</p>
+      <p><b><i>The bond is a fourth Black Tentacles.</i></b> It casts any spell in your book that isn't divination or enchantment, 4th level included. Hold it for the surprise (Dispel Magic, Aqueous Orb, Fly), and if the day's last fight starts with it unspent, open with tentacles from the bond and keep the slot.</p>
+      <p><b><i>Spend Pentacles and the rod in the morning.</i></b> In combat they only matter if the fight outlasts 7 rounds. On hour-long buffs they help all day: the rod on Mage Armor gives 14 hours instead of 7. Master of Pentacles (any conjuration, +2 caster level for duration) on Ablative Barrier for the front-liner gives 9 hours. The rod only works on spells of 3rd level or lower, so not on Black Tentacles, and not on Fly, which is 4th level in Ruthol.</p>
+      <p><b><i>The three 4th-level slots decide three fights.</i></b> Spend them in round 1 of a hard fight, when the whole duration counts. In a fight the party is already winning, use Glitterdust, Magic Missile or the crossbow instead.</p>
+      <p><b><i>Scrolls are for utility, not saves.</i></b> Your scrolls are assumed to be at the minimum caster level, so their save DCs are 11 (1st level) and 13 (2nd), compared with <span data-f="dc_conj.1">19</span>+ from your slots. Read Knock, Feather Fall, See Invisibility, Mount and Fog Cloud freely, and don't spend a combat turn on the Mudball scroll. You can only scribe what you can pay for: half of spell level × caster level × 25 gp, so 12.5 gp for a 1st-level scroll and 75 gp for a 2nd. With <span data-f="money.gp">14</span> gp, leftover slots at the end of the day don't turn into scrolls.</p>
     </div>
-    <span class="lbl">Daily resources</span>
+    <span class="lbl">Across the day</span>
   </div>
 
   <div class="box">
     <div class="features tips">
-      <p class="fine">A starting loadout for a day of unknown fights, chosen from your spellbook. At every level from 1st up, one slot is the conjuration school slot. Divination and enchantment spells take two slots each. The DCs shown are conjuration DCs.</p>
-      <p><b><i>Cantrips (<span data-f="slots.0">4</span>).</i></b> Acid Splash (conjuration, no SR), Mage Hand, Prestidigitation, Message. Swap in Disrupt Undead (1d6 to undead) when you know they're coming. Detect Magic and Read Magic are divination: the wand covers the first, and Spellcraft (DC 20 + spell level) can decipher the unknown scroll without the second.</p>
-      <p><b><i>1st (<span data-f="slots.1">7</span>).</i></b> Mage Armor, Shield, Grease, Mudball (ranged touch, blinds; Reflex DC <span data-f="dc_conj.1">19</span> at the start of each of its turns), Snowball (ranged touch, 5d6 cold, Fort DC <span data-f="dc_conj.1">19</span> or staggered, no SR), Stone Shield, Magic Missile (4 missiles at caster level 7, force).</p>
-      <p><b><i>2nd (<span data-f="slots.2">6</span>).</i></b> Glitterdust ×2, Web, Create Pit (needs the shovel), Mirror Image (1d4+2 images), and one of False Life (1d10+7 temporary hp) or Scorching Ray (2 rays, 4d6 fire each, SR applies).</p>
-      <p><b><i>3rd (<span data-f="slots.3">4</span>).</i></b> Stinking Cloud, Haste (up to 7 allies within 30 ft of each other), Spiked Pit or Aqueous Orb, Fly. Keep Dispel Magic for the arcane bond.</p>
-      <p><b><i>4th (<span data-f="slots.4">3</span>).</i></b> Black Tentacles ×2, Summon Monster IV. These are your best spells, so open a hard fight with one.</p>
+      <p><b><i>Stand far back.</i></b> All your control spells reach 170 ft (medium range). Only Snowball, Mudball, Haste and the summons are close range (40 ft). Stand where the enemy's front line can't reach you in one move.</p>
+      <p><b><i>Put the tentacles in front of the line, not on it.</i></b> Put the near edge just past your melee allies. Anything that enters is grappled at once, and the whole area is difficult terrain. Tell the melee to hold position and let the enemy come to them. A grappled enemy can't make attacks of opportunity and has −4 Dex.</p>
+      <p><b><i>Use the cloud on the back line.</i></b> Put Stinking Cloud on their archers and casters and leave the front line to the party. A nauseated creature can't attack or cast, and the fog blocks their view of you.</p>
+      <p><b><i>Cast, then Shift.</i></b> Shift works "as if using dimension door", which ends your turn, and the GM ruled the same (open item C4; Roll20 calls it a move action). So Shift at the end of your turn, after the spell, to a spot you can see. It provokes no attacks of opportunity. You have <span data-f="uses.shift">9</span> a day, so two or three per fight is fine.</p>
+      <p><b><i>Two enemies next to you: step or leave.</i></b> Ruthol's casting-defensively DC is 15 + 2 × spell level + (highest threatening BAB − 10) + 2 for each extra threatening enemy. Two enemies and a 3rd-level spell is DC 23 or more. With +4 Combat Casting you fail on 1–5 with the sheet's concentration (+<span data-f="concentration">13</span>) and 1–2 with Roll20's +16, an open mismatch. Take a 5-ft step and cast normally. If you can't, cast defensively, or Shift away and give up the spell.</p>
+      <p><b><i>Haste before the party spreads out.</i></b> Haste reaches 40 ft and its targets must all be within 30 ft of each other. Cast it before the melee charges, or not at all.</p>
     </div>
-    <span class="lbl">Spell picks by level · suggestions</span>
+    <span class="lbl">Positioning &amp; the party</span>
   </div>
 
   <div class="box">
     <div class="features tips">
-      <p><b><i>Pick the weak save.</i></b> The good saves by creature type: animals and magical beasts Fort and Ref; fey and monstrous humanoids Ref and Will; undead and aberrations Will; plants and vermin Fort; constructs and oozes none; dragons all three. Glitterdust tests Will, the pits test Reflex, and Stinking Cloud tests Fort.</p>
-      <p><b><i>Enemy casters.</i></b> Black Tentacles: a grappled caster needs concentration DC 22 + spell level (10 + the tentacles' CMB of +12 + spell level). Nauseated (Stinking Cloud) creatures can't cast at all. Identify what they cast with Spellcraft and keep the bond for Dispel Magic.</p>
-      <p><b><i>Crowds.</i></b> Black Tentacles deals 1d6+4 to everyone it grapples each round, and escaping means beating CMD 22. Stinking Cloud and Glitterdust catch a whole group. Stone Call (2d6, then difficult terrain) and Sleet Storm (icy ground: half speed and an Acrobatics check) slow everyone in the area.</p>
-      <p><b><i>Invisible enemies.</i></b> Glitterdust outlines them, no SR. See Invisibility is divination (two slots), so read the scroll instead.</p>
-      <p><b><i>Undead.</i></b> They are immune to mind-affecting effects, poison, fatigue, exhaustion and any effect that needs a Fortitude save, so Stinking Cloud and Ray of Exhaustion do nothing. Their Will is good, so Glitterdust is weaker. Use Black Tentacles and the pits. Mindless undead get no save against Halt Undead, but SR applies and the effect ends if they are attacked or damaged. Disrupt Undead is a cantrip.</p>
-      <p><b><i>Incorporeal enemies (ghosts).</i></b> They can't be grappled and can't fall, so tentacles and pits fail. Other spells deal half damage, and spells that deal no damage have a 50% chance to work. Force effects work normally: Magic Missile does full damage, and Mage Armor and Shield count against their touch attacks.</p>
-      <p><b><i>Constructs.</i></b> They have no good saves, but they're immune to mind-affecting effects, necromancy and anything that needs a Fortitude save. Use pits (Reflex) and Glitterdust (Will).</p>
-      <p><b><i>Oozes.</i></b> They are blind with blindsight and immune to visual effects, illusions and poison, so Glitterdust's blinding, Mirror Image and Stinking Cloud fail. Use pits and tentacles.</p>
-      <p><b><i>Elementals and plants.</i></b> Both are immune to poison, so Stinking Cloud fails. Plants are also immune to mind-affecting effects.</p>
-      <p><b><i>Swarms.</i></b> They are immune to spells that target a number of creatures (rays, Magic Missile, Mudball, Snowball, Acid Splash) and can't be grappled. Area spells deal +50% damage to them: Fireball (7d6), Lightning Bolt, Stone Call.</p>
-      <p><b><i>Spell resistance (outsiders, fey, casters).</i></b> Use conjuration (creation) spells: tentacles, pits, Glitterdust, Stinking Cloud, Snowball, Acid Splash.</p>
-      <p><b><i>Flyers.</i></b> Glitterdust and Stinking Cloud (20 ft high) still reach them. <i>Not verified:</i> whether Black Tentacles, which grow up from the floor, can reach a flying creature. Ask the GM before relying on it.</p>
+      <p><b><i>They made the save: know which spells try again.</i></b> Black Tentacles has no save and rolls again at the start of every turn, so a bad round costs nothing; don't recast. Stinking Cloud makes them save again every round they stay inside. Glitterdust gets one save: anyone who made it can't be blinded by it, so aim the next spell elsewhere.</p>
+      <p><b><i>One big creature with a high CMD.</i></b> The tentacles roll 1d20+12 once for the whole area. Against CMD 25 that hits on 13+, then on 8+ each round after (+5 to keep a grapple). Use them on groups; against one big creature, use Glitterdust or the cloud.</p>
+      <p><b><i>Spell resistance turns up.</i></b> Tentacles, the cloud, Glitterdust, Web, the pits, Sleet Storm, Snowball and Acid Splash ignore SR. Magic Missile, Scorching Ray, Fireball and Lightning Bolt don't, so switch your readied interrupt to Snowball.</p>
+      <p><b><i>Flyers.</i></b> Glitterdust and Stinking Cloud (20 ft high) reach them, and so do Snowball and Magic Missile. Pits don't. <i>Not verified:</i> whether Black Tentacles, which grow up from the floor, can reach a flying creature. Ask the GM before relying on it.</p>
+      <p><b><i>The caster survived the opener.</i></b> If he's grappled by the tentacles, casting costs him concentration DC 22 + spell level (10 + their CMB of +12). Leave him there and ready Magic Missile in case he tries. If he's free, ready Magic Missile now. If he turned invisible, Glitterdust shows where he is, and it has no SR.</p>
     </div>
-    <span class="lbl">Enemy types</span>
+    <span class="lbl">When the opener fails</span>
   </div>
 
-  <div class="box unrec-box">
-    <ul class="checklist">
-      <li><b>Buy a miniature shovel (10 gp).</b> Create Pit and Spiked Pit need it as a focus. The spell component pouch only covers components with no listed cost, and Eschew Materials only covers material components, not foci. You have <span data-f="money.gp">14</span> gp.</li>
-      <li><b>No sleep immunity.</b> Moonkissed traded the elven immunities for +1 on all saves: magic sleep effects work on you, and there is no +2 against enchantments.</li>
-      <li><b>Your area spells hit friends.</b> Black Tentacles, Stinking Cloud, Glitterdust, Web and Sleet Storm don't pick targets. Tell the party where the area goes before you cast.</li>
-      <li><b>Your own fog.</b> Obscuring Mist, Fog Cloud and Stinking Cloud block your line of sight as much as the enemy's. Cast them when you don't need to see through them.</li>
-      <li><b>Web needs anchors.</b> It needs two opposite solid points or it collapses.</li>
-      <li><b>You are fragile.</b> <span data-f="hp_max">40</span> hp, AC <span data-f="ac">15</span>, Str 7. Most of your control spells are medium range (170 ft at caster level 7): use it.</li>
-      <li><b>Watch the load.</b> <span data-f="load.carried">19.5</span> of <span data-f="load.light">23</span> lb light load. A few more pounds is a medium load: slower and a lower Dex cap on AC.</li>
-      <li><b>The wand doesn't recharge.</b> <span data-f="gear.wand">19</span> charges of detect magic in total. The cantrip is divination, an opposed school, so preparing it costs two of your <span data-f="slots.0">4</span> cantrip slots. Pick which one you spend.</li>
-    </ul>
-    <span class="lbl">Common pitfalls</span>
+  <div class="box">
+    <div class="features tips">
+      <p><b><i>Undead, constructs, oozes, plants:</i></b> they are immune to poison, so don't spend a slot on Stinking Cloud for them. Open with Black Tentacles, or Glitterdust where it can blind (oozes have no sight to blind).</p>
+      <p><b><i>Incorporeal:</i></b> they can't be grappled and can't fall, so tentacles and pits do nothing. Magic Missile is force and does full damage.</p>
+    </div>
+    <span class="lbl">Enemy types · what changes</span>
   </div>
 
-  <p class="fine">Rules quoted from <a href="https://www.d20pfsrd.com/magic/">d20pfsrd</a> and the spellbook; numbers come from the Roll20 sheet and update with it.</p>
+  <details class="tips-ref">
+    <summary>Rules reference</summary>
+    <div class="tips-ref-body">
+    <div class="box">
+      <div class="features tips">
+        <p><b><i>Act first, shape the fight.</i></b> Initiative <b data-f="initiative" data-fmt="sign">+10</b> (Improved Initiative + Warrior of Old) means you usually go before the enemy. Spend that turn on control, not damage: a blinded, nauseated or grappled enemy is worth more to the party than a few hit points of damage.</p>
+        <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/b/black-tentacles/" rel="noopener">Black Tentacles</a>.</i></b> No save and no spell resistance. The tentacles grapple everything in a 20-ft radius with CMB +12 (caster level 7, +4 Str, +1 size), one roll for the whole area each round. Your best opener against a group, but allies in the area get grappled too.</p>
+        <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/g/glitterdust/" rel="noopener">Glitterdust</a>.</i></b> Will DC <span data-f="dc_conj.2">20</span> or blinded. Even on a save, invisible creatures are outlined and everyone in it takes −40 on Stealth. Blinded creatures save again at the end of each of their turns, so the party should hit them fast.</p>
+        <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/s/stinking-cloud/" rel="noopener">Stinking Cloud</a>.</i></b> Fort DC <span data-f="dc_conj.3">21</span> or nauseated (only a move action each turn). Creatures that stay inside save again every round. It is fog too: it blocks your line of sight and the party's arrows.</p>
+        <p><b><i><a href="https://www.d20pfsrd.com/magic/all-spells/c/create-pit/" rel="noopener">Create Pit</a> / <a href="https://www.d20pfsrd.com/magic/all-spells/s/spiked-pit/" rel="noopener">Spiked Pit</a>.</i></b> Reflex DC <span data-f="dc_conj.2">20</span> / <span data-f="dc_conj.3">21</span>. At caster level 7 the pit is 30 ft deep (falling damage), Climb DC 25 to get out; Spiked Pit adds 2d6 piercing on the fall, and its walls are Climb DC 20 but deal 1d6 a round to climbers. Creatures that end their turn next to it save at +2 or slide in, and a bull rush into it allows no save. It needs a horizontal surface.</p>
+        <p><b><i>Spell resistance.</i></b> Nearly all your control is conjuration (creation): Black Tentacles, Glitterdust, Web, Stinking Cloud, the pits, Grease, Aqueous Orb, Sleet Storm all say <i>SR no</i>. Against outsiders, fey and casters with SR, use those first.</p>
+      </div>
+      <span class="lbl">Opening moves &amp; control</span>
+    </div>
+
+    <div class="box">
+      <div class="features tips">
+        <p><b><i>Every turn.</i></b> One standard action (a spell), one move, one swift. Shift is 15 ft of teleport that provokes no attacks of opportunity. It works "as if using dimension door", which ends your turn, and Roll20 lists it as a move action (open item C4), so cast first, then Shift.</p>
+        <p><b><i>Casting defensively.</i></b> DC 15 + twice the spell level. Concentration +<span data-f="concentration">13</span>, +4 from Combat Casting = +17: 1st level always works, 2nd on a 2+, 3rd on a 4+, 4th on a 6+. Those figures hold against one enemy with BAB 10 or less: in Ruthol the DC also adds (highest threatening BAB − 10) and +2 for each extra threatening enemy. Roll20 shows concentration +16, not +13 (open mismatch). A 5-ft step needs no roll, so try that first.</p>
+        <p><b><i>Summons take a full round.</i></b> Summon Monster has a 1-round casting time: it takes effect just before your next turn, and the creature then acts on your turn. Being hit while casting forces a concentration check, so summon from behind the line. Summoner's charm adds 3 rounds, Augment Summoning gives +4 Str and Con (+2 to hit and damage, +2 hp per Hit Die).</p>
+        <p><b><i>The extend rod is free.</i></b> As a prepared caster you use the lesser extend rod without a longer casting time. It works on spells of 3rd level or lower, so not Black Tentacles.</p>
+        <p><b><i>Spellcraft +16.</i></b> Identifying a spell as it is cast is DC 15 + spell level, so spells of 2nd level or lower are automatic and even 7th level needs only a 6. Tell the table what the enemy caster is doing and whether to Dispel it.</p>
+      </div>
+      <span class="lbl">Action economy</span>
+    </div>
+
+    <div class="box">
+      <div class="features tips">
+        <p><b><i>Mage Armor every morning.</i></b> AC <span data-f="ac">15</span> → 19 (touch AC is unchanged), 7 hours. Use the extend rod for 14 hours, or Master of Pentacles for 9.</p>
+        <p><b><i>Shift, <span data-f="uses.shift">9</span>/day.</i></b> They come back every day. Use them for movement and repositioning, not only for escapes.</p>
+        <p><b><i>Arcane bond, 1/day.</i></b> Casts any spell in your spellbook without preparing it. Keep it for the spell you didn't expect to need: Dispel Magic, Fly, Aqueous Orb (Rope Trick is banned in Ruthol). It can't be used with metamagic, so not with the rod. Divination and enchantment are your opposed schools: they take two slots each to prepare, and the bond can't cast them.</p>
+        <p><b><i>Master of Pentacles, 1/day.</i></b> Caster level 9 for the duration of one conjuration spell: pits last 10 rounds instead of 8, summons 12 instead of 10 (with Summoner's charm). Use it on the fight's big spell, not on a cantrip.</p>
+        <p><b><i>Lesser extend rod, <span data-f="uses.rod">3</span>/day.</i></b> Best on buffs and long fights: Haste, Glitterdust, Stinking Cloud, Summon Monster III. Summoner's charm rounds are not doubled.</p>
+        <p><b><i>Scrolls.</i></b> Fog Cloud, Knock, See Invisibility, Feather Fall and Mount are utility spells you don't need to prepare. Scribe Scroll and <span data-f="gear.blank_scrolls">8</span> blank scrolls turn spare slots at the end of the day into more.</p>
+      </div>
+      <span class="lbl">Daily resources</span>
+    </div>
+
+    <div class="box">
+      <div class="features tips">
+        <p class="fine">A starting loadout for a day of unknown fights, chosen from your spellbook. At every level from 1st up, one slot is the conjuration school slot. Divination and enchantment spells take two slots each. The DCs shown are conjuration DCs.</p>
+        <p><b><i>Cantrips (<span data-f="slots.0">4</span>).</i></b> Acid Splash (conjuration, no SR), Mage Hand, Prestidigitation, Message. Swap in Disrupt Undead (1d6 to undead) when you know they're coming. Detect Magic and Read Magic are divination: the wand covers the first, and Spellcraft (DC 20 + spell level) can decipher the unknown scroll without the second.</p>
+        <p><b><i>1st (<span data-f="slots.1">7</span>).</i></b> Mage Armor, Shield, Grease, Mudball (ranged touch, blinds; Reflex DC <span data-f="dc_conj.1">19</span> at the start of each of its turns), Snowball (ranged touch, 5d6 cold, Fort DC <span data-f="dc_conj.1">19</span> or staggered, no SR), Stone Shield, Magic Missile (4 missiles at caster level 7, force).</p>
+        <p><b><i>2nd (<span data-f="slots.2">6</span>).</i></b> Glitterdust ×2, Web, Create Pit (needs the shovel), Mirror Image (1d4+2 images), and one of False Life (1d10+7 temporary hp) or Scorching Ray (2 rays, 4d6 fire each, SR applies).</p>
+        <p><b><i>3rd (<span data-f="slots.3">4</span>).</i></b> Stinking Cloud, Haste (up to 7 allies within 30 ft of each other), Spiked Pit or Aqueous Orb, Ablative Barrier. Fly is 4th level in Ruthol. Keep Dispel Magic for the arcane bond.</p>
+        <p><b><i>4th (<span data-f="slots.4">3</span>).</i></b> Black Tentacles ×2, Summon Monster IV. These are your best spells, so open a hard fight with one.</p>
+      </div>
+      <span class="lbl">Spell picks by level · suggestions</span>
+    </div>
+
+    <div class="box">
+      <div class="features tips">
+        <p><b><i>Pick the weak save.</i></b> The good saves by creature type: animals and magical beasts Fort and Ref; fey and monstrous humanoids Ref and Will; undead and aberrations Will; plants and vermin Fort; constructs and oozes none; dragons all three. Glitterdust tests Will, the pits test Reflex, and Stinking Cloud tests Fort.</p>
+        <p><b><i>Enemy casters.</i></b> Black Tentacles: a grappled caster needs concentration DC 22 + spell level (10 + the tentacles' CMB of +12 + spell level). Nauseated (Stinking Cloud) creatures can't cast at all. Identify what they cast with Spellcraft and keep the bond for Dispel Magic.</p>
+        <p><b><i>Crowds.</i></b> Black Tentacles deals 1d6+4 to everyone it grapples each round, and escaping means beating CMD 22. Stinking Cloud and Glitterdust catch a whole group. Stone Call (2d6, then difficult terrain) and Sleet Storm (icy ground: half speed and an Acrobatics check) slow everyone in the area.</p>
+        <p><b><i>Invisible enemies.</i></b> Glitterdust outlines them, no SR. See Invisibility is divination (two slots), so read the scroll instead.</p>
+        <p><b><i>Undead.</i></b> They are immune to mind-affecting effects, poison, fatigue, exhaustion and any effect that needs a Fortitude save, so Stinking Cloud and Ray of Exhaustion do nothing. Their Will is good, so Glitterdust is weaker. Use Black Tentacles and the pits. Mindless undead get no save against Halt Undead, but SR applies and the effect ends if they are attacked or damaged. Disrupt Undead is a cantrip.</p>
+        <p><b><i>Incorporeal enemies (ghosts).</i></b> They can't be grappled and can't fall, so tentacles and pits fail. Other spells deal half damage, and spells that deal no damage have a 50% chance to work. Force effects work normally: Magic Missile does full damage, and Mage Armor and Shield count against their touch attacks.</p>
+        <p><b><i>Constructs.</i></b> They have no good saves, but they're immune to mind-affecting effects, necromancy and anything that needs a Fortitude save. Use pits (Reflex) and Glitterdust (Will).</p>
+        <p><b><i>Oozes.</i></b> They are blind with blindsight and immune to visual effects, illusions and poison, so Glitterdust's blinding, Mirror Image and Stinking Cloud fail. Use pits and tentacles.</p>
+        <p><b><i>Elementals and plants.</i></b> Both are immune to poison, so Stinking Cloud fails. Plants are also immune to mind-affecting effects.</p>
+        <p><b><i>Swarms.</i></b> They are immune to spells that target a number of creatures (rays, Magic Missile, Mudball, Snowball, Acid Splash) and can't be grappled. Area spells deal +50% damage to them: Fireball (7d6), Lightning Bolt, Stone Call.</p>
+        <p><b><i>Spell resistance (outsiders, fey, casters).</i></b> Use conjuration (creation) spells: tentacles, pits, Glitterdust, Stinking Cloud, Snowball, Acid Splash.</p>
+        <p><b><i>Flyers.</i></b> Glitterdust and Stinking Cloud (20 ft high) still reach them. <i>Not verified:</i> whether Black Tentacles, which grow up from the floor, can reach a flying creature. Ask the GM before relying on it.</p>
+      </div>
+      <span class="lbl">Enemy types</span>
+    </div>
+
+    <div class="box unrec-box">
+      <ul class="checklist">
+        <li><b>Buy a miniature shovel (10 gp).</b> Create Pit and Spiked Pit need it as a focus. The spell component pouch only covers components with no listed cost, and Eschew Materials only covers material components, not foci. You have <span data-f="money.gp">14</span> gp.</li>
+        <li><b>No sleep immunity.</b> Moonkissed traded the elven immunities for +1 on all saves: magic sleep effects work on you, and there is no +2 against enchantments.</li>
+        <li><b>Your area spells hit friends.</b> Black Tentacles, Stinking Cloud, Glitterdust, Web and Sleet Storm don't pick targets. Tell the party where the area goes before you cast.</li>
+        <li><b>Your own fog.</b> Obscuring Mist, Fog Cloud and Stinking Cloud block your line of sight as much as the enemy's. Cast them when you don't need to see through them.</li>
+        <li><b>Web needs anchors.</b> It needs two opposite solid points or it collapses.</li>
+        <li><b>You are fragile.</b> <span data-f="hp_max">40</span> hp, AC <span data-f="ac">15</span>, Str 7. Most of your control spells are medium range (170 ft at caster level 7): use it.</li>
+        <li><b>Watch the load.</b> <span data-f="load.carried">19.5</span> of <span data-f="load.light">23</span> lb light load. A few more pounds is a medium load: slower and a lower Dex cap on AC.</li>
+        <li><b>The wand doesn't recharge.</b> <span data-f="gear.wand">19</span> charges of detect magic in total. The cantrip is divination, an opposed school, so preparing it costs two of your <span data-f="slots.0">4</span> cantrip slots. Pick which one you spend.</li>
+      </ul>
+      <span class="lbl">Common pitfalls</span>
+    </div>
+
+    <p class="fine">Rules quoted from <a href="https://www.d20pfsrd.com/magic/">d20pfsrd</a> and the spellbook; numbers come from the Roll20 sheet and update with it.</p>
+    </div>
+  </details>
 </section>
 </main>
 

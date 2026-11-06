@@ -256,9 +256,22 @@ dl.looks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .page-tips { align-items: start; }
 .tips p { border-bottom: 1px solid var(--hair); padding: 6px 0 8px; margin: 0; }
 .tips p:last-child { border-bottom: 0; }
+.tips-intro { margin: 0 0 var(--gap); }
+.tips-ref > summary { display: flex; align-items: center; gap: 8px; min-height: 36px; cursor: pointer; font: 700 var(--t-lg)/1.2 var(--display); border-top: var(--stroke) solid var(--ink); padding-top: 6px; }
+.tips-ref > summary { list-style: none; }
+.tips-ref > summary::-webkit-details-marker { display: none; }
+.tips-ref > summary::before { content: "+"; display: inline-grid; place-items: center; width: 24px; height: 24px; border: 1.5px solid var(--ink-2); border-radius: 4px; font: 700 var(--t-md)/1 var(--sans); color: var(--ink-2); }
+.tips-ref[open] > summary::before { content: "−"; }
+.tips-ref > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.tips-ref[open] > summary { margin-bottom: var(--gap); }
+.tips-ref-body > * { margin: 0 0 var(--gap); }
 @media (min-width: 900px) {
   main > .page-tips:not([hidden]) { display: block; column-count: 2; column-gap: var(--gap); }
   .page-tips > * { break-inside: avoid; margin: 0 0 var(--gap); }
+  .page-tips > .tips-intro, .page-tips > .tips-ref { column-span: all; }
+  .page-tips > .tips-ref { break-inside: auto; }
+  .tips-ref-body { column-count: 2; column-gap: var(--gap); }
+  .tips-ref-body > * { break-inside: avoid; }
 }
 @media print {
   main > .page-tips { display: block !important; }
