@@ -231,7 +231,7 @@
           class: "pip" + (spent ? " spent" : ""), type: "button",
           "aria-pressed": spent ? "true" : "false",
           "aria-label": `${label}: use ${i + 1} of ${total}${spent ? ", spent" : ""}`,
-          onclick: (e) => { state.used[id] = spent ? i : i + 1; save(); draw(); wrap.children[i]?.focus(); e.preventDefault(); },
+          onclick: (e) => { state.used[id] = spent ? i : i + 1; save(); draw(); redrawBars(); wrap.children[i]?.focus(); e.preventDefault(); },
         }));
       }
       wrap.append(h("span", { class: "pip-count", text: `${total - used} left` }));
@@ -391,12 +391,22 @@
     const facts = [["Casting time", s.casting_time], ["Components", s.components], ["Range", s.range], ["Area", s.area], ["Effect", s.effect],
       ["Targets", s.targets], ["Duration", s.duration], ["Saving throw", s.save], ["Spell resistance", s.sr]].filter(([, v]) => v);
     const hasSave = s.save && !/^none/i.test(s.save);
+    const left = p.n - p.c, bondLeft = USES("bond", 1) - (state.used.bond || 0);
+    const actions = lvl > 0 ? h("div", { class: "sp-actions" },
+      p.n ? h("button", { class: "btn", type: "button", disabled: !left, "data-k": "cast-" + k,
+        text: left ? `Cast${p.n > 1 ? ` (${left} of ${p.n} left)` : ""}` : "All copies cast",
+        onclick: () => { prepOf(lvl)[s.name].c = p.c + 1; save(); redrawLevel(lvl, "cast-" + k); } }) : h("span", { class: "fine", text: "Not prepared." }),
+      bondLeft > 0 ? h("button", { class: "btn", type: "button", "data-k": "bond-" + k, text: "Cast with arcane bond",
+        title: "Ring of Pengolodh: cast any spell in your book once a day without preparing it",
+        onclick: () => { state.used.bond = (state.used.bond || 0) + 1; save(); pipSets.forEach((ps) => ps.redraw()); drawBook(); $(`[data-k="n-${k}"]`, book)?.focus({ preventScroll: true }); } })
+        : h("span", { class: "fine", text: "Arcane bond used today." })) : null;
     const link = linkFor(s);
     const school = s.school + (s.subschool ? ` (${s.subschool})` : "") + (s.descriptor ? ` [${s.descriptor}]` : "");
     const detail = h("div", { class: "sp-detail", id: did, hidden: !isOpen },
       h("p", { class: "short" }, s.short || "", " ", h("span", { class: "src", text: school })),
       h("dl", { class: "facts" }, facts.map(([a, b]) => [h("dt", { text: a }), h("dd", { text: b })])),
       hasSave ? h("p", { class: "dcline" }, "Save DC ", h("b", { text: String(DC(lvl, s.school)) })) : null,
+      actions,
       isOpen ? h("div", { class: "rules", html: s.text || "" }) : null,
       h("p", { class: "src" }, s.source ? `${s.source} · ` : "", h("a", { href: link.url, rel: "noopener", text: `Read on ${link.label}` })));
     return h("li", {
@@ -450,6 +460,7 @@
     const fresh = levelBlock(lvl);
     old.replaceWith(fresh);
     filterBook();
+    redrawBars();
     if (focusKey) {
       const el = $(`[data-k="${focusKey}"]`, fresh) || $(`[data-k="p-${focusKey.split("-").slice(1).join("-")}"]`, fresh);
       el?.focus({ preventScroll: true });
@@ -459,7 +470,39 @@
   function drawBook() {
     book.replaceChildren(...[0, 1, 2, 3, 4].map(levelBlock));
     filterBook();
+    redrawBars();
   }
+
+  /* ---------- slots-left bar ---------- */
+  const ORD = ["0", "1st", "2nd", "3rd", "4th"];
+  const slotBars = [];
+  function jumpLevel(lvl) {
+    const go = () => $(`.spell-level[data-level="${lvl}"]`, book)?.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "start" });
+    if (location.hash !== "#spells") { location.hash = "#spells"; setTimeout(go, 60); } else go();
+  }
+  function slotBar(root) {
+    const draw = () => {
+      const chips = [1, 2, 3, 4].map((lvl) => {
+        const prepared = slotsUsed(lvl), left = prepared - slotsCast(lvl), open = SLOTS[lvl] - prepared;
+        return h("a", { class: "slot-chip" + (left ? "" : " none"), href: "#spells", title: `${left} of ${prepared} prepared slots left${open > 0 ? `; ${open} not prepared` : ""}`,
+          "aria-label": `${ORD[lvl]} level: ${left} of ${prepared} prepared slots left${open > 0 ? `, ${open} unprepared` : ""}`,
+          onclick: (e) => { e.preventDefault(); jumpLevel(lvl); } },
+          h("span", { class: "sl-no", text: ORD[lvl] }), h("b", { text: String(left) }),
+          h("small", { text: `/${prepared}` }));
+      });
+      const bond = USES("bond", 1) - (state.used.bond || 0);
+      chips.push(h("span", { class: "slot-chip bond" + (bond > 0 ? "" : " none"), title: "Arcane bond: cast any spell in your book",
+        "aria-label": `Arcane bond: ${bond} left today` }, h("span", { class: "sl-no", text: "Bond" }), h("b", { text: String(bond) })));
+      root.replaceChildren(...chips);
+    };
+    slotBars.push(draw);
+    draw();
+  }
+  function redrawBars() { slotBars.forEach((d) => d()); }
+  $$("[data-slotbar]").forEach(slotBar);
+  const setTabsH = () => document.documentElement.style.setProperty("--tabs-h", ($(".tabs")?.offsetHeight || 0) + "px");
+  setTabsH();
+  window.addEventListener("resize", setTabsH);
 
   function setView(v) {
     view = v;
@@ -510,7 +553,7 @@
     state.temp = 0;
     state.fx = {};
     state.day += 1;
-    save(); drawDay(); drawHp(); applyFx(); if (BOOK.length) drawBook(); pipSets.forEach((p) => p.redraw());
+    save(); drawDay(); drawHp(); applyFx(); redrawBars(); if (BOOK.length) drawBook(); pipSets.forEach((p) => p.redraw());
     const b = $("#new-day"); b.textContent = `Day ${state.day} begun`; setTimeout(() => { b.textContent = "Begin a new day"; }, 1800);
   });
 

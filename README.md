@@ -27,6 +27,8 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 - `sheet.css`: layout for this page, including print styles.
 - `data/spellbook.json`: offline copy of the spellbook.
 
+On the Spells tab a sticky bar shows the prepared slots left at each level and the arcane bond use; an open spell has **Cast** and **Cast with arcane bond** buttons.
+
 The Spells tab loads the live spellbook from <https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/spellbook.json> and falls back to `data/spellbook.json`. Spell links go to d20pfsrd.com; pathfinder_spells checks each URL against the d20pfsrd sitemap. To learn a spell, add it to `caladrel_ecthelion/spellbook.txt` in pathfinder_spells and run `scripts/update_spells.py`; then copy the new JSON into `site/data/`.
 
 The sheet's numbers (abilities, saves, AC, attacks, DCs, slots, skills, uses per day, money, load, scrolls) come from `site/data/sheet.js`, which `roll20/sync.py` writes from the Roll20 YAML on every pull, push and recalc (or `sync.py site`). Elements with `data-f="path"` in `index.html` take their text from it; the literal values in the HTML are only fallbacks. Prose (feat and power descriptions) is hand-written.

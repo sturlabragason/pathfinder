@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/alegreya.css?v=10">
 <link rel="stylesheet" href="paper.css?v=10">
-<link rel="stylesheet" href="sheet.css?v=14">
+<link rel="stylesheet" href="sheet.css?v=15">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
@@ -209,7 +209,8 @@
     <label class="visually-hidden" for="book-q">Search the spellbook</label>
     <input class="input" id="book-q" type="search" placeholder="Search spells" autocomplete="off">
   </div>
-  <p class="fine spell-help">Tap the bubble to prepare a spell (opposed-school spells take two slots). Tap a box when you cast it. Tap the name for the full rules. <span id="book-src"></span></p>
+  <p class="fine spell-help">Tap the bubble to prepare a spell (opposed-school spells take two slots). Tap a box when you cast it. Tap the name for the full rules and a Cast button. The bar shows prepared slots left at each level; tap it to jump there. <span id="book-src"></span></p>
+  <div class="slot-bar" data-slotbar role="group" aria-label="Prepared slots left, by spell level"></div>
 
   <div id="book" class="spell-levels"><p class="empty">Opening the spellbook…</p></div>
   <p class="fine center"><a href="https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/">Caladrel's spell list</a> · <a href="https://sturlabragason.github.io/pathfinder_spells/">Every wizard spell</a></p>
@@ -448,7 +449,7 @@
 </footer>
 </div>
 
-<script src="data/sheet.js?v=13" defer></script>
-<script src="sheet.js?v=13" defer></script>
+<script src="data/sheet.js?v=14" defer></script>
+<script src="sheet.js?v=14" defer></script>
 </body>
 </html>
