@@ -1,5 +1,9 @@
 (() => {
   "use strict";
+  // Offline support. The service worker's cache is named after this script's ?v=, so bumping it in index.html drops stale copies.
+  const VER = document.currentScript ? new URL(document.currentScript.src).searchParams.get("v") || "0" : "0";
+  if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol))
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=" + VER).catch(() => {}));
   const REMOTE = "https://sturlabragason.github.io/pathfinder_spells/caladrel_ecthelion/spellbook.json";
   const LOCAL = "data/spellbook.json";
   const KEY = "caladrel.sheet.v1";
