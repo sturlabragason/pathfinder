@@ -191,19 +191,23 @@
   $$("[data-fx]").forEach(fxPanel);
   applyFx();
   /* ---------- hit points ---------- */
-  const hpNow = $("#hp-now"), hpAmt = $("#hp-amt"), hpTemp = $("#hp-temp"), hpTempWrap = $("#hp-temp-wrap"), hpStamp = $("#hp-stamp");
+  // Every .box.hp (Character and Combat tabs) shows the same hit points.
   function drawHp() {
-    hpNow.textContent = state.hp;
-    hpTemp.textContent = state.temp;
-    hpTempWrap.hidden = !state.temp;
     const word = state.hp <= -12 ? "Dead" : state.hp < 0 ? "Dying" : state.hp === 0 ? "Disabled" : "";
-    hpStamp.hidden = !word;
-    hpStamp.textContent = word;
-    hpNow.classList.toggle("low", state.hp <= HP_MAX / 4);
+    $$(".box.hp").forEach((box) => {
+      const now = $(".hp-now", box), stamp = $(".state", box);
+      now.textContent = state.hp;
+      now.classList.toggle("low", state.hp <= HP_MAX / 4);
+      $(".hp-temp output", box).textContent = state.temp;
+      $(".hp-temp", box).hidden = !state.temp;
+      stamp.hidden = !word;
+      stamp.textContent = word;
+    });
   }
   $$("[data-hp]").forEach((b) => b.addEventListener("click", () => {
-    const n = Math.max(0, parseInt(hpAmt.value, 10) || 0);
-    if (!n) { hpAmt.focus(); return; }
+    const amt = $(".hp-amt", b.closest(".hp-ctl"));
+    const n = Math.max(0, parseInt(amt.value, 10) || 0);
+    if (!n) { amt.focus(); return; }
     if (b.dataset.hp === "dmg") {
       const soak = Math.min(state.temp, n);
       state.temp -= soak;
@@ -213,10 +217,10 @@
     } else {
       state.temp = Math.max(state.temp, n);
     }
-    hpAmt.value = "";
+    amt.value = "";
     save(); drawHp();
   }));
-  hpAmt.addEventListener("keydown", (e) => { if (e.key === "Enter") $("[data-hp=dmg]").click(); });
+  $$(".hp-amt").forEach((amt) => amt.addEventListener("keydown", (e) => { if (e.key === "Enter") $("[data-hp=dmg]", amt.closest(".hp-ctl")).click(); }));
   drawHp();
 
   /* ---------- per-day pips ---------- */
@@ -231,7 +235,7 @@
           class: "pip" + (spent ? " spent" : ""), type: "button",
           "aria-pressed": spent ? "true" : "false",
           "aria-label": `${label}: use ${i + 1} of ${total}${spent ? ", spent" : ""}`,
-          onclick: (e) => { state.used[id] = spent ? i : i + 1; save(); draw(); redrawBars(); wrap.children[i]?.focus(); e.preventDefault(); },
+          onclick: (e) => { state.used[id] = spent ? i : i + 1; save(); pipSets.forEach((ps) => ps.redraw()); redrawBars(); wrap.children[i]?.focus(); e.preventDefault(); },
         }));
       }
       wrap.append(h("span", { class: "pip-count", text: `${total - used} left` }));
@@ -253,7 +257,7 @@
       text: "When you cast a conjuration spell, treat your caster level as 2 higher for its duration." },
     { id: "charm", url: "https://www.d20pfsrd.com/classes/core-classes/wizard/arcane-schools/paizo-arcane-schools/classic-arcane-schools/conjuration/", name: "Summoner's charm (Su)", aside: "always on",
       text: "Conjuration (summoning) spells last 3 rounds longer (half wizard level). Extend Spell doesn't double the extra rounds." },
-    { id: "wand", url: "https://www.d20pfsrd.com/magic/all-spells/d/detect-magic/", name: "Gloves of arrow snaring", per: USES("gloves", 2), aside: `${USES("gloves", 2)}/day`,
+    { id: "gloves", url: PFSRD + "magic-items/wondrous-items/e-g/gloves-of-arrow-snaring/", name: "Gloves of arrow snaring", per: USES("gloves", 2), aside: `${USES("gloves", 2)}/day`,
       text: "Wearing both gloves with at least one hand free, react as if you had Snatch Arrows: catch a ranged weapon attack that would hit you. Takes no action; you must be aware of the attack and not flat-footed." },
     { id: "wand", url: "https://www.d20pfsrd.com/magic/all-spells/d/detect-magic/", name: "Wand of detect magic", per: QTY("wand", 19), keep: true, aside: "charges",
       text: "One charge per use. Charges don't come back with a new day." },
@@ -267,6 +271,14 @@
     if (p.per) { const ps = pips(p.id, p.per, p.name); pipSets.push(ps); feat.append(ps); }
     $("#power-list").append(feat);
   }
+  // Compact pips elsewhere (Combat tab): <div data-pips="shift">.
+  $$("[data-pips]").forEach((el) => {
+    const p = POWERS.find((x) => x.id === el.dataset.pips);
+    if (!p?.per) return;
+    const ps = pips(p.id, p.per, p.name);
+    pipSets.push(ps);
+    el.append(h("span", { class: "pip-name" }, p.url ? h("a", { href: p.url, rel: "noopener", text: p.name }) : p.name), ps);
+  });
 
   /* ---------- skills ---------- */
   // [name, total, ranks, ability, flags: c = class skill, t = trained only]

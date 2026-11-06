@@ -19,7 +19,7 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 
 `site/` is plain HTML, CSS and JavaScript with no build step. It is drawn like a pen-and-paper character sheet (the 5e/AD&D sheet layout): boxes with labels under each field, ability ovals, an AC shield, bubbles for skills, and a 5e-style spell sheet. See `DESIGN.md`.
 
-- `index.html`: the sheet. Tabs: Character, Spells, Features, Equipment, Backstory.
+- `index.html`: the sheet. Tabs: Character, Combat, Spells, Features, Equipment, Backstory, Notes, Tips. **Combat** puts what you need on your turn on one screen: AC, touch, flat-footed, initiative, CMD, speed, hit points, saves, ranged/melee touch, concentration, spell DCs, slots left, daily powers and buffs/conditions, all wired to the same play state.
 - `sheet.js`: behaviour. Hit points, per-day uses, prepared spells, casts, used scrolls and active buffs and conditions are saved in the browser (`localStorage`), so each device keeps its own play state. **Move to another device** (Character tab) copies a link with the state compressed into its hash (`#state=…`); opening it on another device asks before replacing that device's state. **Begin a new day** clears casts, per-day uses, buffs, conditions and temporary hit points. Buffs and conditions (Character tab) recompute AC, saves, attacks, CMB/CMD and speed; changed numbers turn red.
 - `paper.css`: the shared design system, also used by [pathfinder_spells](https://github.com/sturlabragason/pathfinder_spells). Keep the two copies the same.
 - `fonts/`: Alegreya Sans, Alegreya Sans SC and Alegreya SC (SIL OFL).
