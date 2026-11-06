@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/alegreya.css?v=10">
 <link rel="stylesheet" href="paper.css?v=10">
-<link rel="stylesheet" href="sheet.css?v=13">
+<link rel="stylesheet" href="sheet.css?v=14">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
@@ -122,6 +122,11 @@
       </div>
     </div>
 
+    <div class="box fx-box">
+      <div data-fx></div>
+      <span class="lbl">Buffs &amp; conditions</span>
+    </div>
+
     <div class="box attacks">
       <table class="grid">
         <thead><tr><th scope="col">Name</th><th scope="col">Atk</th><th scope="col">Damage / notes</th></tr></thead>
@@ -175,7 +180,7 @@
     </div>
 
     <div class="box day">
-      <p>A new day clears cast spells, per-day powers and temporary hit points. Hit points, wand charges and bolts stay.</p>
+      <p>A new day clears cast spells, per-day powers, buffs, conditions and temporary hit points. Hit points, wand charges and bolts stay.</p>
       <button class="btn wide" type="button" id="new-day">Begin a new day</button>
       <span class="lbl">Rest · <span id="day-aside"></span></span>
     </div>
@@ -443,7 +448,7 @@
 </footer>
 </div>
 
-<script src="data/sheet.js?v=12" defer></script>
-<script src="sheet.js?v=12" defer></script>
+<script src="data/sheet.js?v=13" defer></script>
+<script src="sheet.js?v=13" defer></script>
 </body>
 </html>
