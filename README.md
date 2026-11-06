@@ -23,6 +23,7 @@ Character material for Caladrel Ecthëlion, an elf conjurer (Pathfinder 1e).
 - `sheet.js`: behaviour. Hit points, per-day uses, prepared spells, casts and used scrolls are saved in the browser (`localStorage`), so each device keeps its own play state. **Begin a new day** clears casts, per-day uses and temporary hit points.
 - `paper.css`: the shared design system, also used by [pathfinder_spells](https://github.com/sturlabragason/pathfinder_spells). Keep the two copies the same.
 - `fonts/`: Alegreya Sans, Alegreya Sans SC and Alegreya SC (SIL OFL).
+- `sw.js`, `manifest.json`, `icon-*.png`: offline support and "Add to home screen". The service worker fetches pages, scripts, styles and data from the network first and falls back to its cache when offline or after 3.5 s; fonts and images come from the cache. `sheet.js` registers it as `sw.js?v=<sheet.js ?v>`, and the cache is named after that number, so bumping `sheet.js?v=` also drops the old cache.
 - `sheet.css`: layout for this page, including print styles.
 - `data/spellbook.json`: offline copy of the spellbook.
 
