@@ -296,3 +296,18 @@ a.slot-chip:hover { background: var(--grey); color: var(--ink); }
 .sync-row .btn { flex: 0 0 auto; padding: 0 14px; }
 #state-msg:empty { display: none; }
 @media print { .sync { display: none !important; } }
+
+/* ---------- combat page ---------- */
+.page-combat { align-items: start; }
+.combat-col { display: flex; flex-direction: column; gap: var(--gap); min-width: 0; }
+.page-combat .trio.small .sq b { font-size: var(--t-xl); }
+.c-atk { margin: 10px 0 0; flex-wrap: wrap; font-size: var(--t-sm); }
+.c-atk b { font-size: var(--t-md); }
+.slot-bar.inline { position: static; margin: 0; padding: 0; border: 0; background: none; }
+.slot-bar.inline .slot-chip { flex: 1 1 0; min-width: 0; }
+.c-powers [data-pips] { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 6px 0; border-bottom: 1px solid var(--hair); }
+.c-powers [data-pips]:last-of-type { border-bottom: 0; }
+.pip-name { flex: 1 0 9rem; font-weight: 700; }
+@media (min-width: 720px) { .page-combat { grid-template-columns: repeat(2, minmax(0, 1fr)); } .page-combat > .grey { grid-row: span 2; } }
+@media (min-width: 1100px) { .page-combat { grid-template-columns: repeat(3, minmax(0, 1fr)); } .page-combat > .grey { grid-row: auto; } }
+@media print { main > section.page-combat { display: none !important; } }

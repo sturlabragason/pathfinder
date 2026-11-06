@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/AlegreyaSansSC-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/alegreya.css?v=10">
 <link rel="stylesheet" href="paper.css?v=10">
-<link rel="stylesheet" href="sheet.css?v=16">
+<link rel="stylesheet" href="sheet.css?v=17">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 7v9c0 7-6 12-13 14C9 28 3 23 3 16V7z' fill='%23fff' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='serif' font-weight='700' font-size='13' text-anchor='middle'%3E15%3C/text%3E%3C/svg%3E">
@@ -37,6 +37,7 @@
 
 <nav class="tabs" aria-label="Sheet pages">
   <a class="tab" href="#character">Character</a>
+  <a class="tab" href="#combat">Combat</a>
   <a class="tab" href="#spells">Spells</a>
   <a class="tab" href="#features">Features</a>
   <a class="tab" href="#gear">Equipment</a>
@@ -198,6 +199,93 @@
       </div>
       <p class="fine" id="state-msg" role="status"></p>
       <span class="lbl">Move to another device</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMBAT ============ -->
+<section id="s-combat" class="page page-combat" aria-labelledby="h-combat">
+  <h2 id="h-combat" class="visually-hidden">Combat</h2>
+
+  <div class="grey">
+    <div class="trio">
+      <div class="shield" aria-label="Armor class"><b data-f="ac">15</b><span class="lbl">Armor<br>class</span></div>
+      <div class="sq"><b data-f="touch">14</b><span class="lbl">Touch</span></div>
+      <div class="sq"><b data-f="flatfooted">11</b><span class="lbl">Flat-footed</span></div>
+    </div>
+    <div class="trio small">
+      <div class="sq"><b data-f="initiative" data-fmt="sign">+10</b><span class="lbl">Initiative</span></div>
+      <div class="sq"><b data-f="cmd">15</b><span class="lbl">CMD</span></div>
+      <div class="sq"><b data-f="speed">30</b><span class="lbl">Speed</span></div>
+    </div>
+    <div class="box hp" aria-labelledby="c-hp-lbl">
+      <p class="max">Hit point maximum <span class="u" data-f="hp_max">40</span></p>
+      <div class="hp-row">
+        <output class="hp-now" aria-live="polite">40</output>
+        <span class="hp-temp" hidden>+<output>0</output> temp</span>
+        <span class="state" hidden>Disabled</span>
+      </div>
+      <div class="hp-ctl">
+        <label class="visually-hidden" for="c-hp-amt">Amount</label>
+        <input class="input hp-amt" id="c-hp-amt" type="number" inputmode="numeric" min="0" max="99" placeholder="HP">
+        <button class="btn" type="button" data-hp="dmg">Damage</button>
+        <button class="btn" type="button" data-hp="heal">Heal</button>
+        <button class="btn" type="button" data-hp="temp">Temp</button>
+      </div>
+      <span class="lbl" id="c-hp-lbl">Current hit points</span>
+    </div>
+  </div>
+
+  <div class="combat-col">
+    <div class="box">
+      <div class="trio small">
+        <div class="sq"><b data-f="saves.fort" data-fmt="sign">+6</b><span class="lbl">Fortitude</span></div>
+        <div class="sq"><b data-f="saves.ref" data-fmt="sign">+9</b><span class="lbl">Reflex</span></div>
+        <div class="sq"><b data-f="saves.will" data-fmt="sign">+8</b><span class="lbl">Will</span></div>
+      </div>
+      <span class="lbl">Saving throws</span>
+    </div>
+
+    <div class="box">
+      <div class="trio small">
+        <div class="sq"><b data-f="ranged" data-fmt="sign">+7</b><span class="lbl">Ranged touch</span></div>
+        <div class="sq"><b data-f="melee" data-fmt="sign">+1</b><span class="lbl">Melee touch</span></div>
+        <div class="sq"><b data-f="concentration" data-fmt="sign">+13</b><span class="lbl">Concentration</span></div>
+      </div>
+      <p class="pair c-atk"><span>Light crossbow <b data-f="attacks.crossbow_light.atk">+7</b></span><span data-f="attacks.crossbow_light.line">1d8 · 19–20/×2 · 80 ft</span></p>
+      <span class="lbl">Attacks &amp; casting</span>
+    </div>
+
+    <div class="box casting">
+      <table class="grid dc">
+        <caption class="visually-hidden">Spell save DCs by spell level</caption>
+        <thead><tr><th scope="col">Level</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
+        <tbody>
+          <tr class="hl"><th scope="row">Conjuration</th><td data-f="dc_conj.0">18</td><td data-f="dc_conj.1">19</td><td data-f="dc_conj.2">20</td><td data-f="dc_conj.3">21</td><td data-f="dc_conj.4">22</td></tr>
+          <tr><th scope="row">Other</th><td data-f="dc.0">16</td><td data-f="dc.1">17</td><td data-f="dc.2">18</td><td data-f="dc.3">19</td><td data-f="dc.4">20</td></tr>
+        </tbody>
+      </table>
+      <span class="lbl">Spell save DCs</span>
+    </div>
+  </div>
+
+  <div class="combat-col">
+    <div class="box">
+      <div class="slot-bar inline" data-slotbar role="group" aria-label="Prepared slots left, by spell level"></div>
+      <span class="lbl">Slots left · <a href="#spells">Spells</a></span>
+    </div>
+
+    <div class="box c-powers">
+      <div data-pips="shift"></div>
+      <div data-pips="bond"></div>
+      <div data-pips="rod"></div>
+      <div data-pips="gloves"></div>
+      <span class="lbl">Daily powers</span>
+    </div>
+
+    <div class="box fx-box">
+      <div data-fx></div>
+      <span class="lbl">Buffs &amp; conditions</span>
     </div>
   </div>
 </section>
@@ -464,7 +552,7 @@
 </footer>
 </div>
 
-<script src="data/sheet.js?v=15" defer></script>
-<script src="sheet.js?v=15" defer></script>
+<script src="data/sheet.js?v=16" defer></script>
+<script src="sheet.js?v=16" defer></script>
 </body>
 </html>
