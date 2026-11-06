@@ -557,6 +557,56 @@
     const b = $("#new-day"); b.textContent = `Day ${state.day} begun`; setTimeout(() => { b.textContent = "Begin a new day"; }, 1800);
   });
 
+  /* ---------- move play state between devices ---------- */
+  // A link carries the state in its hash: #state=z<base64url(deflate(JSON))>, or j<base64url(JSON)> without CompressionStream.
+  const b64u = (bytes) => btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join("")).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const unb64u = (s) => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));
+  const pipe = async (bytes, stream) => new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer());
+  async function encodeState() {
+    const raw = new TextEncoder().encode(JSON.stringify(state));
+    if (typeof CompressionStream === "function") return "z" + b64u(await pipe(raw, new CompressionStream("deflate-raw")));
+    return "j" + b64u(raw);
+  }
+  async function decodeState(code) {
+    const m = String(code).trim().match(/(?:#state=)?([zj])([A-Za-z0-9_-]+)$/);
+    if (!m) throw new Error("That isn't a play-state link.");
+    let bytes = unb64u(m[2]);
+    if (m[1] === "z") bytes = await pipe(bytes, new DecompressionStream("deflate-raw"));
+    const obj = JSON.parse(new TextDecoder().decode(bytes));
+    if (!obj || typeof obj !== "object" || typeof obj.hp !== "number" || typeof obj.prep !== "object") throw new Error("That link has no play state in it.");
+    return Object.assign(fresh(), obj);
+  }
+  const stateMsg = $("#state-msg");
+  const stateLink = async () => location.origin + location.pathname + "#state=" + (await encodeState());
+  $("#state-copy").addEventListener("click", async () => {
+    const url = await stateLink();
+    try { await navigator.clipboard.writeText(url); stateMsg.textContent = "Link copied. Open it on the other device."; }
+    catch { $("#state-in").value = url; $("#state-in").select(); stateMsg.textContent = "Copy the selected link and open it on the other device."; }
+  });
+  if (navigator.share) {
+    const sh = $("#state-share");
+    sh.hidden = false;
+    sh.addEventListener("click", async () => { try { await navigator.share({ title: "Caladrel play state", url: await stateLink() }); } catch { /* cancelled */ } });
+  }
+  async function importState(code) {
+    let next;
+    try { next = await decodeState(code); } catch (e) { stateMsg.textContent = e.message || "That link couldn't be read."; return false; }
+    const prepared = Object.values(next.prep).reduce((a, m) => a + Object.keys(m).length, 0);
+    if (!confirm(`Replace the play state on this device with the one in the link (day ${next.day}, ${next.hp} hit points, ${prepared} spells prepared)?`)) return false;
+    state = next; save();
+    history.replaceState(null, "", location.pathname + "#character");
+    location.reload();
+    return true;
+  }
+  $("#state-load").addEventListener("click", () => { const v = $("#state-in").value; if (v.trim()) importState(v); else $("#state-in").focus(); });
+  $("#state-in").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#state-load").click(); });
+  if (location.hash.startsWith("#state=")) {
+    const code = location.hash;
+    history.replaceState(null, "", location.pathname + "#character");
+    show();
+    importState(code);
+  }
+
   // Deep link: #spells/<spell-name-slug> opens that spell.
   const m = location.hash.match(/^#spells\/(.+)$/);
   if (m) {

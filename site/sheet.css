@@ -289,3 +289,10 @@ a.slot-chip:hover { background: var(--grey); color: var(--ink); }
 .sp-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 10px; }
 .sp-actions .btn { min-height: 40px; padding: 0 14px; font-size: var(--t-sm); }
 @media print { .slot-bar, .sp-actions { display: none !important; } }
+
+/* ---------- move play state ---------- */
+.sync-row { display: flex; gap: 6px; margin-top: 8px; }
+.sync-row .input { flex: 1 1 auto; min-width: 0; }
+.sync-row .btn { flex: 0 0 auto; padding: 0 14px; }
+#state-msg:empty { display: none; }
+@media print { .sync { display: none !important; } }
